@@ -1,0 +1,64 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "prettier",
+    "prettier/prettier",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "react-hooks"],
+  "rules": {
+    //crlf 오류 해결
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    //최대 줄 길이
+    "max-len": ["warn", { "code": 80 }],
+    //확장자가 .tsx인 파일에서는 jsx 허용되지 않는다.
+    "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    //확장자 오류(Missing file extension 'tsx' from './App')해결
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    //리턴타입 any 사용가능 하도록
+    "@typescript-eslint/no-explicit-any": "off",
+    //모든 함수에 명시적 반환 유형이 있어야한다.
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    //react-hooks의 규칙 체크
+    "react-hooks/rules-of-hooks": "error",
+    //dependencies effect 체크
+    "react-hooks/exhaustive-deps": "warn",
+    //export를 사용하면 오류나도록 하는 기능 off(export defalut사용을 권장)
+    "import/prefer-default-export": "off",
+    //경로의 파일이 unresolved하는 일이 없도록 하는 기능 off
+    "import/no-unresolved": "off",
+    //'React' must be in scope when using JSX오류 해결
+    "react/react-in-jsx-scope": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
