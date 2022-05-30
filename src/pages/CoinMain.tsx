@@ -17,12 +17,11 @@ import pepeImage from '../images/pepe.png';
 //   },
 // ];
 
-const Wrapper = styled.header`
+const Wrapper = styled.div`
   position: fixed;
   width: 100%;
-  font-size: 15px;
+  height: 100%;
   color: #000;
-  height: 80px;
   background-color: #fff;
   font-family: Noto Sans KR;
 `;
@@ -32,6 +31,21 @@ const PepeImage = styled.img`
   height: 100vh;
   position: absolute;
   right: -15%;
+  z-index: -1;
+
+  @media (max-width: 1439px) {
+    right: -27%;
+  }
+  @media (max-width: 1023px) {
+    display: none;
+  }
+  @media (max-width: 767px) {
+  }
+  @media (max-width: 480px) {
+    display: block;
+    height: 50vh;
+    opacity: 0.5;
+  }
 `;
 
 function CoinMain(): any {

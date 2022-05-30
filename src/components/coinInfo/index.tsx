@@ -3,25 +3,38 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 35rem;
-  left: 10rem;
+  top: 50vh;
+  left: 8vw;
+  @media (max-width: 480px) {
+    top: 25vh;
+    font-size: 8vw;
+  }
 `;
 const Date = styled.div`
-  font-size: 42px;
+  font-size: 2.6vw;
   font-weight: 700;
+  @media (max-width: 480px) {
+    font-size: 7vw;
+  }
 `;
 const Price = styled.div`
-  font-size: 42px;
+  font-size: 2.3vw;
   font-weight: 700;
-  margin: 20px 0 20px 0;
+  margin: 2vh 0 2vh 0;
   color: ${(props) => props.color};
+  @media (max-width: 480px) {
+    font-size: 7vw;
+  }
 `;
 const Term = styled.div`
-  font-size: 24px;
+  font-size: 1.3vw;
   color: lightgray;
+  @media (max-width: 480px) {
+    font-size: 5vw;
+  }
 `;
 const Lowest = styled.div`
-  margin-bottom: 72px;
+  margin-bottom: 8vh;
 `;
 const Highest = styled.div``;
 
