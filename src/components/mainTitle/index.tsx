@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SelectCoin from '../selectcoin';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -9,6 +10,8 @@ const Wrapper = styled.div`
   font-weight: 700;
   color: #43841f;
 
+  //SelectCoin 배치를 위해 추가
+  display: flex;
   // @media (max-width: 1439px) {
   // }
 
@@ -21,13 +24,15 @@ const Wrapper = styled.div`
   // @media (max-width: 767px) {
   // }
 `;
-const Coin = styled.span`
-  color: black;
-`;
+
+// const Coin = styled.span`
+//   color: black;
+// `;
+
 function MainTitle(): any {
   return (
     <Wrapper>
-      라고 할 때 <Coin> 비트코인 </Coin> 살걸..
+      라고 할 때 <SelectCoin /> 살걸..
     </Wrapper>
   );
 }
