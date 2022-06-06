@@ -5,7 +5,6 @@ import downarrow from '../../images/downarrow.svg';
 import Coins from '../../Dummy_Data/Coins.json';
 
 const Selection = styled.div`
-  margin-top: -6vh;
   margin-inline: 1vw;
   // 버튼 위치 조절
   @media (max-width: 1439px) {

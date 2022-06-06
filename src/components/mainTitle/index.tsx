@@ -4,12 +4,12 @@ import SelectCoin from '../selectcoin';
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 25vh;
+  top: 20vh;
   left: 8vw;
   font-size: 4vw;
   font-weight: 700;
   color: #43841f;
-
+  align-items: center;
   //SelectCoin 배치를 위해 추가
   display: flex;
   // @media (max-width: 1439px) {
