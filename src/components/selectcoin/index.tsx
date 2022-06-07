@@ -33,6 +33,31 @@ const ArrowImg = styled.img`
   width: 4vh;
 `;
 
+const PrevCoin = styled.div`
+  color: #b3cda5;
+  font-size: 1vw;
+  text-align: center;
+  margin-bottom: 0.5vh;
+  //drag 방지
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+`;
+const NextCoin = styled.div`
+  color: #b3cda5;
+  font-size: 1vw;
+  text-align: center;
+  margin-top: 0.5vh;
+  //drag 방지
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+`;
+
 function SelectCoin(): any {
   const [number, setNumber] = useState(0);
 
@@ -57,8 +82,21 @@ function SelectCoin(): any {
       <ArrowBtn type="button">
         <ArrowImg src={uparrow} alt="button" onClick={onUp} />
       </ArrowBtn>
+
+      {number === 0 ? (
+        <PrevCoin onClick={onUp}>{Coins.coins[Coins.coins.length - 1].label}</PrevCoin>
+      ) : (
+        <PrevCoin onClick={onUp}>{Coins.coins[number - 1].label}</PrevCoin>
+      )}
+
       {Coins.coins[number].label}
-      <ArrowBtn type="button">
+
+      {number === Coins.coins.length - 1 ? (
+        <NextCoin onClick={onDown}>{Coins.coins[0].label}</NextCoin>
+      ) : (
+        <NextCoin onClick={onDown}>{Coins.coins[number + 1].label}</NextCoin>
+      )}
+      <ArrowBtn type="button" onClick={onDown}>
         <ArrowImg src={downarrow} alt="button" onClick={onDown} />
       </ArrowBtn>
     </Selection>
