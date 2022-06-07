@@ -35,7 +35,7 @@ const ArrowImg = styled.img`
 
 const PrevCoin = styled.div`
   color: #b3cda5;
-  font-size: 1vw;
+  font-size: 2vw;
   text-align: center;
   margin-bottom: 0.5vh;
   //drag 방지
@@ -47,7 +47,7 @@ const PrevCoin = styled.div`
 `;
 const NextCoin = styled.div`
   color: #b3cda5;
-  font-size: 1vw;
+  font-size: 1vw; // PrevCoin크기와 비교용
   text-align: center;
   margin-top: 0.5vh;
   //drag 방지
