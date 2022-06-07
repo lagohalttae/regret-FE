@@ -6,6 +6,7 @@ import Coins from '../../Dummy_Data/Coins.json';
 
 const Selection = styled.div`
   margin-inline: 1vw;
+
   // 버튼 위치 조절
   @media (max-width: 1439px) {
   }
@@ -34,7 +35,7 @@ const ArrowImg = styled.img`
 `;
 
 const PrevCoin = styled.div`
-  color: #b3cda5;
+  color: #b2b2b2;
   font-size: 2vw;
   text-align: center;
   margin-bottom: 0.5vh;
@@ -46,10 +47,22 @@ const PrevCoin = styled.div`
   user-select: none;
 `;
 const NextCoin = styled.div`
-  color: #b3cda5;
-  font-size: 1vw; // PrevCoin크기와 비교용
+  color: #b2b2b2;
+  font-size: 2vw; // PrevCoin크기와 비교용
   text-align: center;
   margin-top: 0.5vh;
+  //drag 방지
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+`;
+
+const NowCoin = styled.div`
+  color: #000000;
+  font-size: 4vw;
+  text-align: center;
   //drag 방지
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -89,7 +102,7 @@ function SelectCoin(): any {
         <PrevCoin onClick={onUp}>{Coins.coins[number - 1].label}</PrevCoin>
       )}
 
-      {Coins.coins[number].label}
+      <NowCoin>{Coins.coins[number].label}</NowCoin>
 
       {number === Coins.coins.length - 1 ? (
         <NextCoin onClick={onDown}>{Coins.coins[0].label}</NextCoin>
