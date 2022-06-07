@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   top: 50vh;
   left: 8vw;
   @media (max-width: 480px) {
-    top: 25vh;
+    top: 35vh;
     font-size: 8vw;
   }
 `;
