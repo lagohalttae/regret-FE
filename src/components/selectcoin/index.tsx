@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import uparrow from '../../images/uparrow.svg';
 import downarrow from '../../images/downarrow.svg';
@@ -61,8 +61,9 @@ const NextCoin = styled.div`
 
 const NowCoin = styled.div`
   color: #000000;
-  font-size: 4vw;
-  text-align: center;
+  cursor: pointer;
+  /* font-size: 4vw;
+  text-align: center; */
   //drag 방지
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -71,9 +72,44 @@ const NowCoin = styled.div`
   user-select: none;
 `;
 
+const ModalBg = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+`;
+
+const ModalBox = styled.div`
+  min-width: 25vw;
+  background-color: white;
+  padding: 5vh;
+  text-align: center;
+`;
+
+const ModalContent = styled.div`
+  color: black;
+  cursor: pointer;
+  padding-block: 1vh;
+  // 임시로 색 추가
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+`;
 function SelectCoin(): any {
+  // 코인 불러오기용 number
   const [number, setNumber] = useState(0);
 
+  // 리스트 불러오기용 상태 state
+  const [state, setState] = useState(false);
+
+  // 영역밖 클릭
+  const outSection = useRef<HTMLInputElement>(null);
   // 무한루프용
   const onUp = (): any => {
     if (number > 0) {
@@ -102,7 +138,39 @@ function SelectCoin(): any {
         <PrevCoin onClick={onUp}>{Coins.coins[number - 1].label}</PrevCoin>
       )}
 
-      <NowCoin>{Coins.coins[number].label}</NowCoin>
+      <NowCoin
+        onClick={() => {
+          setState(true);
+        }}
+      >
+        {Coins.coins[number].label}
+      </NowCoin>
+
+      {state === true ? (
+        <ModalBg
+          ref={outSection}
+          onClick={(e) => {
+            if (outSection.current === e.target) {
+              setState(false);
+            }
+          }}
+        >
+          <ModalBox>
+            {Coins.coins.map((coin, i) => {
+              return (
+                <ModalContent
+                  onClick={() => {
+                    setNumber(i);
+                    setState(false);
+                  }}
+                >
+                  {coin.label}
+                </ModalContent>
+              );
+            })}
+          </ModalBox>
+        </ModalBg>
+      ) : null}
 
       {number === Coins.coins.length - 1 ? (
         <NextCoin onClick={onDown}>{Coins.coins[0].label}</NextCoin>
