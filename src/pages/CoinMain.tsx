@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import MainTitle from '../components/mainTitle';
 import CoinInfo from '../components/coinInfo';
 import pepeImage from '../images/pepe.png';
+import { getCoins } from '../api';
 // const coinList = [
 //   {
 //     coins: [
@@ -49,6 +50,7 @@ const PepeImage = styled.img`
 `;
 
 function CoinMain(): any {
+  getCoins();
   return (
     <Wrapper>
       <MainTitle />
