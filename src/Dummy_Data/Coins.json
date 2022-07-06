@@ -10,7 +10,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=022"
     },
     {
       "coinId": "ethereum",
@@ -22,7 +23,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=022"
     },
     {
       "coinId": "tether",
@@ -34,7 +36,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/tether-usdt-logo.png?v=022"
     },
     {
       "coinId": "usd-coin",
@@ -46,7 +49,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/usd-coin-usdc-logo.png?v=022"
     },
     {
       "coinId": "binancecoin",
@@ -58,7 +62,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/binance-usd-busd-logo.png?v=022"
     },
     {
       "coinId": "binance-usd",
@@ -70,7 +75,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/binance-usd-busd-logo.png?v=022"
     },
     {
       "coinId": "cardano",
@@ -82,7 +88,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/cardano-ada-logo.png?v=022"
     },
     {
       "coinId": "ripple",
@@ -94,7 +101,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://i.postimg.cc/1RrX9b80/ripple-logo.png"
     },
     {
       "coinId": "solana",
@@ -106,7 +114,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/solana-sol-logo.png?v=022"
     },
     {
       "coinId": "dogecoin",
@@ -118,7 +127,8 @@
       "minPrice": {
         "won": 10000000,
         "atMillis": 1653230720000
-      }
+      },
+      "img": "https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=022"
     }
   ]
 }
