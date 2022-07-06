@@ -97,14 +97,14 @@ const CoinList = styled.div`
 `;
 
 const NextPage = styled.div`
-  position: absolute;
+  position: relative;
   display: block;
   left: -8vw;
   width: 100vw;
-  bottom: -20vh;
+  bottom: -15vh;
   color: black;
   text-align: center;
-  font-size: 2vw;
+  font-size: 3vh;
 `;
 
 const ArrowImg2 = styled.img`
@@ -118,7 +118,7 @@ const ArrowImg2 = styled.img`
   }
   @media (hover: hover) {
     &:hover {
-      transform: translateY(20px);
+      transform: translateY(10px);
       transition-property: all;
       transition-duration: 1s;
       transition-delay: 0s;
@@ -133,6 +133,7 @@ function SelectCoin(): any {
   // const [number, setNumber] = useState(0);
   // setNumber(0);
   const number = 0;
+
   // 리스트 불러오기용 상태 state
   const [isList, setList] = useState(false);
 
