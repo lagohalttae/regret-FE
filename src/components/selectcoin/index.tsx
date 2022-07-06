@@ -21,10 +21,10 @@ const Selection = styled.div`
 const SelectionText = styled.div`
   display: flex;
   //최대 넓이 지정, media쿼리 설정필요
-  max-width: 30vw;
+  max-width: 33vw;
   @media (max-width: 767px) {
     min-width: 60vw;
-    max-width: 60vw;
+    max-width: 70vw;
   }
 `;
 
