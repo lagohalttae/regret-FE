@@ -37,6 +37,9 @@ const ArrowBtn = styled.button`
 const ArrowImgUp = styled.img`
   width: 5vh;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
+  @media (max-width: 480px) {
+    width: 2vh;
+  }
   @media (max-width: 767px) {
     width: 3vh;
   }
@@ -57,6 +60,9 @@ const ArrowImgUp = styled.img`
 const ArrowImgDown = styled.img`
   width: 5vh;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
+  @media (max-width: 480px) {
+    width: 2vh;
+  }
   @media (max-width: 767px) {
     width: 3vh;
   }
