@@ -37,8 +37,11 @@ const ArrowBtn = styled.button`
 const ArrowImgUp = styled.img`
   width: 5vh;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
+  @media (max-width: 767px) {
     width: 3vh;
+  }
+  @media (max-width: 1023px) {
+    width: 4vh;
   }
   @media (hover: hover) {
     transition-duration: 0.2s;
@@ -54,8 +57,11 @@ const ArrowImgUp = styled.img`
 const ArrowImgDown = styled.img`
   width: 5vh;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
+  @media (max-width: 767px) {
     width: 3vh;
+  }
+  @media (max-width: 1023px) {
+    width: 4vh;
   }
   @media (hover: hover) {
     transition-duration: 0.2s;
@@ -68,10 +74,10 @@ const ArrowImgDown = styled.img`
   }
 `;
 
-const NowCoin = styled.div`
-  color: #000000;
-  /* cursor: pointer; */
-`;
+// const NowCoin = styled.div`
+//   color: #000000;
+//   /* cursor: pointer; */
+// `;
 
 const CoinList = styled.div`
   color: blue;
@@ -142,7 +148,7 @@ function SelectCoin(): any {
   return (
     <Selection>
       <SelectionText>
-        <NowCoin>{Coins.coins[number].label}</NowCoin>
+        <p style={{ color: 'black' }}>{Coins.coins[number].label}</p>
 
         {isList === true ? (
           <ArrowBtn type="button" onClick={Viewlist}>
