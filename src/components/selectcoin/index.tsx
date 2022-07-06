@@ -1,12 +1,12 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import uparrow from '../../images/uparrow.svg';
+// import uparrow from '../../images/uparrow.svg';
 import downarrow from '../../images/downarrow.svg';
 import Coins from '../../Dummy_Data/Coins.json';
 
 const Selection = styled.div`
-  margin-inline: 1vw;
-
+  margin-top: 5vh;
+  display: flex;
   // 버튼 위치 조절
   @media (max-width: 1439px) {
   }
@@ -32,36 +32,38 @@ const ArrowBtn = styled.button`
 
 const ArrowImg = styled.img`
   width: 4vh;
+  filter: opacity(0.2) drop-shadow(0 0 0 gray);
 `;
 
-const PrevCoin = styled.div`
-  color: #b2b2b2;
-  font-size: 2vw;
-  text-align: center;
-  margin-bottom: 0.5vh;
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-`;
-const NextCoin = styled.div`
-  color: #b2b2b2;
-  font-size: 2vw; // PrevCoin크기와 비교용
-  text-align: center;
-  margin-top: 0.5vh;
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-`;
+// const PrevCoin = styled.div`
+//   color: #b2b2b2;
+//   font-size: 2vw;
+//   text-align: center;
+//   margin-bottom: 0.5vh;
+//   //drag 방지
+//   -ms-user-select: none;
+//   -moz-user-select: -moz-none;
+//   -khtml-user-select: none;
+//   -webkit-user-select: none;
+//   user-select: none;
+// `;
+// const NextCoin = styled.div`
+//   color: #b2b2b2;
+//   font-size: 2vw; // PrevCoin크기와 비교용
+//   text-align: center;
+//   margin-top: 0.5vh;
+//   //drag 방지
+//   -ms-user-select: none;
+//   -moz-user-select: -moz-none;
+//   -khtml-user-select: none;
+//   -webkit-user-select: none;
+//   user-select: none;
+// `;
 
 const NowCoin = styled.div`
   color: #000000;
-  cursor: pointer;
+  /* cursor: pointer; */
+
   /* font-size: 4vw;
   text-align: center; */
   //drag 방지
@@ -72,52 +74,53 @@ const NowCoin = styled.div`
   user-select: none;
 `;
 
-const ModalBg = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-`;
+// const ModalBg = styled.div`
+//   position: fixed;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: rgba(0, 0, 0, 0.4);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 2;
+// `;
 
-const ModalBox = styled.div`
-  min-width: 25vw;
-  background-color: white;
-  padding: 5vh;
-  text-align: center;
-`;
+// const ModalBox = styled.div`
+//   min-width: 25vw;
+//   background-color: white;
+//   padding: 5vh;
+//   text-align: center;
+// `;
 
-const ModalContent = styled.div`
-  color: black;
-  cursor: pointer;
-  padding-block: 1vh;
-  // 임시로 색 추가
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-`;
+// const ModalContent = styled.div`
+//   color: black;
+//   cursor: pointer;
+//   padding-block: 1vh;
+//   // 임시로 색 추가
+//   &:hover {
+//     background-color: rgba(0, 0, 0, 0.4);
+//   }
+// `;
+
 function SelectCoin(): any {
   // 코인 불러오기용 number
   const [number, setNumber] = useState(0);
 
   // 리스트 불러오기용 상태 state
-  const [state, setState] = useState(false);
+  // const [state, setState] = useState(false);
 
   // 영역밖 클릭
-  const outSection = useRef<HTMLInputElement>(null);
+  // const outSection = useRef<HTMLInputElement>(null);
   // 무한루프용
-  const onUp = (): any => {
-    if (number > 0) {
-      setNumber(number - 1);
-    } else {
-      setNumber(Coins.coins.length - 1);
-    }
-  };
+  // const onUp = (): any => {
+  //   if (number > 0) {
+  //     setNumber(number - 1);
+  //   } else {
+  //     setNumber(Coins.coins.length - 1);
+  //   }
+  // };
 
   const onDown = (): any => {
     if (number < Coins.coins.length - 1) {
@@ -128,25 +131,21 @@ function SelectCoin(): any {
   };
   return (
     <Selection>
-      <ArrowBtn type="button">
+      {/* <ArrowBtn type="button">
         <ArrowImg src={uparrow} alt="button" onClick={onUp} />
-      </ArrowBtn>
+      </ArrowBtn> */}
 
-      {number === 0 ? (
+      {/* 이전코인 */}
+      {/* {number === 0 ? (
         <PrevCoin onClick={onUp}>{Coins.coins[Coins.coins.length - 1].label}</PrevCoin>
       ) : (
         <PrevCoin onClick={onUp}>{Coins.coins[number - 1].label}</PrevCoin>
-      )}
+      )} */}
 
-      <NowCoin
-        onClick={() => {
-          setState(true);
-        }}
-      >
-        {Coins.coins[number].label}
-      </NowCoin>
+      <NowCoin>{Coins.coins[number].label}</NowCoin>
 
-      {state === true ? (
+      {/* 모달 */}
+      {/* {state === true ? (
         <ModalBg
           ref={outSection}
           onClick={(e) => {
@@ -170,16 +169,18 @@ function SelectCoin(): any {
             })}
           </ModalBox>
         </ModalBg>
-      ) : null}
+      ) : null} */}
 
-      {number === Coins.coins.length - 1 ? (
+      {/* 다음코인 */}
+      {/* {number === Coins.coins.length - 1 ? (
         <NextCoin onClick={onDown}>{Coins.coins[0].label}</NextCoin>
       ) : (
         <NextCoin onClick={onDown}>{Coins.coins[number + 1].label}</NextCoin>
-      )}
+      )} */}
       <ArrowBtn type="button" onClick={onDown}>
         <ArrowImg src={downarrow} alt="button" onClick={onDown} />
       </ArrowBtn>
+      <p>살걸..</p>
     </Selection>
   );
 }
