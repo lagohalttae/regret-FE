@@ -20,7 +20,8 @@ const Selection = styled.div`
 `;
 const SelectionText = styled.div`
   display: flex;
-  //최대 넓이 지정, media쿼리 설정필요
+  /* background-color: red; */
+  align-items: center;
   max-width: 33vw;
   @media (max-width: 767px) {
     min-width: 60vw;
@@ -31,11 +32,13 @@ const SelectionText = styled.div`
 const ArrowBtn = styled.button`
   border-style: none;
   background-color: transparent;
+  /* background-color: blue; */
   cursor: pointer;
 `;
 
 const ArrowImgUp = styled.img`
   width: 5vh;
+
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
   @media (max-width: 480px) {
     width: 2vh;
@@ -79,11 +82,6 @@ const ArrowImgDown = styled.img`
     }
   }
 `;
-
-// const NowCoin = styled.div`
-//   color: #000000;
-//   /* cursor: pointer; */
-// `;
 
 const CoinList = styled.div`
   color: blue;
