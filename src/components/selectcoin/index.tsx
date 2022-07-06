@@ -7,8 +7,8 @@ import Coins from '../../Dummy_Data/Coins.json';
 
 const Selection = styled.div`
   margin-top: 5vh;
-  /* display: flex; */
-  // 버튼 위치 조절
+
+  // media query 복사용
   @media (max-width: 1439px) {
   }
   @media (max-width: 1023px) {
@@ -20,35 +20,19 @@ const Selection = styled.div`
 `;
 const SelectionText = styled.div`
   display: flex;
-  /* background-color: red; */
   align-items: center;
-  max-width: 33vw;
-  @media (max-width: 767px) {
-    min-width: 60vw;
-    max-width: 70vw;
-  }
 `;
 
 const ArrowBtn = styled.button`
   border-style: none;
   background-color: transparent;
-  /* background-color: blue; */
   cursor: pointer;
 `;
 
 const ArrowImgUp = styled.img`
   width: 5vh;
-
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
-    width: 2vh;
-  }
-  @media (max-width: 767px) {
-    width: 3vh;
-  }
-  @media (max-width: 1023px) {
-    width: 4vh;
-  }
+
   @media (hover: hover) {
     transition-duration: 0.2s;
     &:hover {
@@ -63,15 +47,7 @@ const ArrowImgUp = styled.img`
 const ArrowImgDown = styled.img`
   width: 5vh;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
-    width: 2vh;
-  }
-  @media (max-width: 767px) {
-    width: 3vh;
-  }
-  @media (max-width: 1023px) {
-    width: 4vh;
-  }
+
   @media (hover: hover) {
     transition-duration: 0.2s;
     &:hover {
@@ -105,15 +81,12 @@ const NextPage = styled.div`
   font-size: 3vh;
 `;
 
-const ArrowImg2 = styled.img`
+const NextArrow = styled.img`
   border-style: none;
   background-color: transparent;
   width: 3vh;
   cursor: pointer;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
-    width: 2vh;
-  }
   @media (hover: hover) {
     &:hover {
       transform: translateY(10px);
@@ -126,12 +99,17 @@ const ArrowImg2 = styled.img`
   transition-duration: 1s;
 `;
 
+const TestImg = styled.img`
+  border-style: none;
+  background-color: transparent;
+  width: 5vh;
+`;
+
 function SelectCoin(): any {
   // 코인 불러오기용 number
   // const [number, setNumber] = useState(0);
   // setNumber(0);
   const number = 0;
-
   // 리스트 불러오기용 상태 state
   const [isList, setList] = useState(false);
 
@@ -153,8 +131,10 @@ function SelectCoin(): any {
   return (
     <Selection>
       <SelectionText>
+        <div>
+          <TestImg src={Coins.coins[number].img} alt="bb" />
+        </div>
         <p style={{ color: 'black' }}>{Coins.coins[number].label}</p>
-
         {isList === true ? (
           <ArrowBtn type="button" onClick={Viewlist}>
             <ArrowImgUp src={uparrow} alt="button" />
@@ -167,7 +147,6 @@ function SelectCoin(): any {
 
         <p>&nbsp;살걸..</p>
       </SelectionText>
-
       <Transition timeout={10} in={isList}>
         {(state) => (
           <CoinList
@@ -181,7 +160,7 @@ function SelectCoin(): any {
       </Transition>
       <NextPage>
         <p>한달간 비트코인 가격을 알아보자..</p>
-        <ArrowImg2 src={downarrow} alt="button" onClick={Viewlist} />
+        <NextArrow src={downarrow} alt="button" onClick={Viewlist} />
       </NextPage>
     </Selection>
   );
