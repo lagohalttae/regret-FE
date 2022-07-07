@@ -10,11 +10,11 @@ const Wrapper = styled.div`
   background-color: #fff;
   font-family: Noto Sans KR;
   //drag 방지
-  -ms-user-select: none;
+  /* -ms-user-select: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;
   -webkit-user-select: none;
-  user-select: none;
+  user-select: none; */
 `;
 
 const PepeImage = styled.img`
@@ -33,7 +33,7 @@ const PepeImage = styled.img`
 
   /* 모바일 미디어쿼리 */
   /* @media (max-width: 767px) {
-  }
+  }*
   @media (max-width: 480px) {
     display: block;
     height: 50vh;
