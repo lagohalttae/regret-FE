@@ -2,8 +2,22 @@ import { useState, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 import downarrow from '../../images/downarrow.svg';
 import Coins from '../../Dummy_Data/Coins.json';
-import { Selection, SelectCoinLogo, SelectionText, ArrowBtn, ArrowImgDown, NextArrow, NextPage } from './FS';
-import { CoinListSpace, List, ListCard, ListImg, ListGroup } from './List';
+import {
+  Selection,
+  SelectCoinLogo,
+  SelectionText,
+  SelectCoinLabel,
+  ArrowBtn,
+  ArrowImgDown,
+  NextArrow,
+  NextPage,
+  CoinListSpace,
+  List,
+  ListCard,
+  ListImg,
+  ListGroup,
+  ListText,
+} from './Styled';
 
 function SelectCoin(): any {
   // 코인 불러오기용 number
@@ -33,18 +47,28 @@ function SelectCoin(): any {
 
   const FirstLine = Coins.coins.map((v, index) =>
     index < 5 ? (
-      <ListCard>
+      <ListCard
+        onClick={() => {
+          setNumber(index);
+          setList(false);
+        }}
+      >
         <ListImg src={v.img} alt="dd" />
-        <p>{v.label}</p>
+        <ListText>{v.label}</ListText>
       </ListCard>
     ) : undefined
   );
 
   const SecondLine = Coins.coins.map((v, index) =>
     index > 4 ? (
-      <ListCard>
+      <ListCard
+        onClick={() => {
+          setNumber(index);
+          setList(false);
+        }}
+      >
         <ListImg src={v.img} alt="dd" />
-        <p>{v.label}</p>
+        <ListText>{v.label}</ListText>
       </ListCard>
     ) : undefined
   );
@@ -55,8 +79,7 @@ function SelectCoin(): any {
         <div>
           <SelectCoinLogo src={Coins.coins[number].img} alt="bb" />
         </div>
-        <p style={{ color: 'black' }}>&nbsp;{Coins.coins[number].label}&nbsp;</p>
-
+        <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{Coins.coins[number].label}&nbsp;</SelectCoinLabel>
         <ArrowBtn type="button" onClick={Viewlist}>
           <ArrowImgDown show={isList} src={downarrow} alt="button" />
         </ArrowBtn>
