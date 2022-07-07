@@ -24,7 +24,7 @@ const SelectionText = styled.div`
 const SelectCoinLogo = styled.img`
   border-style: none;
   background-color: transparent;
-  width: 5vh;
+  width: 4vw;
 `;
 
 const SelectCoinLabel = styled.p`
@@ -86,7 +86,7 @@ const CoinListSpace = styled.div`
   justify-content: space-evenly;
   // 크기 생각하기
   /* height: 20vh; */
-  max-width: 60vw;
+  /* max-width: 60vw; */
   height: 20vh;
 
   // 모서리
@@ -98,6 +98,7 @@ const CoinListSpace = styled.div`
   // 수정x
   transition: opacity 0.3s ease;
   opacity: 0;
+
   /* 모바일 미디어쿼리 */
   /* @media (max-width: 767px) {
     width: 84vw;
@@ -108,8 +109,16 @@ const CoinListSpace = styled.div`
 const ListCard = styled.div`
   display: inline-flex;
   align-items: center;
-  padding-inline: 1vh;
+  padding-inline: 1vw;
+
+  /* 너비 및 정렬 공백 정렬 수정 하는곳 */
+  justify-content: flex-start;
+  /* min-width: 9vw; */
+  /* max-width: 9vw; */
+  width: 9vw;
+  /* width: 11vw; */
   cursor: pointer;
+
   @media (hover: hover) {
     &:hover {
       transform: translateY(-5px);
@@ -123,10 +132,11 @@ const ListCard = styled.div`
 
 const ListImg = styled.img`
   width: 5vh;
-  padding-right: 10px;
+  padding-right: 1vw;
 `;
 const ListText = styled.p`
-  font-size: x-large;
+  font-size: large;
+  /* white-space: pre-wrap; */
   color: black;
 `;
 

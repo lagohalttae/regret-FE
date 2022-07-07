@@ -9,12 +9,6 @@ const Wrapper = styled.div`
   color: #000;
   background-color: #fff;
   font-family: Noto Sans KR;
-  //drag 방지
-  /* -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none; */
 `;
 
 const PepeImage = styled.img`
