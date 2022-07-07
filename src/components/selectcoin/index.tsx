@@ -13,7 +13,6 @@ function SelectCoin(): any {
   useEffect(() => {
     setNumber(0);
   }, []);
-  // const number = 0;
   // 리스트 불러오기용 상태 state
   const [isList, setList] = useState(false);
 
@@ -39,32 +38,10 @@ function SelectCoin(): any {
           <SelectCoinLogo src={Coins.coins[number].img} alt="bb" />
         </div>
         <p style={{ color: 'black' }}>&nbsp;{Coins.coins[number].label}&nbsp;</p>
-        {isList === false ? (
-          <ArrowBtn type="button" onClick={Viewlist}>
-            <ArrowImgDown
-              src={downarrow}
-              alt="button"
-              style={{
-                transitionProperty: 'all',
-                transitionDuration: '0.3s',
-                transitionDelay: '0s',
-              }}
-            />
-          </ArrowBtn>
-        ) : (
-          <ArrowBtn type="button" onClick={Viewlist}>
-            <ArrowImgDown
-              src={downarrow}
-              alt="button"
-              style={{
-                transform: 'translateY(10px)',
-                transitionProperty: 'all',
-                transitionDuration: '0.3s',
-                transitionDelay: '0s',
-              }}
-            />
-          </ArrowBtn>
-        )}
+
+        <ArrowBtn type="button" onClick={Viewlist}>
+          <ArrowImgDown show={isList} src={downarrow} alt="button" />
+        </ArrowBtn>
         <p>&nbsp;살걸..</p>
       </SelectionText>
       <Transition timeout={30} in={isList}>
