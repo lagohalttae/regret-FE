@@ -16,16 +16,15 @@ const Selection = styled.div`
 `;
 
 // 코인선택 컴포넌트------------
+const SelectionText = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const SelectCoinLogo = styled.img`
   border-style: none;
   background-color: transparent;
   width: 5vh;
-`;
-
-const SelectionText = styled.div`
-  display: flex;
-  align-items: center;
 `;
 
 const ArrowBtn = styled.button`
@@ -47,13 +46,13 @@ const ArrowImgDown = styled.img`
 // 하단 컴포넌트 -------------
 const NextPage = styled.div`
   position: absolute;
-  display: block;
   left: -8vw;
   width: 100vw;
-  bottom: -13vh;
+  bottom: -30vh;
   color: black;
   text-align: center;
-  font-size: 3.5vh;
+  /* font-size: 3.5vh; */
+  font-size: x-large;
 `;
 
 const NextArrow = styled.img`
