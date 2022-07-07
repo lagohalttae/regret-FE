@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   font-size: 4vw;
   font-weight: 700;
   color: #43841f;
-  align-items: center;
 
   /* 모바일 미디어쿼리 */
   /* @media (max-width: 480px) {
