@@ -37,6 +37,10 @@ const ArrowBtn = styled.button`
 const ArrowImgDown = styled.img`
   width: 5vh;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-delay: 0s;
+  transform: ${({ show }: { show: boolean }) => (show === true ? 'translateY(10px)' : null)};
 `;
 // -----------------코인선택 컴포넌트
 
