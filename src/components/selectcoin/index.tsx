@@ -83,7 +83,6 @@ function SelectCoin(): any {
         <ArrowBtn type="button" onClick={Viewlist}>
           <ArrowImgDown show={isList} src={downarrow} alt="button" />
         </ArrowBtn>
-
         <p>&nbsp;살걸..</p>
       </SelectionText>
       <Transition timeout={30} in={isList}>

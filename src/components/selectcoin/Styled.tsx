@@ -29,13 +29,13 @@ const SelectCoinLogo = styled.img`
 
 const SelectCoinLabel = styled.p`
   color: black;
-  transform: 0.7s;
 `;
 
 const ArrowBtn = styled.button`
   border-style: none;
   background-color: transparent;
   cursor: pointer;
+  width: 4vw;
 `;
 
 const ArrowImgDown = styled.img`
