@@ -1,7 +1,6 @@
 {
   "coins": [
     {
-      "id": 0,
       "coinId": "bitcoin",
       "label": "비트코인",
       "maxPrice": {
@@ -15,7 +14,6 @@
       "img": "https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=022"
     },
     {
-      "id": 1,
       "coinId": "ethereum",
       "label": "이더리움",
       "maxPrice": {
@@ -29,7 +27,6 @@
       "img": "https://cryptologos.cc/logos/ethereum-eth-logo.png?v=022"
     },
     {
-      "id": 2,
       "coinId": "tether",
       "label": "테더",
       "maxPrice": {
@@ -43,7 +40,6 @@
       "img": "https://cryptologos.cc/logos/tether-usdt-logo.png?v=022"
     },
     {
-      "id": 3,
       "coinId": "usd-coin",
       "label": "USD 코인",
       "maxPrice": {
@@ -57,7 +53,6 @@
       "img": "https://cryptologos.cc/logos/usd-coin-usdc-logo.png?v=022"
     },
     {
-      "id": 4,
       "coinId": "binancecoin",
       "label": "바이낸스",
       "maxPrice": {
@@ -68,10 +63,9 @@
         "won": 10000000,
         "atMillis": 1653230720000
       },
-      "img": "https://cryptologos.cc/logos/binance-usd-busd-logo.png?v=022"
+      "img": "https://cryptologos.cc/logos/binance-coin-bnb-logo.png?v=022"
     },
     {
-      "id": 5,
       "coinId": "binance-usd",
       "label": "바이낸스 USD",
       "maxPrice": {
@@ -85,7 +79,6 @@
       "img": "https://cryptologos.cc/logos/binance-usd-busd-logo.png?v=022"
     },
     {
-      "id": 6,
       "coinId": "cardano",
       "label": "카르다노",
       "maxPrice": {
@@ -99,7 +92,6 @@
       "img": "https://cryptologos.cc/logos/cardano-ada-logo.png?v=022"
     },
     {
-      "id": 7,
       "coinId": "ripple",
       "label": "리플",
       "maxPrice": {
@@ -113,7 +105,6 @@
       "img": "https://i.postimg.cc/1RrX9b80/ripple-logo.png"
     },
     {
-      "id": 8,
       "coinId": "solana",
       "label": "솔라나",
       "maxPrice": {
@@ -127,7 +118,6 @@
       "img": "https://cryptologos.cc/logos/solana-sol-logo.png?v=022"
     },
     {
-      "id": 9,
       "coinId": "dogecoin",
       "label": "도지코인",
       "maxPrice": {
