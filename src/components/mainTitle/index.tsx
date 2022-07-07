@@ -11,10 +11,11 @@ const Wrapper = styled.div`
   color: #43841f;
   align-items: center;
 
-  @media (max-width: 480px) {
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 480px) {
     top: 10vh;
     font-size: 8vw;
-  }
+  } */
 
   // 모바일
   // @media (max-width: 767px) {

@@ -4,15 +4,24 @@ const CoinListSpace = styled.div`
   position: relative;
   top: 2vh;
   background-color: white;
+
+  /* right: 8vw; */
   // 크기 생각하기
-  height: 30vh;
-  width: 70vw;
+  /* height: 30vh; */
+  /* max-width: 60vw; */
+
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 767px) {
+    width: 84vw;
+    font-size: medium;
+  } */
   // 모서리
   border: 1px solid black;
   border-radius: 30px;
-  padding: 30px;
+  /* padding-inline: 30px; */
+  padding-block: 20px;
   // ListText
-  font-size: 4vh;
+  font-size: x-large;
   color: black;
   // 수정x
   transition: opacity 0.3s ease;
@@ -20,15 +29,14 @@ const CoinListSpace = styled.div`
 `;
 
 const ListCard = styled.div`
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  width: 10vw;
-  padding-inline: 2vw;
+
+  min-width: 10vw;
   cursor: pointer;
+
   &:hover {
-    border: 3px solid pink;
-    border-radius: 5px;
-    background-color: plum;
+    background-color: pink;
   }
 `;
 
@@ -42,25 +50,25 @@ const ListText = styled.p`
 `;
 
 const List = styled.div`
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  padding-top: 2.5vh;
-`;
-const ListOne = styled.div`
-  padding-bottom: 5vh;
   display: flex;
-  @media (max-width: 767px) {
-    display: block;
-  }
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
+
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 767px) {
+    flex-wrap: wrap;
+    align-content: space-around;
+  } */
 `;
 
-const ListTwo = styled.div`
-  padding-bottom: 5vh;
+const ListGroup = styled.div`
   display: flex;
-  @media (max-width: 767px) {
-    display: block;
-  }
+
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 767px) {
+    flex-direction: column;
+  } */
 `;
 
-export { CoinListSpace, List, ListCard, ListImg, ListOne, ListText, ListTwo };
+export { CoinListSpace, List, ListCard, ListImg, ListGroup, ListText };

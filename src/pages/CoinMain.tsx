@@ -30,13 +30,15 @@ const PepeImage = styled.img`
   @media (max-width: 1023px) {
     display: none;
   }
-  @media (max-width: 767px) {
+
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 767px) {
   }
   @media (max-width: 480px) {
     display: block;
     height: 50vh;
     opacity: 0.5;
-  }
+  } */
 `;
 
 function CoinMain(): any {

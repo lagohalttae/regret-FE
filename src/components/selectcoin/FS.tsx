@@ -46,11 +46,11 @@ const ArrowImgDown = styled.img`
 
 // 하단 컴포넌트 -------------
 const NextPage = styled.div`
-  position: relative;
+  position: absolute;
   display: block;
   left: -8vw;
   width: 100vw;
-  bottom: -10vh;
+  bottom: -13vh;
   color: black;
   text-align: center;
   font-size: 3.5vh;
