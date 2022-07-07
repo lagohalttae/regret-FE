@@ -1,0 +1,105 @@
+
+            <List>
+              <ListOne>
+                <ListCard
+                  onClick={() => {
+                    setNumber(0);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[0].img} alt="b" />
+                  <ListText>{Coins.coins[0].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(1);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[1].img} alt="b" />
+                  <ListText>{Coins.coins[1].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(2);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[2].img} alt="b" />
+                  <ListText>{Coins.coins[2].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(3);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[3].img} alt="b" />
+                  <ListText>{Coins.coins[3].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(4);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[4].img} alt="b" />
+                  <ListText>{Coins.coins[4].label}</ListText>
+                </ListCard>
+              </ListOne>
+              <ListTwo>
+                <ListCard
+                  onClick={() => {
+                    setNumber(5);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[5].img} alt="b" />
+                  <ListText>{Coins.coins[5].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(6);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[6].img} alt="b" />
+                  <ListText>{Coins.coins[6].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(7);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[7].img} alt="b" />
+                  <ListText>{Coins.coins[7].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(8);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[8].img} alt="b" />
+                  <ListText>{Coins.coins[8].label}</ListText>
+                </ListCard>
+
+                <ListCard
+                  onClick={() => {
+                    setNumber(9);
+                    setList(false);
+                  }}
+                >
+                  <ListImg src={Coins.coins[9].img} alt="b" />
+                  <ListText>{Coins.coins[9].label}</ListText>
+                </ListCard>
+              </ListTwo>
+            </List>
