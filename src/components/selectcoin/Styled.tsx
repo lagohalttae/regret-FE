@@ -115,8 +115,8 @@ const ListCard = styled.div`
   justify-content: flex-start;
   /* min-width: 9vw; */
   /* max-width: 9vw; */
-  width: 9vw;
-  /* width: 11vw; */
+  /* max-width: 11vw; */
+  width: 10vw;
   cursor: pointer;
 
   @media (hover: hover) {
