@@ -117,7 +117,8 @@ const ListCard = styled.div`
   /* max-width: 9vw; */
   /* max-width: 11vw; */
   width: 10vw;
-  cursor: pointer;
+
+  cursor: ${({ protect }: { protect: boolean }) => (protect === false ? null : 'pointer')};
 
   @media (hover: hover) {
     &:hover {

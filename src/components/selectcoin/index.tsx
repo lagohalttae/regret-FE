@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+// import axios from 'axios';
 import { Transition } from 'react-transition-group';
 import downarrow from '../../images/downarrow.svg';
 import Coins from '../../Dummy_Data/Coins.json';
@@ -20,11 +21,21 @@ import {
 } from './Styled';
 
 function SelectCoin(): any {
+  // const [CoinData, setCoinData] = useState<any[]>([]);
+
   // 코인 불러오기용 number
   const [number, setNumber] = useState(0);
+
   useEffect(() => {
     setNumber(0);
   }, []);
+
+  // useLayoutEffect(() => {
+  //   axios.get(`/coins/titles`).then((response) => {
+  //     setCoinData(response.data);
+  //   });
+  // }, []);
+
   // 리스트 불러오기용 상태 state
   const [isList, setList] = useState(false);
 
@@ -48,10 +59,12 @@ function SelectCoin(): any {
   const FirstLine = Coins.coins.map((v, index) =>
     index < 5 ? (
       <ListCard
+        key={v.coinId}
         onClick={() => {
           setNumber(index);
           setList(false);
         }}
+        protect={isList}
       >
         <ListImg src={v.img} alt="dd" />
         <ListText>{v.label}</ListText>
@@ -62,10 +75,12 @@ function SelectCoin(): any {
   const SecondLine = Coins.coins.map((v, index) =>
     index > 4 ? (
       <ListCard
+        key={v.coinId}
         onClick={() => {
           setNumber(index);
           setList(false);
         }}
+        protect={isList}
       >
         <ListImg src={v.img} alt="dd" />
         <ListText>{v.label}</ListText>
@@ -80,6 +95,7 @@ function SelectCoin(): any {
           <SelectCoinLogo src={Coins.coins[number].img} alt="bb" />
         </div>
         <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{Coins.coins[number].label}&nbsp;</SelectCoinLabel>
+        {/* <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{CoinData[number].label}&nbsp;</SelectCoinLabel> */}
         <ArrowBtn type="button" onClick={Viewlist}>
           <ArrowImgDown show={isList} src={downarrow} alt="button" />
         </ArrowBtn>
