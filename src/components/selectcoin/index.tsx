@@ -94,7 +94,7 @@ function SelectCoin(): any {
           <div>
             <SelectCoinLogo src={CoinData[number].imageUrl} alt="bb" />
           </div>
-          <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{CoinData[number].label}&nbsp;</SelectCoinLabel>
+          <SelectCoinLabel>&nbsp;{CoinData[number].label}&nbsp;</SelectCoinLabel>
           <ArrowBtn type="button" onClick={Viewlist}>
             <ArrowImgDown show={isList} src={downarrow} alt="button" />
           </ArrowBtn>
