@@ -1,22 +1,22 @@
 import axios from 'axios';
 
-export const getCoins: any = () => {
+export const getCoins = (setCoinList: any): void => {
   axios.get(`/coins/titles`).then((response) => {
     console.log(response.data);
-    return response.data;
+    setCoinList(response.data);
   });
 };
 
-export const getCoinPrice: any = (id: string) => {
+export const getCoinPrice = (setCoinPrice: any, id: string): void => {
   axios.get(`/coins/${id}`).then((response) => {
     console.log(response.data);
-    return response.data;
+    setCoinPrice(response.data);
   });
 };
 
-export const getCoinCurrentPrice: any = (id: string) => {
+export const getCoinCurrentPrice = (setCoinCurrentPrice: any, id: string): void => {
   axios.get(`/coins/${id}/current`).then((response) => {
     console.log(response.data);
-    return response.data;
+    setCoinCurrentPrice(response.data);
   });
 };
