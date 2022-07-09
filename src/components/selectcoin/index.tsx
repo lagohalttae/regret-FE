@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import { Transition } from 'react-transition-group';
 import downarrow from '../../images/downarrow.svg';
-import Coins from '../../Dummy_Data/Coins.json';
+// import Coins from '../../Dummy_Data/Coins.json';
 import {
   Selection,
   SelectCoinLogo,
@@ -21,20 +21,19 @@ import {
 } from './Styled';
 
 function SelectCoin(): any {
-  // const [CoinData, setCoinData] = useState<any[]>([]);
+  // 코인 api
+  const [CoinData, setCoinData] = useState<any[]>([]);
+  const [isReady, setisReady] = useState(false);
 
   // 코인 불러오기용 number
   const [number, setNumber] = useState(0);
 
   useEffect(() => {
-    setNumber(0);
+    axios.get(`/coins/titles`).then((response) => {
+      setCoinData(response.data);
+      setisReady(!isReady);
+    });
   }, []);
-
-  // useLayoutEffect(() => {
-  //   axios.get(`/coins/titles`).then((response) => {
-  //     setCoinData(response.data);
-  //   });
-  // }, []);
 
   // 리스트 불러오기용 상태 state
   const [isList, setList] = useState(false);
@@ -56,7 +55,7 @@ function SelectCoin(): any {
     exited: { opacity: 0 },
   };
 
-  const FirstLine = Coins.coins.map((v, index) =>
+  const FirstLine = CoinData.map((v, index) =>
     index < 5 ? (
       <ListCard
         key={v.coinId}
@@ -66,13 +65,13 @@ function SelectCoin(): any {
         }}
         protect={isList}
       >
-        <ListImg src={v.img} alt="dd" />
+        <ListImg src={v.imageUrl} alt="dd" />
         <ListText>{v.label}</ListText>
       </ListCard>
     ) : undefined
   );
 
-  const SecondLine = Coins.coins.map((v, index) =>
+  const SecondLine = CoinData.map((v, index) =>
     index > 4 ? (
       <ListCard
         key={v.coinId}
@@ -82,44 +81,45 @@ function SelectCoin(): any {
         }}
         protect={isList}
       >
-        <ListImg src={v.img} alt="dd" />
+        <ListImg src={v.imageUrl} alt="dd" />
         <ListText>{v.label}</ListText>
       </ListCard>
     ) : undefined
   );
 
-  return (
-    <Selection>
-      <SelectionText>
-        <div>
-          <SelectCoinLogo src={Coins.coins[number].img} alt="bb" />
-        </div>
-        <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{Coins.coins[number].label}&nbsp;</SelectCoinLabel>
-        {/* <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{CoinData[number].label}&nbsp;</SelectCoinLabel> */}
-        <ArrowBtn type="button" onClick={Viewlist}>
-          <ArrowImgDown show={isList} src={downarrow} alt="button" />
-        </ArrowBtn>
-        <p>&nbsp;살걸..</p>
-      </SelectionText>
-      <Transition timeout={30} in={isList}>
-        {(state) => (
-          <CoinListSpace
-            style={{
-              ...transitionStyles[state],
-            }}
-          >
-            <List>
-              <ListGroup>{FirstLine}</ListGroup>
-              <ListGroup>{SecondLine}</ListGroup>
-            </List>
-          </CoinListSpace>
-        )}
-      </Transition>
-      <NextPage>
-        <p>한달간 비트코인 가격을 알아보자..</p>
-        <NextArrow src={downarrow} alt="button" onClick={Viewlist} />
-      </NextPage>
-    </Selection>
-  );
+  if (isReady) {
+    return (
+      <Selection>
+        <SelectionText>
+          <div>
+            <SelectCoinLogo src={CoinData[number].imageUrl} alt="bb" />
+          </div>
+          <SelectCoinLabel style={{ color: 'black' }}>&nbsp;{CoinData[number].label}&nbsp;</SelectCoinLabel>
+          <ArrowBtn type="button" onClick={Viewlist}>
+            <ArrowImgDown show={isList} src={downarrow} alt="button" />
+          </ArrowBtn>
+          <p>&nbsp;살걸..</p>
+        </SelectionText>
+        <Transition timeout={30} in={isList}>
+          {(state) => (
+            <CoinListSpace
+              style={{
+                ...transitionStyles[state],
+              }}
+            >
+              <List>
+                <ListGroup>{FirstLine}</ListGroup>
+                <ListGroup>{SecondLine}</ListGroup>
+              </List>
+            </CoinListSpace>
+          )}
+        </Transition>
+        <NextPage>
+          <p>한달간 비트코인 가격을 알아보자..</p>
+          <NextArrow src={downarrow} alt="button" onClick={Viewlist} />
+        </NextPage>
+      </Selection>
+    );
+  }
 }
 export default SelectCoin;
