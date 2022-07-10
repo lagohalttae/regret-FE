@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Transition } from 'react-transition-group';
 import downarrow from '../../images/downarrow.svg';
-// import Coins from '../../Dummy_Data/Coins.json';
 import {
   Selection,
   SelectCoinLogo,
