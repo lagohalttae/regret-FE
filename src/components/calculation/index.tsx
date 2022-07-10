@@ -1,7 +1,9 @@
-import React from 'react';
+/* eslint-disable no-empty-pattern */
+/* eslint-disable prettier/prettier */
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.form`
   position: absolute;
   top: 30vh;
   left: 44vw;
@@ -25,11 +27,31 @@ const Container = styled.div`
 `;
 
 const InputBox = styled.div`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
   display: flex;
   width: 100%;
   align-items: center;
 `;
 const PriceInput = styled.input`
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+  margin: 0;
   font-size: 48px;
   width: 57%;
   margin-right: 10px;
@@ -57,31 +79,86 @@ const ButtonBox = styled.div`
   justify-content: center;
 `;
 const HappyButton = styled.button`
-  width: 230px;
+  width: 260px;
   height: 70px;
   border-radius: 50px;
   font-size: 36px;
   background-color: white;
   border-color: #090909;
   border-width: 3px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const Calculated = styled.div`
+  color: #43841f;
 `;
 
-export function Calculation(): any {
+const CalculatedBox = styled.div`
+  margin-top: 8vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+`;
+export function Calculation(
+  {
+    /* startDate, finalDate , startPrice,finalPrice */
+  }
+): any {
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [inputPrice, setInputPrice] = useState<string>('');
+  const [price, setPrice] = useState<number>(0);
+  const handleInputChange: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (!(event.key >= '0' && event.key <= '9')) {
+      // 숫자만 입력 가능하도록
+      return;
+    }
+    setIsClicked(false);
+    setInputPrice(event.currentTarget.value);
+  };
+  const handleCalculate: any = () => {
+    const regex = /[^0-9]/g; // 숫자앞에 -붙는거 처리 안돼서 regex로 한번 더 처리
+    const result = inputPrice.replace(regex, '');
+    setPrice(2000 * parseInt(result, 10));
+    setIsClicked(true);
+  };
+  const handleCalculateWithClick: React.MouseEventHandler<HTMLButtonElement> = () => {
+    handleCalculate();
+  };
+
+  const handleCalculateWithEnter: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
+    if (event.key === 'Enter') handleCalculate();
+  };
+
   return (
     <Container>
       <InputBox>
-        <PriceInput />
+        <PriceInput
+          placeholder="가격을 입력해주세요."
+          min={0}
+          type="number"
+          onKeyDown={handleInputChange}
+          pattern="^(0|[1-9]+[0-9]*)$"
+        />
         <div>원을</div>
       </InputBox>
       <DateBox>
-        <LowDate>2022년 5월 2일</LowDate>에 풀매수해서
+        <LowDate>{/** startDate */}2022년 5월 2일</LowDate>에 풀매수해서
       </DateBox>
       <DateBox>
-        <HighDate>2022년 5월 5일</HighDate>에 풀매도 했다면..?
+        <HighDate>{/** finalDate */}2022년 5월 5일</HighDate>에 풀매도 했다면..?
       </DateBox>
-      <ButtonBox>
-        <HappyButton>행복회로{/** on off switch */}</HappyButton>
-      </ButtonBox>
+      {!isClicked ? (
+        <ButtonBox>
+          <HappyButton onClick={handleCalculateWithClick} onKeyDown={handleCalculateWithEnter}>
+            행복회로 ON{/** on off switch */}
+          </HappyButton>
+        </ButtonBox>
+      ) : (
+        <CalculatedBox>
+          <Calculated>{price.toLocaleString()}</Calculated>원 을 벌었을탠데...
+        </CalculatedBox>
+      )}
     </Container>
   );
 }
