@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import MainTitle from '../components/mainTitle';
 import pepeImage from '../images/pepe.png';
-// import { getCoins } from '../api';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -35,7 +34,7 @@ const PepeImage = styled.img`
     opacity: 0.5;
   } */
 `;
-// getCoins();
+
 function CoinMain(): any {
   return (
     <Wrapper>
