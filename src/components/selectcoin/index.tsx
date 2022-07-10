@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Transition } from 'react-transition-group';
+import { getCoins } from '../../api';
 import downarrow from '../../images/downarrow.svg';
 import {
   Selection,
   SelectCoinLogo,
-  SelectionText,
   SelectCoinLabel,
+  SelectionText,
   ArrowBtn,
   ArrowImgDown,
   NextArrow,
@@ -19,22 +19,23 @@ import {
   ListText,
 } from './Styled';
 
+interface ICoinInfo {
+  coinId: string;
+  label: string;
+  imageUrl: string;
+}
+
 function SelectCoin(): any {
   // 코인 api
-  const [CoinData, setCoinData] = useState<any[]>([]);
-  const [isReady, setisReady] = useState(false);
+  const [CoinData, setCoinData] = useState<ICoinInfo[]>([]);
 
   // 코인 불러오기용 number
   const [number, setNumber] = useState(0);
 
   useEffect(() => {
-    axios.get(`/coins/titles`).then((response) => {
-      setCoinData(response.data);
-      setisReady(!isReady);
-    });
+    getCoins(setCoinData);
   }, []);
 
-  // 리스트 불러오기용 상태 state
   const [isList, setList] = useState(false);
 
   // 리스트 상태 전환
@@ -86,7 +87,7 @@ function SelectCoin(): any {
     ) : undefined
   );
 
-  if (isReady) {
+  if (CoinData[number] !== undefined) {
     return (
       <Selection>
         <SelectionText>
