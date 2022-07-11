@@ -28,10 +28,10 @@ function SelectCoin(): any {
   const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
 
   // 코인 api에서 받아온 index 번호
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<number>(0);
 
   // 전체 코인 리스트 제어용
-  const [showCoinList, setShowCoinList] = useState(false);
+  const [showCoinList, setShowCoinList] = useState<boolean>(false);
 
   // 리스트 상태 전환
   const isShowCoinList = (): void => {
