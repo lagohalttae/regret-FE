@@ -1,189 +1,117 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
-import styled from 'styled-components';
-import uparrow from '../../images/uparrow.svg';
+import { getCoins } from '../../api';
 import downarrow from '../../images/downarrow.svg';
-import Coins from '../../Dummy_Data/Coins.json';
+import {
+  Wrapper,
+  CurrentCoin,
+  CurrentCoinImg,
+  CurrentCoinLabel,
+  ArrowImg,
+  AllCoin,
+  CoinCard,
+  CoinImg,
+  CoinLabel,
+  NextPage,
+  NextPageArrowImg,
+  TransitionStyles,
+} from './Styled';
 
-const Selection = styled.div`
-  margin-top: 5vh;
-  /* display: flex; */
-  // 버튼 위치 조절
-  @media (max-width: 1439px) {
-  }
-  @media (max-width: 1023px) {
-  }
-  @media (max-width: 767px) {
-  }
-  @media (max-width: 480px) {
-  }
-`;
-const SelectionText = styled.div`
-  display: flex;
-  /* background-color: red; */
-  align-items: center;
-  max-width: 33vw;
-  @media (max-width: 767px) {
-    min-width: 60vw;
-    max-width: 70vw;
-  }
-`;
-
-const ArrowBtn = styled.button`
-  border-style: none;
-  background-color: transparent;
-  /* background-color: blue; */
-  cursor: pointer;
-`;
-
-const ArrowImgUp = styled.img`
-  width: 5vh;
-
-  filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
-    width: 2vh;
-  }
-  @media (max-width: 767px) {
-    width: 3vh;
-  }
-  @media (max-width: 1023px) {
-    width: 4vh;
-  }
-  @media (hover: hover) {
-    transition-duration: 0.2s;
-    &:hover {
-      transform: translateY(-10px);
-      transition-property: all;
-      transition-duration: 0.3s;
-      transition-delay: 0s;
-    }
-  }
-`;
-
-const ArrowImgDown = styled.img`
-  width: 5vh;
-  filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
-    width: 2vh;
-  }
-  @media (max-width: 767px) {
-    width: 3vh;
-  }
-  @media (max-width: 1023px) {
-    width: 4vh;
-  }
-  @media (hover: hover) {
-    transition-duration: 0.2s;
-    &:hover {
-      transform: translateY(10px);
-      transition-property: all;
-      transition-duration: 0.3s;
-      transition-delay: 0s;
-    }
-  }
-`;
-
-const CoinList = styled.div`
-  color: blue;
-  min-height: 30vh;
-  min-width: 60vw;
-  max-width: 60vw;
-  background-color: red;
-  word-break: break-all;
-  transition: opacity 200ms ease-in-out;
-  opacity: 0;
-`;
-
-const NextPage = styled.div`
-  position: relative;
-  display: block;
-  left: -8vw;
-  width: 100vw;
-  bottom: -15vh;
-  color: black;
-  text-align: center;
-  font-size: 3vh;
-`;
-
-const ArrowImg2 = styled.img`
-  border-style: none;
-  background-color: transparent;
-  width: 3vh;
-  cursor: pointer;
-  filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (max-width: 480px) {
-    width: 2vh;
-  }
-  @media (hover: hover) {
-    &:hover {
-      transform: translateY(10px);
-      transition-property: all;
-      transition-duration: 1s;
-      transition-delay: 0s;
-      width: 5vh;
-    }
-  }
-  transition-duration: 1s;
-`;
+interface ICoinInfo {
+  coinId: string;
+  label: string;
+  imageUrl: string;
+}
 
 function SelectCoin(): any {
-  // 코인 불러오기용 number
-  // const [number, setNumber] = useState(0);
-  // setNumber(0);
-  const number = 0;
+  // 코인 api
+  const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
 
-  // 리스트 불러오기용 상태 state
-  const [isList, setList] = useState(false);
+  // 코인 api에서 받아온 index 번호
+  const [index, setIndex] = useState<number>(0);
 
-  const Viewlist = (): any => {
-    if (isList === true) {
-      setList(false);
-    } else {
-      setList(true);
-    }
+  // 전체 코인 리스트 제어용
+  const [showCoinList, setShowCoinList] = useState<boolean>(false);
+
+  // 리스트 상태 전환
+  const isShowCoinList = (): void => {
+    setShowCoinList(!showCoinList);
   };
 
-  const transitionStyles: any = {
-    entering: { opacity: 1 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
-    exited: { opacity: 0 },
-  };
+  // 전체 코인 두개의 그룹화
+  // groupOne : 0~4 , groupTwo : 5~9
+  const groupOne = coinList.map((data, i) =>
+    i < 5 ? (
+      <CoinCard
+        key={data.coinId}
+        onClick={() => {
+          setIndex(i);
+          isShowCoinList();
+        }}
+        protect={showCoinList}
+      >
+        <CoinImg src={data.imageUrl} alt=" " />
+        <CoinLabel>{data.label}</CoinLabel>
+      </CoinCard>
+    ) : undefined
+  );
+
+  const groupTwo = coinList.map((data, i) =>
+    i > 4 ? (
+      <CoinCard
+        key={data.coinId}
+        onClick={() => {
+          setIndex(i);
+          isShowCoinList();
+        }}
+        protect={showCoinList}
+      >
+        <CoinImg src={data.imageUrl} alt=" " />
+        <CoinLabel>{data.label}</CoinLabel>
+      </CoinCard>
+    ) : undefined
+  );
+
+  useEffect(() => {
+    // api 가져오기
+    getCoins(setCoinList);
+  }, []);
 
   return (
-    <Selection>
-      <SelectionText>
-        <p style={{ color: 'black' }}>{Coins.coins[number].label}</p>
-
-        {isList === true ? (
-          <ArrowBtn type="button" onClick={Viewlist}>
-            <ArrowImgUp src={uparrow} alt="button" />
-          </ArrowBtn>
-        ) : (
-          <ArrowBtn type="button" onClick={Viewlist}>
-            <ArrowImgDown src={downarrow} alt="button" />
-          </ArrowBtn>
-        )}
-
+    <Wrapper>
+      {/* 현재 선택된 코인 */}
+      <CurrentCoin>
+        <div>
+          <CurrentCoinImg src={coinList[index]?.imageUrl} alt=" " />
+        </div>
+        <CurrentCoinLabel>&nbsp;{coinList[index]?.label}&nbsp;</CurrentCoinLabel>
+        <ArrowImg show={showCoinList} onClick={isShowCoinList} src={downarrow} alt="arrow" />
         <p>&nbsp;살걸..</p>
-      </SelectionText>
+      </CurrentCoin>
+      {/* /현재 선택된 코인 */}
 
-      <Transition timeout={10} in={isList}>
+      {/* 전체 코인 리스트 */}
+      <Transition timeout={30} in={showCoinList}>
         {(state) => (
-          <CoinList
+          <AllCoin
             style={{
-              ...transitionStyles[state],
+              ...TransitionStyles[state],
             }}
           >
-            <p>dadsfasdfasdfasdfasjkhdfkasdhkfljhasdjfhjlaksdhflkjasdhflkjashdfkla</p>
-          </CoinList>
+            <div>{groupOne}</div>
+            <div>{groupTwo}</div>
+          </AllCoin>
         )}
       </Transition>
+      {/* /전체 코인 리스트 */}
+
+      {/* 다음페이지 이동 */}
       <NextPage>
         <p>한달간 비트코인 가격을 알아보자..</p>
-        <ArrowImg2 src={downarrow} alt="button" onClick={Viewlist} />
+        <NextPageArrowImg src={downarrow} alt=" " onClick={isShowCoinList} />
       </NextPage>
-    </Selection>
+      {/* /다음페이지 이동 */}
+    </Wrapper>
   );
 }
 export default SelectCoin;

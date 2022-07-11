@@ -9,12 +9,6 @@ const Wrapper = styled.div`
   color: #000;
   background-color: #fff;
   font-family: Noto Sans KR;
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 `;
 
 const PepeImage = styled.img`
@@ -30,13 +24,15 @@ const PepeImage = styled.img`
   @media (max-width: 1023px) {
     display: none;
   }
-  @media (max-width: 767px) {
-  }
+
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 767px) {
+  }*
   @media (max-width: 480px) {
     display: block;
     height: 50vh;
     opacity: 0.5;
-  }
+  } */
 `;
 
 function CoinMain(): any {
