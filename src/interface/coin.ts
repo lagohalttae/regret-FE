@@ -33,3 +33,10 @@ export interface ICoinCurrentPrice {
   lastUpdated: string;
   currentPrice: Won;
 }
+
+export interface IProductInfo {
+  productName: string;
+  price: Won;
+  image: Image;
+  unit: string;
+}
