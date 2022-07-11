@@ -13,7 +13,7 @@ import {
   CoinImg,
   CoinLabel,
   NextPage,
-  NextArrow,
+  NextPageArrowImg,
   TransitionStyles,
 } from './Styled';
 
@@ -108,7 +108,7 @@ function SelectCoin(): any {
       {/* 다음페이지 이동 */}
       <NextPage>
         <p>한달간 비트코인 가격을 알아보자..</p>
-        <NextArrow src={downarrow} alt=" " onClick={isShowCoinList} />
+        <NextPageArrowImg src={downarrow} alt=" " onClick={isShowCoinList} />
       </NextPage>
       {/* /다음페이지 이동 */}
     </Wrapper>

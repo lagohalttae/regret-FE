@@ -115,7 +115,7 @@ const NextPage = styled.div`
   font-size: x-large;
 `;
 
-const NextArrow = styled.img`
+const NextPageArrowImg = styled.img`
   border-style: none;
   background-color: transparent;
   width: 3.5vh;
@@ -139,7 +139,7 @@ export {
   CurrentCoinImg,
   CurrentCoinLabel,
   ArrowImg,
-  NextArrow,
+  NextPageArrowImg,
   NextPage,
   AllCoin,
   CoinCard,
