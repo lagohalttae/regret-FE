@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import MainTitle from '../components/mainTitle';
-import CoinInfo from '../components/coinInfo';
 import pepeImage from '../images/pepe.png';
 
 const Wrapper = styled.div`
@@ -25,20 +24,21 @@ const PepeImage = styled.img`
   @media (max-width: 1023px) {
     display: none;
   }
-  @media (max-width: 767px) {
-  }
+
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 767px) {
+  }*
   @media (max-width: 480px) {
     display: block;
     height: 50vh;
     opacity: 0.5;
-  }
+  } */
 `;
 
 function CoinMain(): any {
   return (
     <Wrapper>
       <MainTitle />
-      <CoinInfo />
       <PepeImage src={pepeImage} alt="pepe" />
     </Wrapper>
   );

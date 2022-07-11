@@ -24,7 +24,7 @@
     //crlf 오류 해결
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     //최대 줄 길이
-    "max-len": ["warn", { "code": 80 }],
+    "max-len": ["warn", { "code": 200 }],
     //확장자가 .tsx인 파일에서는 jsx 허용되지 않는다.
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     //확장자 오류(Missing file extension 'tsx' from './App')해결

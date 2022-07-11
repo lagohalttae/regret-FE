@@ -1,187 +1,117 @@
-import { useState, useRef } from 'react';
-import styled from 'styled-components';
-import uparrow from '../../images/uparrow.svg';
+import { useState, useEffect } from 'react';
+import { Transition } from 'react-transition-group';
+import { getCoins } from '../../api';
 import downarrow from '../../images/downarrow.svg';
-import Coins from '../../Dummy_Data/Coins.json';
+import {
+  Wrapper,
+  CurrentCoin,
+  CurrentCoinImg,
+  CurrentCoinLabel,
+  ArrowImg,
+  AllCoin,
+  CoinCard,
+  CoinImg,
+  CoinLabel,
+  NextPage,
+  NextPageArrowImg,
+  TransitionStyles,
+} from './Styled';
 
-const Selection = styled.div`
-  margin-inline: 1vw;
-
-  // 버튼 위치 조절
-  @media (max-width: 1439px) {
-  }
-  @media (max-width: 1023px) {
-  }
-  @media (max-width: 767px) {
-  }
-  @media (max-width: 480px) {
-  }
-`;
-
-const ArrowBtn = styled.button`
-  display: block;
-  margin: auto;
-  border-style: none;
-  background-color: transparent;
-  cursor: pointer;
-  //임시로 색 추가
-  /* &:hover {
-    background-color: gray;
-  } */
-`;
-
-const ArrowImg = styled.img`
-  width: 4vh;
-`;
-
-const PrevCoin = styled.div`
-  color: #b2b2b2;
-  font-size: 2vw;
-  text-align: center;
-  margin-bottom: 0.5vh;
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-`;
-const NextCoin = styled.div`
-  color: #b2b2b2;
-  font-size: 2vw; // PrevCoin크기와 비교용
-  text-align: center;
-  margin-top: 0.5vh;
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-`;
-
-const NowCoin = styled.div`
-  color: #000000;
-  cursor: pointer;
-  /* font-size: 4vw;
-  text-align: center; */
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-`;
-
-const ModalBg = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-`;
-
-const ModalBox = styled.div`
-  min-width: 25vw;
-  background-color: white;
-  padding: 5vh;
-  text-align: center;
-`;
-
-const ModalContent = styled.div`
-  color: black;
-  cursor: pointer;
-  padding-block: 1vh;
-  // 임시로 색 추가
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-`;
-function SelectCoin(): any {
-  // 코인 불러오기용 number
-  const [number, setNumber] = useState(0);
-
-  // 리스트 불러오기용 상태 state
-  const [state, setState] = useState(false);
-
-  // 영역밖 클릭
-  const outSection = useRef<HTMLInputElement>(null);
-  // 무한루프용
-  const onUp = (): any => {
-    if (number > 0) {
-      setNumber(number - 1);
-    } else {
-      setNumber(Coins.coins.length - 1);
-    }
-  };
-
-  const onDown = (): any => {
-    if (number < Coins.coins.length - 1) {
-      setNumber(number + 1);
-    } else {
-      setNumber(0);
-    }
-  };
-  return (
-    <Selection>
-      <ArrowBtn type="button">
-        <ArrowImg src={uparrow} alt="button" onClick={onUp} />
-      </ArrowBtn>
-
-      {number === 0 ? (
-        <PrevCoin onClick={onUp}>{Coins.coins[Coins.coins.length - 1].label}</PrevCoin>
-      ) : (
-        <PrevCoin onClick={onUp}>{Coins.coins[number - 1].label}</PrevCoin>
-      )}
-
-      <NowCoin
-        onClick={() => {
-          setState(true);
-        }}
-      >
-        {Coins.coins[number].label}
-      </NowCoin>
-
-      {state === true ? (
-        <ModalBg
-          ref={outSection}
-          onClick={(e) => {
-            if (outSection.current === e.target) {
-              setState(false);
-            }
-          }}
-        >
-          <ModalBox>
-            {Coins.coins.map((coin, i) => {
-              return (
-                <ModalContent
-                  onClick={() => {
-                    setNumber(i);
-                    setState(false);
-                  }}
-                >
-                  {coin.label}
-                </ModalContent>
-              );
-            })}
-          </ModalBox>
-        </ModalBg>
-      ) : null}
-
-      {number === Coins.coins.length - 1 ? (
-        <NextCoin onClick={onDown}>{Coins.coins[0].label}</NextCoin>
-      ) : (
-        <NextCoin onClick={onDown}>{Coins.coins[number + 1].label}</NextCoin>
-      )}
-      <ArrowBtn type="button" onClick={onDown}>
-        <ArrowImg src={downarrow} alt="button" onClick={onDown} />
-      </ArrowBtn>
-    </Selection>
-  );
+interface ICoinInfo {
+  coinId: string;
+  label: string;
+  imageUrl: string;
 }
 
+function SelectCoin(): any {
+  // 코인 api
+  const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
+
+  // 코인 api에서 받아온 index 번호
+  const [index, setIndex] = useState<number>(0);
+
+  // 전체 코인 리스트 제어용
+  const [showCoinList, setShowCoinList] = useState<boolean>(false);
+
+  // 리스트 상태 전환
+  const isShowCoinList = (): void => {
+    setShowCoinList(!showCoinList);
+  };
+
+  // 전체 코인 두개의 그룹화
+  // groupOne : 0~4 , groupTwo : 5~9
+  const groupOne = coinList.map((data, i) =>
+    i < 5 ? (
+      <CoinCard
+        key={data.coinId}
+        onClick={() => {
+          setIndex(i);
+          isShowCoinList();
+        }}
+        protect={showCoinList}
+      >
+        <CoinImg src={data.imageUrl} alt=" " />
+        <CoinLabel>{data.label}</CoinLabel>
+      </CoinCard>
+    ) : undefined
+  );
+
+  const groupTwo = coinList.map((data, i) =>
+    i > 4 ? (
+      <CoinCard
+        key={data.coinId}
+        onClick={() => {
+          setIndex(i);
+          isShowCoinList();
+        }}
+        protect={showCoinList}
+      >
+        <CoinImg src={data.imageUrl} alt=" " />
+        <CoinLabel>{data.label}</CoinLabel>
+      </CoinCard>
+    ) : undefined
+  );
+
+  useEffect(() => {
+    // api 가져오기
+    getCoins(setCoinList);
+  }, []);
+
+  return (
+    <Wrapper>
+      {/* 현재 선택된 코인 */}
+      <CurrentCoin>
+        <div>
+          <CurrentCoinImg src={coinList[index]?.imageUrl} alt=" " />
+        </div>
+        <CurrentCoinLabel>&nbsp;{coinList[index]?.label}&nbsp;</CurrentCoinLabel>
+        <ArrowImg show={showCoinList} onClick={isShowCoinList} src={downarrow} alt="arrow" />
+        <p>&nbsp;살걸..</p>
+      </CurrentCoin>
+      {/* /현재 선택된 코인 */}
+
+      {/* 전체 코인 리스트 */}
+      <Transition timeout={30} in={showCoinList}>
+        {(state) => (
+          <AllCoin
+            style={{
+              ...TransitionStyles[state],
+            }}
+          >
+            <div>{groupOne}</div>
+            <div>{groupTwo}</div>
+          </AllCoin>
+        )}
+      </Transition>
+      {/* /전체 코인 리스트 */}
+
+      {/* 다음페이지 이동 */}
+      <NextPage>
+        <p>한달간 비트코인 가격을 알아보자..</p>
+        <NextPageArrowImg src={downarrow} alt=" " onClick={isShowCoinList} />
+      </NextPage>
+      {/* /다음페이지 이동 */}
+    </Wrapper>
+  );
+}
 export default SelectCoin;

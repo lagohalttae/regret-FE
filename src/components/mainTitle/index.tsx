@@ -9,30 +9,23 @@ const Wrapper = styled.div`
   font-size: 4vw;
   font-weight: 700;
   color: #43841f;
-  align-items: center;
-  //SelectCoin 배치를 위해 추가
-  display: flex;
-  // @media (max-width: 1439px) {
-  // }
 
-  @media (max-width: 480px) {
+  /* 모바일 미디어쿼리 */
+  /* @media (max-width: 480px) {
     top: 10vh;
     font-size: 8vw;
-  }
+  } */
 
   // 모바일
   // @media (max-width: 767px) {
   // }
 `;
 
-// const Coin = styled.span`
-//   color: black;
-// `;
-
 function MainTitle(): any {
   return (
     <Wrapper>
-      라고 할 때 <SelectCoin /> 살걸..
+      라고 할 때
+      <SelectCoin />
     </Wrapper>
   );
 }
