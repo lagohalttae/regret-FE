@@ -31,5 +31,5 @@ export interface ICoinCurrentPrice {
   images: Image;
   label: string;
   lastUpdated: string;
-  currentPrice: Won;
+  price: Won;
 }
