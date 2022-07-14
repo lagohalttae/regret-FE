@@ -38,5 +38,6 @@ export interface IProductInfo {
   productName: string;
   price: Won;
   image: Image;
+  imageWhite: Image;
   unit: string;
 }

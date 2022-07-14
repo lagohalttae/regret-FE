@@ -1,40 +1,228 @@
 {
   "products": [
     {
-      "productName": "",
-      "price": 0,
-      "image": "",
-      "unit": ""
+      "productName": "맥북 M2 에어",
+      "price": 1690000,
+      "image": "images/macBookAir.png",
+      "imageWhite": "images/macBookAir_White.png",
+      "unit": "대"
     },
     {
-      "productName": "",
-      "price": 0,
-      "image": "",
-      "unit": ""
+      "productName": "맥북 M1 프로",
+      "price": 2690000,
+      "image": "images/macBookPro.png",
+      "imageWhite": "images/macBookPro_White.png",
+      "unit": "대"
     },
     {
-      "productName": "",
-      "price": 0,
-      "image": "",
-      "unit": ""
+      "productName": "아이폰 13 프로",
+      "price": 1350000,
+      "image": "images/iPhone13Pro.png",
+      "imageWhite": "images/iPhone13Pro_White.png",
+      "unit": "기"
     },
     {
-      "productName": "",
-      "price": 0,
-      "image": "",
-      "unit": ""
+      "productName": "아이패드 에어 5",
+      "price": 779000,
+      "image": "images/iPadAir.png",
+      "imageWhite": "images/iPadAir_White.png",
+      "unit": "대"
     },
     {
-      "productName": "",
-      "price": 0,
-      "image": "",
-      "unit": ""
+      "productName": "아이패드 프로 5",
+      "price": 1379000,
+      "image": "images/iPadPro.png",
+      "imageWhite": "images/iPadPro_White.png",
+      "unit": "대"
     },
     {
-      "productName": "",
-      "price": 0,
-      "image": "",
-      "unit": ""
+      "productName": "에어팟 프로 3",
+      "price": 249000,
+      "image": "images/airPodPro3.png",
+      "imageWhite": "images/airPodPro3_White.png",
+      "unit": "개"
+    },
+    {
+      "productName": "애플워치",
+      "price": 499000,
+      "image": "images/appleWatch7.png",
+      "imageWhite": "images/appleWatch7_White.png",
+      "unit": "개"
+    },
+    {
+      "productName": "갤럭시 S22",
+      "price": 999000,
+      "image": "images/galaxyS22.png",
+      "imageWhite": "images/galaxyS22_White.png",
+      "unit": "기"
+    },
+    {
+      "productName": "갤럭시탭 S8 울트라",
+      "price": 1378300,
+      "image": "images/galaxyTabS8Ultra.png",
+      "imageWhite": "images/galaxyTabS8Ultra_White.png",
+      "unit": "대"
+    },
+    {
+      "productName": "갤럭시 버즈 2",
+      "price": 119000,
+      "image": "images/galaxyBuds2.png",
+      "imageWhite": "images/galaxyBuds2_White.png",
+      "unit": "개"
+    },
+    {
+      "productName": "갤럭시 워치",
+      "price": 269000,
+      "image": "images/galaxyWatch4.png",
+      "imageWhite": "images/galaxyWatch4_White.png",
+      "unit": "개"
+    },
+    {
+      "productName": "플레이스테이션",
+      "price": 628000,
+      "image": "images/playStation5.png",
+      "imageWhite": "images/playStation5_White.png",
+      "unit": "대"
+    },
+    {
+      "productName": "닌텐도 스위치",
+      "price": 360000,
+      "image": "images/nintendoSwitch.png",
+      "imageWhite": "images/nintendoSwitch_White.png",
+      "unit": "대"
+    },
+    {
+      "productName": "나이키 에어포스 1'07 로우 화이트",
+      "price": 139000,
+      "image": "images/airPose.png",
+      "imageWhite": "images/airPose_White.png",
+      "unit": "켤레"
+    },
+    {
+      "productName": "푸라닭 블랙알리오",
+      "price": 18900,
+      "image": "images/puradak.png",
+      "imageWhite": "images/puradak_White.png",
+      "unit": "마리"
+    },
+    {
+      "productName": "교촌치킨 허니콤보",
+      "price": 20000,
+      "image": "images/kyochon.png",
+      "imageWhite": "images/kyochon_White.png",
+      "unit": "마리"
+    },
+    {
+      "productName": "bbq 황금올리브",
+      "price": 24000,
+      "image": "images/bbq.png",
+      "imageWhite": "images/bbq_White.png",
+      "unit": "마리"
+    },
+    {
+      "productName": "스타벅스 아메리카노 Tall",
+      "price": 4500,
+      "image": "images/americano.png",
+      "imageWhite": "images/americano_White.png",
+      "unit": "잔"
+    },
+    {
+      "productName": "서브웨이 이탈리안 비엠티 Set",
+      "price": 6800,
+      "image": "images/subway.png",
+      "imageWhite": "images/subway_White.png",
+      "unit": "개"
+    },
+    {
+      "productName": "포켓몬빵",
+      "price": 1200,
+      "image": "images/pokemon.png",
+      "imageWhite": "images/pokemon_White.png",
+      "unit": "개"
+    },
+    {
+      "productName": "베스킨라빈스 하프갤런",
+      "price": 29000,
+      "image": "images/baskinRobbins.png",
+      "imageWhite": "images/baskinRobbins_White.png",
+      "unit": "통"
+    },
+    {
+      "productName": "찌징먄",
+      "price": 5000,
+      "image": "images/jajangmyen.png",
+      "imageWhite": "images/jajangmyen_White.png",
+      "unit": "그릇"
+    },
+    {
+      "productName": "벤츠 S Class",
+      "price": 140400000,
+      "image": "images/benzSClass.png",
+      "imageWhite": "images/benzSClass_White.png",
+      "unit": "대"
+    },
+    {
+      "productName": "롤스로이스 팬텀",
+      "price": 628600000,
+      "image": "images/rollsRoyce.png",
+      "imageWhite": "images/rollsRoyce_White.png",
+      "unit": "대"
+    },
+    {
+      "productName": "제네시스 G90",
+      "price": 89570000,
+      "image": "images/genesis.png",
+      "imageWhite": "images/genesis_White.png",
+      "unit": "대"
+    },
+    {
+      "productName": "시그니엘 호텔",
+      "price": 600000,
+      "image": "images/signiel.png",
+      "imageWhite": "images/signiel_White.png",
+      "unit": "박"
+    },
+    {
+      "productName": "신라호텔",
+      "price": 320000,
+      "image": "images/shilla.png",
+      "imageWhite": "images/shilla_White.png",
+      "unit": "박"
+    },
+    {
+      "productName": "청담동 더펜트하우스",
+      "price": 16900000000,
+      "image": "images/thePentHouse.png",
+      "imageWhite": "images/thePentHouse_White.png",
+      "unit": "채"
+    },
+    {
+      "productName": "미국행 항공권",
+      "price": 950000,
+      "image": "images/trip.png",
+      "imageWhite": "images/trip_White.png",
+      "unit": "일"
+    },
+    {
+      "productName": "에버랜드 자유이용권",
+      "price": 64000,
+      "image": "images/everland.png",
+      "imageWhite": "images/everland_White.png",
+      "unit": "장"
+    },
+    {
+      "productName": "롯데월드 종일이용권",
+      "price": 59000,
+      "image": "images/lotteWorld.png",
+      "imageWhite": "images/lotteWorld_White.png",
+      "unit": "장"
+    },
+    {
+      "productName": "CGV 아이맥스 영화표",
+      "price": 17000,
+      "image": "images/iMax.png",
+      "imageWhite": "images/iMax_White.png",
+      "unit": "장"
     }
   ]
 }

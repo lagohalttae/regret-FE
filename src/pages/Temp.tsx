@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { getCoins } from '../api';
 
+import Products from '../productData/products.json';
+
 interface ICoinInfo {
   coinId: string;
   label: string;
@@ -20,6 +22,18 @@ function Temp(): any {
       <div>
         {coinList.map((item) => {
           return <div key={item.coinId}>{item.label}</div>;
+        })}
+      </div>
+
+      <div>
+        {Products.products.map((item) => {
+          return <img src={item.image} alt=" " height={300} />;
+        })}
+      </div>
+
+      <div>
+        {Products.products.map((item) => {
+          return <img src={item.imageWhite} alt=" " height={300} />;
         })}
       </div>
     </div>
