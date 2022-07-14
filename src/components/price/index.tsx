@@ -50,23 +50,33 @@ function Price(): any {
   }, []);
 
   const dateToString = (date: Date): string =>
-    `${date.getFullYear()}년 ${date.getMonth()}월 ${date.getDate()}일`;
+    `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+
+  const now = new Date();
+  const today = dateToString(now);
+  const monthAgo = dateToString(new Date(now.setMonth(now.getMonth() - 1)));
   return (
     <Wrapper>
-      <div>{coinCurrentPrice?.price.won}</div>
+      <div>현재 가격</div>
+      <div>{coinCurrentPrice?.price.won.toLocaleString()}KRW</div>
+      <div>{coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}</div>
       <Lowest>
         <Date1>
           {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
         </Date1>
-        <Price1 color="#E92C2C">39,123,000KRW</Price1>
-        <Term>2022.04.30 ~ 2022.05.30 간 최저가</Term>
+        <Price1 color="#E92C2C">{coinPrice?.minPrice.won.toLocaleString()}KRW</Price1>
+        <Term>
+          {monthAgo} ~ {today} 간 최저가
+        </Term>
       </Lowest>
       <Highest>
         <Date1>
           {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
         </Date1>
-        <Price1 color="#0085FF">39,619,000KRW</Price1>
-        <Term>2022.04.30 ~ 2022.05.30 간 최고가</Term>
+        <Price1 color="#0085FF">{coinPrice?.maxPrice.won.toLocaleString()}KRW</Price1>
+        <Term>
+          {monthAgo} ~ {today} 간 최고가
+        </Term>
       </Highest>
     </Wrapper>
   );
