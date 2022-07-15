@@ -2,10 +2,17 @@
 
 
 # 라고할때<img src="https://user-images.githubusercontent.com/43426556/179034053-322ebcf1-d9d5-4238-9879-0929655d42a0.png" align=left width=100/>
-> 코인으로 실패한 당신에게 바치는 실감나는 실물 환전 계산기 📈📉💻
-# Getting Started with Create React App!
+> 코인으로 실패한 당신에게 바치는 실감나는 실물 환전 계산기 📈📉💻  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💻 Main Service
+
+#### `코인선택`
+코인을 클릭하고, 내가 알고 싶은 코인을 선택하세요!
+<div align="left">
+<img alt="MainPage" src="https://user-images.githubusercontent.com/43426556/179190682-a1fb2e62-7026-4998-9015-d8bf5d75e578.png" width="500">
+<img alt= "MainPageMov" src="https://user-images.githubusercontent.com/43426556/179190933-9ee02997-5ae1-4c62-8fd3-e3c5e80bbe6a.gif" width="500"/>
+</div>
+
 
 ## Available Scripts
 
