@@ -12,6 +12,7 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+// 현재 가격
 const CurrentPrice = styled.div`
   text-align: center;
   margin-bottom: 14vh;
@@ -36,6 +37,7 @@ const CurrentPriceText = styled.div`
   color: #43841f;
 `;
 
+// 최대가, 최저가
 const PastPrice = styled.div`
   display: flex;
   justify-content: space-between;
@@ -44,9 +46,6 @@ const PastPrice = styled.div`
 const PastDateText = styled.p`
   font-size: 3.2vw;
   font-weight: 700;
-  @media (max-width: 480px) {
-    font-size: 7vw;
-  }
 `;
 
 const PastPriceText = styled.p`
@@ -54,37 +53,37 @@ const PastPriceText = styled.p`
   font-weight: 700;
   margin: 2vh 0 2vh 0;
   color: ${(props) => props.color};
-  @media (max-width: 480px) {
-    font-size: 7vw;
-  }
 `;
 
 const TermText = styled.p`
   font-size: 1.6vw;
   color: lightgray;
-  @media (max-width: 480px) {
-    font-size: 5vw;
-  }
 `;
 
 const Lowest = styled.div``;
 const Highest = styled.div``;
 
 function Price(): any {
+  // api 데이터 State
   const [coinPrice, setCoinPrice] = useState<ICoinPrice>();
   const [coinCurrentPrice, setCoinCurrentPrice] = useState<ICoinCurrentPrice>();
 
+  //api 데이터 가져오기
   useEffect(() => {
     // TODO 임시로 비트코인으로 설정, 윗 페이지에서 설정한 코인으로 수정 필요
     getCoinPrice(setCoinPrice, 'bitcoin');
     getCoinCurrentPrice(setCoinCurrentPrice, 'bitcoin');
   }, []);
 
+  //Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
   const dateToString = (date: Date): string =>
     `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 
+  // 현재 시간
   const now = new Date();
+  // 현재 시간 문자열
   const today = dateToString(now);
+  // 한달 전 시간 문자열
   const monthAgo = dateToString(new Date(now.setMonth(now.getMonth() - 1)));
   return (
     <Wrapper>
