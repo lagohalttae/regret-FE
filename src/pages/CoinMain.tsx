@@ -1,3 +1,5 @@
+// import { Navigate } from 'react-router-dom';
+
 import styled from 'styled-components';
 import MainTitle from '../components/mainTitle';
 import pepeImage from '../images/pepe.png';

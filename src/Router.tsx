@@ -7,7 +7,7 @@ import Temp from './pages/Temp';
 
 const Pagination = styled.div`
   &.fadeIn {
-    animation: 1s fadeIn forwards;
+    animation: 0.8s fadeIn forwards;
   }
   /* 
   ${(props) =>
@@ -16,7 +16,7 @@ const Pagination = styled.div`
       : `animation: 0.5s fadeOut forwards`} */
 
   &.fadeOut {
-    animation: 1s fadeOut forwards;
+    animation: 0.8s fadeOut forwards;
   }
 
   @keyframes fadeIn {
@@ -26,7 +26,7 @@ const Pagination = styled.div`
     }
     to {
       opacity: 1;
-      transform: translate(0px, 0px);
+      transform: translate(0px, 0);
     }
   }
 
