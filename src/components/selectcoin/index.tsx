@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { getCoins } from '../../api';
 import downarrow from '../../images/downarrow.svg';
@@ -24,6 +25,11 @@ interface ICoinInfo {
 }
 
 function SelectCoin(): any {
+  const navigate = useNavigate();
+  const handleNextPage: React.MouseEventHandler<HTMLDivElement> = () => {
+    navigate('/Temp');
+  };
+
   // 코인 api
   const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
 
@@ -108,7 +114,7 @@ function SelectCoin(): any {
       {/* 다음페이지 이동 */}
       <NextPage>
         <p>한달간 비트코인 가격을 알아보자..</p>
-        <NextPageArrowImg src={downarrow} alt=" " onClick={isShowCoinList} />
+        <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
       </NextPage>
       {/* /다음페이지 이동 */}
     </Wrapper>
