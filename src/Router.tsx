@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import CoinCalculation from './pages/CoinCalculation';
 import CoinMain from './pages/CoinMain';
+import CoinPrice from './pages/CoinPrice';
 import Temp from './pages/Temp';
 
 const Pagination = styled.div`
@@ -65,6 +66,7 @@ function Router(): any {
         <Route path="/" element={<CoinMain />} />
         <Route path="/calculation" element={<CoinCalculation />} />
         <Route path="/temp" element={<Temp />} />
+        <Route path="/price" element={<CoinPrice />} />
       </Routes>
     </Pagination>
   );

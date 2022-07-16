@@ -30,8 +30,8 @@ export interface ICoinCurrentPrice {
   coinId: string;
   images: Image;
   label: string;
-  lastUpdated: string;
-  currentPrice: Won;
+  lastUpdated: number;
+  price: Won;
 }
 
 export interface IProductInfo {
