@@ -68,14 +68,14 @@ function Price(): any {
   const [coinPrice, setCoinPrice] = useState<ICoinPrice>();
   const [coinCurrentPrice, setCoinCurrentPrice] = useState<ICoinCurrentPrice>();
 
-  //api 데이터 가져오기
+  // api 데이터 가져오기
   useEffect(() => {
     // TODO 임시로 비트코인으로 설정, 윗 페이지에서 설정한 코인으로 수정 필요
     getCoinPrice(setCoinPrice, 'bitcoin');
     getCoinCurrentPrice(setCoinCurrentPrice, 'bitcoin');
   }, []);
 
-  //Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
+  // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
   const dateToString = (date: Date): string =>
     `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 
