@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Price from '../components/price';
 
 const Wrapper = styled.div`
-  position: fixed;
   width: 100%;
   height: 100%;
   color: #000;

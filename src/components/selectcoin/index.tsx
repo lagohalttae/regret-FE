@@ -24,12 +24,12 @@ interface ICoinInfo {
   imageUrl: string;
 }
 
-function SelectCoin(): any {
-  const navigate = useNavigate();
-  const handleNextPage: React.MouseEventHandler<HTMLDivElement> = () => {
-    navigate('/Temp');
-  };
+// state
+export interface ICoinMainState {
+  coinId: string;
+}
 
+function SelectCoin(): any {
   // 코인 api
   const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
 
@@ -42,6 +42,15 @@ function SelectCoin(): any {
   // 리스트 상태 전환
   const isShowCoinList = (): void => {
     setShowCoinList(!showCoinList);
+  };
+
+  // 페이지 이동에 이용되는 함수
+  const navigate = useNavigate();
+
+  // 다음 페이지로 이동
+  const handleNextPage: React.MouseEventHandler<HTMLDivElement> = () => {
+    const { coinId }: ICoinMainState = coinList[index];
+    navigate('/price', { state: { coinId } });
   };
 
   // 전체 코인 두개의 그룹화

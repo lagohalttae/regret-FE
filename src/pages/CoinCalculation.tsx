@@ -8,20 +8,13 @@ const Wrapper = styled.div`
   height: 100%;
   color: #000;
   background-color: #fff;
-  font-family: Noto Sans KR;
-  //drag 방지
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
 `;
 
 const SmilePepeImage = styled.img`
-  height: 100vh;
   position: absolute;
+  height: 80%;
   left: 0;
-  top: 15%;
+  bottom: 0;
   z-index: -1;
 
   @media (max-width: 1439px) {

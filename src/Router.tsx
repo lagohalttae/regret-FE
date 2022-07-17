@@ -7,6 +7,8 @@ import CoinPrice from './pages/CoinPrice';
 import Temp from './pages/Temp';
 
 const Pagination = styled.div`
+  height: 100vh;
+  width: 100vw;
   &.fadeIn {
     animation: 0.8s fadeIn forwards;
   }

@@ -1,7 +1,9 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { ICoinPriceState } from '../price';
 
 const Container = styled.form`
   position: absolute;
@@ -100,26 +102,35 @@ const CalculatedBox = styled.div`
   display: flex;
   justify-content: center;
 `;
-export function Calculation(
-  {
-    /* startDate, finalDate , startPrice,finalPrice */
-  }
-): any {
+
+// useLocation을 통해 state를 받아오기 위한 interface
+interface Ilocation {
+  state: ICoinPriceState;
+}
+
+export function Calculation(): any {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [inputPrice, setInputPrice] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
+
+  // 이전페이지의 정보를 받기 위함 ex)path, state
+  const location = useLocation() as Ilocation;
+
+  const { atMaxPrice, atMinPrice, maxPrice, minPrice } = location.state;
+  // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
+  const dateToString = (date: Date): string =>
+    `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+
   const handleInputChange: React.KeyboardEventHandler<HTMLInputElement> = (event) => {
-    if (!(event.key >= '0' && event.key <= '9')) {
-      // 숫자만 입력 가능하도록
-      return;
-    }
     setIsClicked(false);
     setInputPrice(event.currentTarget.value);
+    console.dir(event.currentTarget.value);
   };
   const handleCalculate: any = () => {
     const regex = /[^0-9]/g; // 숫자앞에 -붙는거 처리 안돼서 regex로 한번 더 처리
-    const result = inputPrice.replace(regex, '');
-    setPrice(2000 * parseInt(result, 10));
+    const result = parseInt(inputPrice.replace(regex, ''), 10);
+
+    setPrice(result * (maxPrice / minPrice));
     setIsClicked(true);
   };
   const handleCalculateWithClick: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -127,31 +138,34 @@ export function Calculation(
   };
 
   const handleCalculateWithEnter: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
-    if (event.key === 'Enter') handleCalculate();
+    if (event.key === 'Enter' && isClicked === false) handleCalculate();
+  };
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
   };
 
   return (
-    <Container>
+    <Container onSubmit={handleSubmit}>
       <InputBox>
         <PriceInput
           placeholder="가격을 입력해주세요."
           min={0}
           type="number"
           onKeyDown={handleInputChange}
-          pattern="^(0|[1-9]+[0-9]*)$"
         />
         <div>원을</div>
       </InputBox>
       <DateBox>
-        <LowDate>{/** startDate */}2022년 5월 2일</LowDate>에 풀매수해서
+        <LowDate>{dateToString(new Date(atMinPrice))}</LowDate>에 풀매수해서
       </DateBox>
       <DateBox>
-        <HighDate>{/** finalDate */}2022년 5월 5일</HighDate>에 풀매도 했다면..?
+        <HighDate>{dateToString(new Date(atMaxPrice))}</HighDate>에 풀매도 했다면..?
       </DateBox>
       {!isClicked ? (
         <ButtonBox>
-          <HappyButton onClick={handleCalculateWithClick} onKeyDown={handleCalculateWithEnter}>
-            행복회로 ON{/** on off switch */}
+          <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
+            행복회로 ON
           </HappyButton>
         </ButtonBox>
       ) : (

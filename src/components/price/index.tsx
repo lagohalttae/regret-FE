@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
 import { ICoinPrice, ICoinCurrentPrice } from '../../interface/coin';
+import { ICoinMainState } from '../selectcoin';
+import downarrow from '../../images/downarrow.svg';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -60,22 +63,83 @@ const TermText = styled.p`
   color: lightgray;
 `;
 
+// 하단 컴포넌트 -------------
+const NextPage = styled.div`
+  position: absolute;
+  left: -8vw;
+  width: 100vw;
+  bottom: -15vh;
+  color: black;
+  text-align: center;
+  font-size: x-large;
+`;
+
+const NextPageArrowImg = styled.img`
+  border-style: none;
+  background-color: transparent;
+  width: 3.5vh;
+  cursor: pointer;
+  filter: opacity(0.25) drop-shadow(0 0 0 gray);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(10px);
+      transition-property: all;
+      transition-duration: 0.7s;
+      transition-delay: 0s;
+      width: 5vh;
+    }
+  }
+  transition-duration: 0.7s;
+`;
+
 const Lowest = styled.div``;
 const Highest = styled.div``;
 
+export interface ICoinPriceState {
+  atMinPrice: number;
+  atMaxPrice: number;
+  minPrice: number;
+  maxPrice: number;
+}
+
+// useLocation을 통해 state를 받아오기 위한 interface
+interface Ilocation {
+  state: ICoinMainState;
+}
+
 function Price(): any {
+  // 이전페이지의 정보를 받기 위함 ex)path, state
+  const location = useLocation() as Ilocation;
+
   // api 데이터 State
   const [coinPrice, setCoinPrice] = useState<ICoinPrice>();
   const [coinCurrentPrice, setCoinCurrentPrice] = useState<ICoinCurrentPrice>();
 
-  //api 데이터 가져오기
+  // 페이지 이동에 이용되는 함수
+  const navigate = useNavigate();
+
+  // 다음 페이지로 이동
+  const handleNextPage: React.MouseEventHandler<HTMLDivElement> = () => {
+    const priceState: ICoinPriceState = {
+      atMinPrice: coinPrice ? coinPrice.minPrice.atMillis : 0,
+      atMaxPrice: coinPrice ? coinPrice.maxPrice.atMillis : 0,
+      minPrice: coinPrice ? coinPrice.minPrice.won : 0,
+      maxPrice: coinPrice ? coinPrice.maxPrice.won : 0,
+    };
+    navigate('/calculation', {
+      state: priceState,
+    });
+  };
+
   useEffect(() => {
-    // TODO 임시로 비트코인으로 설정, 윗 페이지에서 설정한 코인으로 수정 필요
-    getCoinPrice(setCoinPrice, 'bitcoin');
-    getCoinCurrentPrice(setCoinCurrentPrice, 'bitcoin');
+    const { coinId } = location.state;
+    getCoinPrice(setCoinPrice, coinId);
+    getCoinCurrentPrice(setCoinCurrentPrice, coinId);
   }, []);
 
-  //Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
+  // api 데이터 가져오기
+
+  // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
   const dateToString = (date: Date): string =>
     `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
 
@@ -120,6 +184,10 @@ function Price(): any {
           </TermText>
         </Highest>
       </PastPrice>
+      <NextPage>
+        <p>행복회로 가동하기</p>
+        <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
+      </NextPage>
     </Wrapper>
   );
 }
