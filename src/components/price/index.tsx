@@ -1,18 +1,19 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
-import { ICoinPrice, ICoinCurrentPrice } from '../../interface/coin';
-import { ICoinMainState } from '../selectcoin';
 import downarrow from '../../images/downarrow.svg';
+import { coinCurrentPriceAtom, coinPriceAtom, selectedCoinAtom } from '../../atoms';
 
 const Wrapper = styled.div`
-  position: absolute;
+  height: 80vh;
   width: 80%;
-  margin: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  padding-top: 20vh;
+`;
+
+const PriceBox = styled.div`
+  height: 60vh;
 `;
 
 // 현재 가격
@@ -64,14 +65,19 @@ const TermText = styled.p`
 `;
 
 // 하단 컴포넌트 -------------
+const NextPageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 20vh;
+`;
+
 const NextPage = styled.div`
-  position: absolute;
-  left: -8vw;
-  width: 100vw;
-  bottom: -15vh;
   color: black;
   text-align: center;
   font-size: x-large;
+  margin-bottom: 5vh;
 `;
 
 const NextPageArrowImg = styled.img`
@@ -95,47 +101,15 @@ const NextPageArrowImg = styled.img`
 const Lowest = styled.div``;
 const Highest = styled.div``;
 
-export interface ICoinPriceState {
-  atMinPrice: number;
-  atMaxPrice: number;
-  minPrice: number;
-  maxPrice: number;
-}
-
-// useLocation을 통해 state를 받아오기 위한 interface
-interface Ilocation {
-  state: ICoinMainState;
-}
-
 function Price(): any {
-  // 이전페이지의 정보를 받기 위함 ex)path, state
-  const location = useLocation() as Ilocation;
-
-  // api 데이터 State
-  const [coinPrice, setCoinPrice] = useState<ICoinPrice>();
-  const [coinCurrentPrice, setCoinCurrentPrice] = useState<ICoinCurrentPrice>();
-
-  // 페이지 이동에 이용되는 함수
-  const navigate = useNavigate();
-
-  // 다음 페이지로 이동
-  const handleNextPage: React.MouseEventHandler<HTMLDivElement> = () => {
-    const priceState: ICoinPriceState = {
-      atMinPrice: coinPrice ? coinPrice.minPrice.atMillis : 0,
-      atMaxPrice: coinPrice ? coinPrice.maxPrice.atMillis : 0,
-      minPrice: coinPrice ? coinPrice.minPrice.won : 0,
-      maxPrice: coinPrice ? coinPrice.maxPrice.won : 0,
-    };
-    navigate('/calculation', {
-      state: priceState,
-    });
-  };
+  const coinObject = useRecoilValue(selectedCoinAtom);
+  const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
+  const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
 
   useEffect(() => {
-    const { coinId } = location.state;
-    getCoinPrice(setCoinPrice, coinId);
-    getCoinCurrentPrice(setCoinCurrentPrice, coinId);
-  }, []);
+    getCoinPrice(setCoinPrice, coinObject.coinId as any);
+    getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as any);
+  }, [coinObject]);
 
   // api 데이터 가져오기
 
@@ -149,45 +123,54 @@ function Price(): any {
   const today = dateToString(now);
   // 한달 전 시간 문자열
   const monthAgo = dateToString(new Date(now.setMonth(now.getMonth() - 1)));
+
+  const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
+    window.scroll({ top: window.innerHeight * 2 + 10, left: 0, behavior: 'smooth' });
+  };
+
   return (
     <Wrapper>
-      <CurrentPrice>
-        <CurrentPriceInfo>
-          <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
-          <TermText>
-            {coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}
-          </TermText>
-        </CurrentPriceInfo>
-        <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}KRW</CurrentPriceText>
-      </CurrentPrice>
-      <PastPrice>
-        <Lowest>
-          <PastDateText>
-            {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
-          </PastDateText>
-          <PastPriceText color="#E92C2C">
-            {coinPrice?.minPrice.won.toLocaleString()}KRW
-          </PastPriceText>
-          <TermText>
-            {monthAgo} ~ {today} 간 최저가
-          </TermText>
-        </Lowest>
-        <Highest>
-          <PastDateText>
-            {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
-          </PastDateText>
-          <PastPriceText color="#0085FF">
-            {coinPrice?.maxPrice.won.toLocaleString()}KRW
-          </PastPriceText>
-          <TermText>
-            {monthAgo} ~ {today} 간 최고가
-          </TermText>
-        </Highest>
-      </PastPrice>
-      <NextPage>
-        <p>행복회로 가동하기</p>
-        <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
-      </NextPage>
+      <PriceBox>
+        <CurrentPrice>
+          <CurrentPriceInfo>
+            <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
+            <TermText>
+              {coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}
+            </TermText>
+          </CurrentPriceInfo>
+          <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}KRW</CurrentPriceText>
+        </CurrentPrice>
+        <PastPrice>
+          <Lowest>
+            <PastDateText>
+              {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
+            </PastDateText>
+            <PastPriceText color="#E92C2C">
+              {coinPrice?.minPrice.won.toLocaleString()}KRW
+            </PastPriceText>
+            <TermText>
+              {monthAgo} ~ {today} 간 최저가
+            </TermText>
+          </Lowest>
+          <Highest>
+            <PastDateText>
+              {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
+            </PastDateText>
+            <PastPriceText color="#0085FF">
+              {coinPrice?.maxPrice.won.toLocaleString()}KRW
+            </PastPriceText>
+            <TermText>
+              {monthAgo} ~ {today} 간 최고가
+            </TermText>
+          </Highest>
+        </PastPrice>
+      </PriceBox>
+      <NextPageBox>
+        <NextPage>
+          <p>행복회로 가동하기</p>
+          <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
+        </NextPage>
+      </NextPageBox>
     </Wrapper>
   );
 }

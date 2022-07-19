@@ -3,22 +3,28 @@ import { Calculation } from '../components/calculation';
 import smilePepeImage from '../images/smilePepe.png';
 
 const Wrapper = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   color: #000;
+  overflow: hidden;
   background-color: #fff;
 `;
 
 const SmilePepeImage = styled.img`
   position: absolute;
-  height: 80%;
   left: 0;
-  bottom: 0;
-  z-index: -1;
-
+  width: 32vw;
+  bottom: 0vh;
   @media (max-width: 1439px) {
-    right: -27%;
+    width: 25vw;
+  }
+
+  @media (max-width: 1240px) {
+    width: 20vw;
   }
   @media (max-width: 1023px) {
     display: none;

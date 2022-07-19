@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
+import { useRecoilState } from 'recoil';
 import { getCoins } from '../../api';
+import { selectedCoinAtom } from '../../atoms';
 import downarrow from '../../images/downarrow.svg';
 import {
   Wrapper,
@@ -39,18 +40,15 @@ function SelectCoin(): any {
   // 전체 코인 리스트 제어용
   const [showCoinList, setShowCoinList] = useState<boolean>(false);
 
+  const [, setSelectedCoin] = useRecoilState(selectedCoinAtom);
+
   // 리스트 상태 전환
   const isShowCoinList = (): void => {
     setShowCoinList(!showCoinList);
   };
 
-  // 페이지 이동에 이용되는 함수
-  const navigate = useNavigate();
-
-  // 다음 페이지로 이동
-  const handleNextPage: React.MouseEventHandler<HTMLDivElement> = () => {
-    const { coinId }: ICoinMainState = coinList[index];
-    navigate('/price', { state: { coinId } });
+  const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
+    window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
   };
 
   // 전체 코인 두개의 그룹화
@@ -62,6 +60,7 @@ function SelectCoin(): any {
         onClick={() => {
           setIndex(i);
           isShowCoinList();
+          setSelectedCoin({ coinId: data.coinId as any });
         }}
         protect={showCoinList}
       >
@@ -78,6 +77,7 @@ function SelectCoin(): any {
         onClick={() => {
           setIndex(i);
           isShowCoinList();
+          setSelectedCoin({ coinId: data.coinId as any });
         }}
         protect={showCoinList}
       >
