@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CoinCalculation from './pages/CoinCalculation';
 import CoinMain from './pages/CoinMain';
 import CoinPrice from './pages/CoinPrice';
+import ProductPage from './pages/ProductPage';
 import Temp from './pages/Temp';
 
 const Pagination = styled.div`
@@ -67,6 +68,7 @@ function Router(): any {
         <Route path="/calculation" element={<CoinCalculation />} />
         <Route path="/temp" element={<Temp />} />
         <Route path="/price" element={<CoinPrice />} />
+        <Route path="/product" element={<ProductPage />} />
       </Routes>
     </Pagination>
   );
