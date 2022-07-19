@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Product from '../components/product';
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: relative;
   width: 100%;
   height: 100%;
   color: #000;

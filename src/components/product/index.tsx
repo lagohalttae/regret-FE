@@ -3,24 +3,39 @@ import pepeImage from '../../images/pepe.png';
 
 const Wrapper = styled.div``;
 
+const PepeContainer = styled.div`
+  display: block;
+  float: right;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 40%;
+  overflow: hidden;
+`;
 const PepeImage = styled.img`
   transform: scaleX(-1);
   height: 100vh;
-  position: absolute;
-  right: -15%;
-  z-index: -1;
-
-  @media (max-width: 1439px) {
-    right: -27%;
-  }
-  @media (max-width: 1023px) {
-    display: none;
-  }
 `;
+
+const FirstContainer = styled.div`
+  display: inline-block;
+  position: relative;
+  height: 100vh;
+`;
+const ProductContainer = styled.div`
+  position: relative;
+  height: 100vh;
+`;
+
 function Product(): any {
   return (
     <Wrapper>
-      <PepeImage src={pepeImage} alt="pepe" />
+      <FirstContainer>zz</FirstContainer>
+      <PepeContainer>
+        <PepeImage src={pepeImage} alt="pepe" />
+      </PepeContainer>
+      <ProductContainer>xx</ProductContainer>
+      <ProductContainer>cc</ProductContainer>
     </Wrapper>
   );
 }
