@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
 import downarrow from '../../images/downarrow.svg';
 import { coinCurrentPriceAtom, coinPriceAtom, selectedCoinAtom } from '../../atoms';
+import { ISelectedCoin } from '../../interface/coin';
 
 const Wrapper = styled.div`
   height: 80vh;
@@ -102,13 +103,15 @@ const Lowest = styled.div``;
 const Highest = styled.div``;
 
 function Price(): any {
+  // 전역상태관리
   const coinObject = useRecoilValue(selectedCoinAtom);
   const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
   const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
 
+  // 선택된 코인이 바뀔때마다 코인 정보 동기화
   useEffect(() => {
-    getCoinPrice(setCoinPrice, coinObject.coinId as any);
-    getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as any);
+    getCoinPrice(setCoinPrice, coinObject.coinId as unknown as ISelectedCoin);
+    getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as unknown as ISelectedCoin);
   }, [coinObject]);
 
   // api 데이터 가져오기

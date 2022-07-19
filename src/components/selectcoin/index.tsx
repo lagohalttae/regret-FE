@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { getCoins } from '../../api';
 import { selectedCoinAtom } from '../../atoms';
 import downarrow from '../../images/downarrow.svg';
+import { ICoinInfo } from '../../interface/coin';
 import {
   Wrapper,
   CurrentCoin,
@@ -19,17 +20,7 @@ import {
   TransitionStyles,
 } from './Styled';
 
-interface ICoinInfo {
-  coinId: string;
-  label: string;
-  imageUrl: string;
-}
-
 // state
-export interface ICoinMainState {
-  coinId: string;
-}
-
 function SelectCoin(): any {
   // 코인 api
   const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
@@ -47,6 +38,7 @@ function SelectCoin(): any {
     setShowCoinList(!showCoinList);
   };
 
+  // 다음페이지로 스크롤
   const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
     window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
   };

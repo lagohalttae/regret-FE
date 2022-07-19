@@ -107,7 +107,7 @@ const CalculatedBox = styled.div`
 // useLocation을 통해 state를 받아오기 위한 interface
 
 export function Calculation(): any {
-  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false); // 행복회로 버튼 토글
   const [inputPrice, setInputPrice] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
 
@@ -122,6 +122,8 @@ export function Calculation(): any {
 
     const removedCommaValue = Number(value.replaceAll(',', ''));
     setIsClicked(false);
+
+    // 숫자가 아닌 값이 입력되면 input 비우기
     // eslint-disable-next-line no-restricted-globals
     if (isNaN(removedCommaValue)) {
       setInputPrice('');
@@ -140,6 +142,7 @@ export function Calculation(): any {
     setIsClicked(true);
   };
 
+  // 선택된 코인의 price가 바뀌었을때 마다 실행(선택된 코인이 바뀌었을때)
   useEffect(() => {
     handleCalculate();
     setIsClicked(false);
@@ -153,6 +156,7 @@ export function Calculation(): any {
     if (event.key === 'Enter' && isClicked === false) handleCalculate();
   };
 
+  // 엔터 눌렀을떄 submit이 실행돼 페이지 /? 로 이동 방지
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
   };
