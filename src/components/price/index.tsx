@@ -107,14 +107,13 @@ function Price(): any {
   const coinObject = useRecoilValue(selectedCoinAtom);
   const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
   const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
-
+  
   // 선택된 코인이 바뀔때마다 코인 정보 동기화
+  // api 데이터 가져오기
   useEffect(() => {
     getCoinPrice(setCoinPrice, coinObject.coinId as unknown as ISelectedCoin);
     getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as unknown as ISelectedCoin);
   }, [coinObject]);
-
-  // api 데이터 가져오기
 
   // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
   const dateToString = (date: Date): string =>
