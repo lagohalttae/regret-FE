@@ -79,6 +79,7 @@ const NextPage = styled.div`
   text-align: center;
   font-size: x-large;
   margin-bottom: 5vh;
+  font-weight: 700;
 `;
 
 const NextPageArrowImg = styled.img`

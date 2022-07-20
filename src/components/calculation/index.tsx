@@ -25,6 +25,10 @@ const Container = styled.form`
   // }
 `;
 
+const InputContainer = styled.div`
+  width: 100%;
+`;
+
 const InputBox = styled.div`
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -38,20 +42,13 @@ const InputBox = styled.div`
   }
 
   display: flex;
-  width: 100%;
-  align-items: center;
 `;
 const PriceInput = styled.input`
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
   &:focus {
     outline: none;
   }
-  /* Firefox */
-  input[type='number'] {
-    -moz-appearance: textfield;
+  &.showWarning {
+    border-color: #e62f32;
   }
   margin: 0;
   font-size: 48px;
@@ -62,6 +59,18 @@ const PriceInput = styled.input`
   border-left: none;
   border-width: 3px;
   border-color: #757575;
+`;
+const InputWarningBox = styled.div`
+  position: absolute;
+  margin-top: 5px;
+  display: flex;
+`;
+
+const InputWarning = styled.text`
+  color: #e62f32;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 5px;
 `;
 
 const LowDate = styled.span`
@@ -78,7 +87,6 @@ const ButtonBox = styled.div`
   width: 85%;
   height: 100%;
   display: flex;
-
   justify-content: center;
 `;
 const HappyButton = styled.button`
@@ -110,7 +118,7 @@ export function Calculation(): any {
   const [isClicked, setIsClicked] = useState<boolean>(false); // 행복회로 버튼 토글
   const [inputPrice, setInputPrice] = useState<string>('');
   const [price, setPrice] = useState<number>(0);
-
+  const [showInputWarning, setShowInputWarning] = useState<boolean>(false);
   const coinPrice = useRecoilValue(coinPriceAtom);
 
   // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
@@ -119,25 +127,41 @@ export function Calculation(): any {
 
   const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const { value } = event.target;
-
     const removedCommaValue = Number(value.replaceAll(',', ''));
+
+    // 값이 입력되면 행복회로 버튼 표시
     setIsClicked(false);
 
-    // 숫자가 아닌 값이 입력되면 input 비우기
+    // 처음에 0이 나올경우 처리
+    if (removedCommaValue === 0) {
+      setInputPrice('');
+      return;
+    }
+
+    // 숫자가 아닐때 오류
     // eslint-disable-next-line no-restricted-globals
     if (isNaN(removedCommaValue)) {
-      setInputPrice('');
+      setShowInputWarning(true);
     } else {
+      setShowInputWarning(false);
       setInputPrice(Number(removedCommaValue).toLocaleString());
     }
   };
 
   const handleCalculate: any = () => {
     const regex = /[^0-9]/g; // 숫자앞에 -붙는거 처리 안돼서 regex로 한번 더 처리
+
+    // 공백인 상태로 계산 눌렀을때 오류
+    if (inputPrice === '' && !isClicked) {
+      setShowInputWarning(true);
+      return;
+    }
+
     const result =
       parseInt(inputPrice.replace(regex, ''), 10) *
       (coinPrice.maxPrice.won / coinPrice.minPrice.won);
 
+    // eslint-disable-next-line no-restricted-globals
     setPrice(Number(result.toFixed()));
     setIsClicked(true);
   };
@@ -163,17 +187,27 @@ export function Calculation(): any {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <InputBox>
-        <PriceInput
-          className="input"
-          placeholder="가격을 입력해주세요."
-          min={0}
-          value={inputPrice}
-          type="text"
-          onChange={handleInputChange}
-        />
-        <div>원을</div>
-      </InputBox>
+      <InputContainer>
+        <InputBox>
+          <PriceInput
+            placeholder="가격을 입력해주세요."
+            min={0}
+            value={inputPrice}
+            type="text"
+            onChange={handleInputChange}
+            className={showInputWarning ? 'showWarning' : ''}
+          />
+          <div>원을</div>
+        </InputBox>
+
+        {showInputWarning ? (
+          <InputWarningBox>
+            <InputWarning>숫자를 입력해주세요.</InputWarning>
+          </InputWarningBox>
+        ) : (
+          ''
+        )}
+      </InputContainer>
       <DateBox>
         <LowDate>{dateToString(new Date(coinPrice.minPrice.atMillis))}</LowDate>에 풀매수해서
       </DateBox>
