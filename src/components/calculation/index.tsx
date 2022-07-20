@@ -48,7 +48,7 @@ const PriceInput = styled.input`
     outline: none;
   }
   &.showWarning {
-    border-color: #e62f32;
+    border-color: #ed6a5e;
   }
   margin: 0;
   font-size: 48px;
@@ -67,7 +67,7 @@ const InputWarningBox = styled.div`
 `;
 
 const InputWarning = styled.text`
-  color: #e62f32;
+  color: #ed6a5e;
   font-size: 20px;
   font-weight: 500;
   margin-left: 5px;
@@ -152,7 +152,7 @@ export function Calculation(): any {
     const regex = /[^0-9]/g; // 숫자앞에 -붙는거 처리 안돼서 regex로 한번 더 처리
 
     // 공백인 상태로 계산 눌렀을때 오류
-    if (inputPrice === '' && !isClicked) {
+    if (inputPrice === '') {
       setShowInputWarning(true);
       return;
     }
@@ -168,7 +168,6 @@ export function Calculation(): any {
 
   // 선택된 코인의 price가 바뀌었을때 마다 실행(선택된 코인이 바뀌었을때)
   useEffect(() => {
-    handleCalculate();
     setIsClicked(false);
   }, [coinPrice]);
 

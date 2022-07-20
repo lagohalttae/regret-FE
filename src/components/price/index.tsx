@@ -108,7 +108,7 @@ function Price(): any {
   const coinObject = useRecoilValue(selectedCoinAtom);
   const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
   const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
-  
+
   // 선택된 코인이 바뀔때마다 코인 정보 동기화
   // api 데이터 가져오기
   useEffect(() => {
