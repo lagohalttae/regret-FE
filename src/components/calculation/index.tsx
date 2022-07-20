@@ -222,7 +222,7 @@ export function Calculation(): any {
         </ButtonBox>
       ) : (
         <CalculatedBox>
-          <Calculated>{price.toLocaleString()}</Calculated>원 을 벌었을탠데...
+          <Calculated>{price.toLocaleString()}</Calculated>원을 벌었을텐데...
         </CalculatedBox>
       )}
     </Container>
