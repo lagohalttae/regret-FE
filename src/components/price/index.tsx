@@ -1,15 +1,20 @@
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
-import { ICoinPrice, ICoinCurrentPrice } from '../../interface/coin';
+import downarrow from '../../images/downarrow.svg';
+import { coinCurrentPriceAtom, coinPriceAtom, selectedCoinAtom } from '../../atoms';
+import { ISelectedCoin } from '../../interface/coin';
 
 const Wrapper = styled.div`
-  position: absolute;
+  height: 80vh;
   width: 80%;
-  margin: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  padding-top: 20vh;
+`;
+
+const PriceBox = styled.div`
+  height: 60vh;
 `;
 
 // 현재 가격
@@ -60,20 +65,56 @@ const TermText = styled.p`
   color: lightgray;
 `;
 
+// 하단 컴포넌트 -------------
+const NextPageBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 20vh;
+`;
+
+const NextPage = styled.div`
+  color: black;
+  text-align: center;
+  font-size: x-large;
+  margin-bottom: 5vh;
+  font-weight: 700;
+`;
+
+const NextPageArrowImg = styled.img`
+  border-style: none;
+  background-color: transparent;
+  width: 3.5vh;
+  cursor: pointer;
+  filter: opacity(0.25) drop-shadow(0 0 0 gray);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(10px);
+      transition-property: all;
+      transition-duration: 0.7s;
+      transition-delay: 0s;
+      width: 5vh;
+    }
+  }
+  transition-duration: 0.7s;
+`;
+
 const Lowest = styled.div``;
 const Highest = styled.div``;
 
 function Price(): any {
-  // api 데이터 State
-  const [coinPrice, setCoinPrice] = useState<ICoinPrice>();
-  const [coinCurrentPrice, setCoinCurrentPrice] = useState<ICoinCurrentPrice>();
+  // 전역상태관리
+  const coinObject = useRecoilValue(selectedCoinAtom);
+  const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
+  const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
 
+  // 선택된 코인이 바뀔때마다 코인 정보 동기화
   // api 데이터 가져오기
   useEffect(() => {
-    // TODO 임시로 비트코인으로 설정, 윗 페이지에서 설정한 코인으로 수정 필요
-    getCoinPrice(setCoinPrice, 'bitcoin');
-    getCoinCurrentPrice(setCoinCurrentPrice, 'bitcoin');
-  }, []);
+    getCoinPrice(setCoinPrice, coinObject.coinId as unknown as ISelectedCoin);
+    getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as unknown as ISelectedCoin);
+  }, [coinObject]);
 
   // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수
   const dateToString = (date: Date): string =>
@@ -85,41 +126,54 @@ function Price(): any {
   const today = dateToString(now);
   // 한달 전 시간 문자열
   const monthAgo = dateToString(new Date(now.setMonth(now.getMonth() - 1)));
+
+  const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
+    window.scroll({ top: window.innerHeight * 2 + 10, left: 0, behavior: 'smooth' });
+  };
+
   return (
     <Wrapper>
-      <CurrentPrice>
-        <CurrentPriceInfo>
-          <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
-          <TermText>
-            {coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}
-          </TermText>
-        </CurrentPriceInfo>
-        <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}KRW</CurrentPriceText>
-      </CurrentPrice>
-      <PastPrice>
-        <Lowest>
-          <PastDateText>
-            {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
-          </PastDateText>
-          <PastPriceText color="#E92C2C">
-            {coinPrice?.minPrice.won.toLocaleString()}KRW
-          </PastPriceText>
-          <TermText>
-            {monthAgo} ~ {today} 간 최저가
-          </TermText>
-        </Lowest>
-        <Highest>
-          <PastDateText>
-            {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
-          </PastDateText>
-          <PastPriceText color="#0085FF">
-            {coinPrice?.maxPrice.won.toLocaleString()}KRW
-          </PastPriceText>
-          <TermText>
-            {monthAgo} ~ {today} 간 최고가
-          </TermText>
-        </Highest>
-      </PastPrice>
+      <PriceBox>
+        <CurrentPrice>
+          <CurrentPriceInfo>
+            <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
+            <TermText>
+              {coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}
+            </TermText>
+          </CurrentPriceInfo>
+          <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}KRW</CurrentPriceText>
+        </CurrentPrice>
+        <PastPrice>
+          <Lowest>
+            <PastDateText>
+              {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
+            </PastDateText>
+            <PastPriceText color="#E92C2C">
+              {coinPrice?.minPrice.won.toLocaleString()}KRW
+            </PastPriceText>
+            <TermText>
+              {monthAgo} ~ {today} 간 최저가
+            </TermText>
+          </Lowest>
+          <Highest>
+            <PastDateText>
+              {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
+            </PastDateText>
+            <PastPriceText color="#0085FF">
+              {coinPrice?.maxPrice.won.toLocaleString()}KRW
+            </PastPriceText>
+            <TermText>
+              {monthAgo} ~ {today} 간 최고가
+            </TermText>
+          </Highest>
+        </PastPrice>
+      </PriceBox>
+      <NextPageBox>
+        <NextPage>
+          <p>행복회로 가동하기</p>
+          <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
+        </NextPage>
+      </NextPageBox>
     </Wrapper>
   );
 }
