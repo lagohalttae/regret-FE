@@ -7,7 +7,7 @@ import { coinPriceAtom } from '../../atoms';
 
 const Container = styled.form`
   z-index: 1;
-  font-size: 48px;
+  font-size: 3vw;
   font-weight: 700;
   align-items: center;
   display: flex;
@@ -51,7 +51,7 @@ const PriceInput = styled.input`
     border-color: #ed6a5e;
   }
   margin: 0;
-  font-size: 48px;
+  font-size: inherit;
   width: 57%;
   margin-right: 10px;
   border-top: none;
@@ -85,18 +85,18 @@ const DateBox = styled.div`
 const ButtonBox = styled.div`
   margin-top: 6vh;
   width: 85%;
-  height: 100%;
   display: flex;
   justify-content: center;
 `;
 const HappyButton = styled.button`
-  width: 260px;
-  height: 70px;
+  align-items: center;
+  padding: 10px;
+  max-height: 120px;
   border-radius: 50px;
-  font-size: 36px;
+  font-size: 2.5vw;
   background-color: white;
   border-color: #090909;
-  border-width: 3px;
+  border-width: 2px;
   &:hover {
     cursor: pointer;
   }

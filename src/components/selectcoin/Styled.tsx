@@ -107,28 +107,52 @@ const TransitionStyles: any = {
 // 하단 컴포넌트 -------------
 const NextPage = styled.div`
   position: absolute;
-  left: -8vw;
-  width: 100vw;
-  bottom: -30vh;
+  left: 50%;
+  width: fit-content;
+  bottom: -23vh;
   color: black;
   text-align: center;
   font-size: x-large;
+  display: flex;
+  flex-direction: column;
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(10px);
+      transition-duration: 0.7s;
+      transition-delay: 0s;
+    }
+  }
+`;
+
+const NextPageArrowImgBox = styled.div`
+  animation: slideArrow 1.7s linear infinite;
+  @keyframes slideArrow {
+    from {
+      opacity: 1;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const NextPageArrowImg = styled.img`
   border-style: none;
   background-color: transparent;
+  position: absolute;
   width: 3.5vh;
   cursor: pointer;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (hover: hover) {
-    &:hover {
-      transform: translateY(10px);
-      transition-property: all;
-      transition-duration: 0.7s;
-      transition-delay: 0s;
-      width: 5vh;
-    }
+
+  &.arrow1 {
+    margin-top: 15px;
+    opacity: 0.6;
+  }
+  &.arrow2 {
+    margin-top: 30px;
+    opacity: 0.8;
   }
   transition-duration: 0.7s;
 `;
@@ -146,4 +170,5 @@ export {
   CoinImg,
   CoinLabel,
   TransitionStyles,
+  NextPageArrowImgBox,
 };

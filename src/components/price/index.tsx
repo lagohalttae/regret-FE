@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   height: 80vh;
   width: 80%;
   margin: 0 auto;
-  padding-top: 20vh;
+  padding-top: 13vh;
 `;
 
 const PriceBox = styled.div`
@@ -66,36 +66,57 @@ const TermText = styled.p`
 `;
 
 // 하단 컴포넌트 -------------
-const NextPageBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  width: 100%;
-  height: 20vh;
-`;
 
 const NextPage = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translate(-50%, 0);
+  width: fit-content;
   color: black;
   text-align: center;
   font-size: x-large;
-  margin-bottom: 5vh;
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  @media (hover: hover) {
+    &:hover {
+      transform: translate(-50%, 10px);
+      transition-duration: 0.7s;
+      transition-delay: 0s;
+    }
+  }
+`;
+
+const NextPageArrowImgBox = styled.div`
+  animation: slideArrow 1.7s linear infinite;
+  padding-right: 20px;
+  @keyframes slideArrow {
+    from {
+      opacity: 1;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const NextPageArrowImg = styled.img`
   border-style: none;
   background-color: transparent;
+  position: absolute;
   width: 3.5vh;
   cursor: pointer;
   filter: opacity(0.25) drop-shadow(0 0 0 gray);
-  @media (hover: hover) {
-    &:hover {
-      transform: translateY(10px);
-      transition-property: all;
-      transition-duration: 0.7s;
-      transition-delay: 0s;
-      width: 5vh;
-    }
+
+  &.arrow1 {
+    margin-top: 15px;
+    opacity: 0.6;
+  }
+  &.arrow2 {
+    margin-top: 30px;
+    opacity: 0.8;
   }
   transition-duration: 0.7s;
 `;
@@ -141,7 +162,7 @@ function Price(): any {
               {coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}
             </TermText>
           </CurrentPriceInfo>
-          <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}KRW</CurrentPriceText>
+          <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}원</CurrentPriceText>
         </CurrentPrice>
         <PastPrice>
           <Lowest>
@@ -149,7 +170,7 @@ function Price(): any {
               {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
             </PastDateText>
             <PastPriceText color="#E92C2C">
-              {coinPrice?.minPrice.won.toLocaleString()}KRW
+              {coinPrice?.minPrice.won.toLocaleString()}원
             </PastPriceText>
             <TermText>
               {monthAgo} ~ {today} 간 최저가
@@ -160,7 +181,7 @@ function Price(): any {
               {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
             </PastDateText>
             <PastPriceText color="#0085FF">
-              {coinPrice?.maxPrice.won.toLocaleString()}KRW
+              {coinPrice?.maxPrice.won.toLocaleString()}원
             </PastPriceText>
             <TermText>
               {monthAgo} ~ {today} 간 최고가
@@ -168,12 +189,13 @@ function Price(): any {
           </Highest>
         </PastPrice>
       </PriceBox>
-      <NextPageBox>
-        <NextPage>
-          <p>행복회로 가동하기</p>
-          <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
-        </NextPage>
-      </NextPageBox>
+      <NextPage>
+        <p>행복회로 가동하기</p>
+        <NextPageArrowImgBox onClick={handleNextPage}>
+          <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
+          <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
+        </NextPageArrowImgBox>
+      </NextPage>
     </Wrapper>
   );
 }
