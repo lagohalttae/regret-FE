@@ -59,7 +59,7 @@ function SelectCoin(): any {
         <CoinImg src={data.imageUrl} alt=" " />
         <CoinLabel>{data.label}</CoinLabel>
       </CoinCard>
-    ) : undefined
+    ) : null
   );
 
   const groupTwo = coinList?.map((data, i) =>
@@ -76,7 +76,7 @@ function SelectCoin(): any {
         <CoinImg src={data.imageUrl} alt=" " />
         <CoinLabel>{data.label}</CoinLabel>
       </CoinCard>
-    ) : undefined
+    ) : null
   );
 
   useEffect(() => {
