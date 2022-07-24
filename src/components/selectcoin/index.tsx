@@ -45,7 +45,7 @@ function SelectCoin(): any {
 
   // 전체 코인 두개의 그룹화
   // groupOne : 0~4 , groupTwo : 5~9
-  const groupOne = coinList?.map((data, i) =>
+  const groupOne = coinList.map((data, i) =>
     i < 5 ? (
       <CoinCard
         key={data.coinId}
@@ -59,10 +59,12 @@ function SelectCoin(): any {
         <CoinImg src={data.imageUrl} alt=" " />
         <CoinLabel>{data.label}</CoinLabel>
       </CoinCard>
-    ) : null
+    ) : (
+      <div>t</div>
+    )
   );
 
-  const groupTwo = coinList?.map((data, i) =>
+  const groupTwo = coinList.map((data, i) =>
     i > 4 ? (
       <CoinCard
         key={data.coinId}
@@ -76,7 +78,9 @@ function SelectCoin(): any {
         <CoinImg src={data.imageUrl} alt=" " />
         <CoinLabel>{data.label}</CoinLabel>
       </CoinCard>
-    ) : null
+    ) : (
+      <div>t</div>
+    )
   );
 
   useEffect(() => {
