@@ -208,10 +208,10 @@ export function Calculation(): any {
         )}
       </InputContainer>
       <DateBox>
-        <LowDate>{dateToString(new Date(coinPrice.minPrice.atMillis))}</LowDate>에 풀매수해서
+        <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
       </DateBox>
       <DateBox>
-        <HighDate>{dateToString(new Date(coinPrice.maxPrice.atMillis))}</HighDate>에 풀매도
+        <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
         했다면..?
       </DateBox>
       {!isClicked ? (

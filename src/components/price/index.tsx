@@ -160,18 +160,18 @@ function Price(): any {
           <CurrentPriceInfo>
             <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
             <TermText>
-              {coinCurrentPrice ? new Date(coinCurrentPrice.lastUpdated).toLocaleString() : ''}
+              {coinCurrentPrice ? new Date(coinCurrentPrice?.lastUpdated).toLocaleString() : ''}
             </TermText>
           </CurrentPriceInfo>
-          <CurrentPriceText>{coinCurrentPrice?.price.won.toLocaleString()}원</CurrentPriceText>
+          <CurrentPriceText>{coinCurrentPrice?.price?.won?.toLocaleString()}원</CurrentPriceText>
         </CurrentPrice>
         <PastPrice>
           <Lowest>
             <PastDateText>
-              {coinPrice ? dateToString(new Date(coinPrice.minPrice.atMillis)) : ''}에 살걸..
+              {coinPrice ? dateToString(new Date(coinPrice?.minPrice?.atMillis)) : ''}에 살걸..
             </PastDateText>
             <PastPriceText color="#E92C2C">
-              {coinPrice?.minPrice.won.toLocaleString()}원
+              {coinPrice?.minPrice.won?.toLocaleString()}원
             </PastPriceText>
             <TermText>
               {monthAgo} ~ {today} 간 최저가
@@ -179,10 +179,10 @@ function Price(): any {
           </Lowest>
           <Highest>
             <PastDateText>
-              {coinPrice ? dateToString(new Date(coinPrice.maxPrice.atMillis)) : ''}에 팔걸..
+              {coinPrice ? dateToString(new Date(coinPrice?.maxPrice?.atMillis)) : ''}에 팔걸..
             </PastDateText>
             <PastPriceText color="#0085FF">
-              {coinPrice?.maxPrice.won.toLocaleString()}원
+              {coinPrice?.maxPrice?.won?.toLocaleString()}KRW
             </PastPriceText>
             <TermText>
               {monthAgo} ~ {today} 간 최고가
