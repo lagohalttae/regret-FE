@@ -4,9 +4,9 @@ import SelectCoin from '../selectcoin';
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 20vh;
-  left: 8vw;
-  font-size: 4vw;
+  top: 25vh;
+  left: 5vw;
+  font-size: 6vw;
   font-weight: 700;
   color: #43841f;
   z-index: 1;
