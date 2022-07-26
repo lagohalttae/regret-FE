@@ -7,19 +7,32 @@ const Wrapper = styled.div`
 
 const ProductText = styled.p`
   position: absolute;
-  top: 20vh;
-  left: 7vh;
-  font-size: 3.7vw;
+  top: 30vh;
+  left: 3vw;
+  font-size: 3vw;
   font-weight: 700;
 `;
+const ProductImg = styled.img`
+  position: absolute;
+  top: 40vh;
+  left: 12vw;
+  width: 28vw;
+`;
 
-type ProductContainerType = {
-  product: string;
+type ProductContainerProps = {
+  productName: string;
+  unit: string;
+  num: number;
+  img: string;
 };
-export const ProductContainer = function ({ product }: ProductContainerType): any {
+export function ProductContainer({ productName, unit, num, img }: ProductContainerProps): any {
   return (
     <Wrapper>
-      <ProductText>{product} 15대를 살 수 있었을 텐데..</ProductText>
+      <ProductText>
+        {productName} {num}
+        {unit}을(를) 살 수 있었을텐데..
+      </ProductText>
+      <ProductImg src={img} />
     </Wrapper>
   );
-};
+}

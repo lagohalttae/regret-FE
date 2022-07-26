@@ -1,4 +1,5 @@
 import React from 'react';
+import Product from '../components/product';
 import CoinCalculation from './CoinCalculation';
 import CoinMain from './CoinMain';
 import CoinPrice from './CoinPrice';
@@ -9,6 +10,7 @@ function Main(): any {
       <CoinMain />
       <CoinPrice />
       <CoinCalculation />
+      <Product />
     </>
   );
 }

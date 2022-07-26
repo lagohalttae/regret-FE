@@ -45,3 +45,11 @@ export interface IProductInfo {
 export interface ISelectedCoin {
   coinId: string;
 }
+
+export interface IProduct {
+  productName: string;
+  price: number;
+  image: string;
+  imageWhite: string;
+  unit: string;
+}
