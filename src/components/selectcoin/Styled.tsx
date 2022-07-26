@@ -50,27 +50,32 @@ const AllCoin = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  height: 20vh;
+  height: 40%;
 
   // 모서리
   box-shadow: 0px 0px 20px #aaaaaa;
-  border-radius: 3vh;
-  padding-block: 3vh;
-  padding-inline: 5vh;
+  border-radius: 30px;
+  padding-block: 20px;
+  padding-inline: 30px;
 
   // 수정x
   transition: opacity 0.3s ease;
   opacity: 0;
+
+  & .coinGroup {
+    display: flex;
+    height: 100%;
+    align-content: center;
+    margin: 20px 0;
+  }
 `;
 
 const CoinCard = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   padding-inline: 1vw;
 
   /* 너비 및 정렬 공백 정렬 수정 하는곳 */
-  justify-content: flex-start;
   width: 10vw;
 
   cursor: ${({ protect }: { protect: boolean }) => (protect === false ? null : 'pointer')};
@@ -115,6 +120,7 @@ const NextPage = styled.div`
   font-size: x-large;
   display: flex;
   flex-direction: column;
+
   @media (hover: hover) {
     &:hover {
       transform: translateY(10px);
@@ -126,6 +132,7 @@ const NextPage = styled.div`
 
 const NextPageArrowImgBox = styled.div`
   animation: slideArrow 1.7s linear infinite;
+  margin-right: 30px;
   @keyframes slideArrow {
     from {
       opacity: 1;

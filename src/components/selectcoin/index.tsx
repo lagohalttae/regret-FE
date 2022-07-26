@@ -106,8 +106,8 @@ function SelectCoin(): any {
               ...TransitionStyles[state],
             }}
           >
-            <div>{groupOne}</div>
-            <div>{groupTwo}</div>
+            <div className="coinGroup">{groupOne}</div>
+            <div className="coinGroup">{groupTwo}</div>
           </AllCoin>
         )}
       </Transition>

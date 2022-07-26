@@ -88,6 +88,7 @@ const NextPage = styled.div`
 `;
 
 const NextPageArrowImgBox = styled.div`
+  margin-right: 15px;
   animation: slideArrow 1.7s linear infinite;
   padding-right: 20px;
   @keyframes slideArrow {
