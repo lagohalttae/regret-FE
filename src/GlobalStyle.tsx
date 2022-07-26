@@ -42,6 +42,7 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  overflow-x:hidden;
 }
 ol, ul {
 	list-style: none;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import pepeImage from '../../images/pepe.png';
+import { ProductContainer } from './productContainer';
 
 const Wrapper = styled.div``;
 
@@ -17,25 +18,15 @@ const PepeImage = styled.img`
   height: 100vh;
 `;
 
-const FirstContainer = styled.div`
-  display: inline-block;
-  position: relative;
-  height: 100vh;
-`;
-const ProductContainer = styled.div`
-  position: relative;
-  height: 100vh;
-`;
-
 function Product(): any {
   return (
     <Wrapper>
-      <FirstContainer>zz</FirstContainer>
       <PepeContainer>
         <PepeImage src={pepeImage} alt="pepe" />
       </PepeContainer>
-      <ProductContainer>xx</ProductContainer>
-      <ProductContainer>cc</ProductContainer>
+      <ProductContainer product="아이폰" />
+      <ProductContainer product="국밥" />
+      <ProductContainer product="황금올리브" />
     </Wrapper>
   );
 }

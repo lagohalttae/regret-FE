@@ -41,3 +41,7 @@ export interface IProductInfo {
   imageWhite: Image;
   unit: string;
 }
+
+export interface ISelectedCoin {
+  coinId: string;
+}

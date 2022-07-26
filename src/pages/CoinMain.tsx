@@ -5,20 +5,19 @@ import MainTitle from '../components/mainTitle';
 import pepeImage from '../images/pepe.png';
 
 const Wrapper = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   color: #000;
   background-color: #fff;
   font-family: Noto Sans KR;
+  overflow: hidden;
 `;
 
 const PepeImage = styled.img`
   transform: scaleX(-1);
   height: 100vh;
-  position: absolute;
-  right: -15%;
-  z-index: -1;
+  margin-left: 60vw;
 
   @media (max-width: 1439px) {
     right: -27%;

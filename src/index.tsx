@@ -1,13 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import App from './App';
 import GlobalStyle from './GlobalStyle';
 import { globalTheme } from './theme';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(
+ReactDOM.render(
   // 애플리케이이션 내 잠재적인 문제를 알아내기 위한 도구.
   <React.StrictMode>
     {/* recoil 사용하기 위해 작성 */}
@@ -19,5 +18,6 @@ root.render(
         <App />
       </ThemeProvider>
     </RecoilRoot>
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
