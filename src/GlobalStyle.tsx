@@ -34,7 +34,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: #E5E5E5;
+	background-color: #FFFFFF;
 	/* 모바일 이미지 클릭 시 파란박스 제거 */
 	-webkit-tap-highlight-color : rgba(0,0,0,0);
 	-ms-user-select: none;
