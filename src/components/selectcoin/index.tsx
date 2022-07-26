@@ -17,6 +17,7 @@ import {
   CoinLabel,
   NextPage,
   NextPageArrowImg,
+  NextPageArrowImgBox,
   TransitionStyles,
 } from './Styled';
 
@@ -105,8 +106,8 @@ function SelectCoin(): any {
               ...TransitionStyles[state],
             }}
           >
-            <div>{groupOne}</div>
-            <div>{groupTwo}</div>
+            <div className="coinGroup">{groupOne}</div>
+            <div className="coinGroup">{groupTwo}</div>
           </AllCoin>
         )}
       </Transition>
@@ -114,8 +115,11 @@ function SelectCoin(): any {
 
       {/* 다음페이지 이동 */}
       <NextPage>
-        <p>한달간 비트코인 가격을 알아보자..</p>
-        <NextPageArrowImg src={downarrow} alt=" " onClick={handleNextPage} />
+        <p>한달간 비트코인 가격을 알아보자</p>
+        <NextPageArrowImgBox onClick={handleNextPage}>
+          <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
+          <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
+        </NextPageArrowImgBox>
       </NextPage>
       {/* /다음페이지 이동 */}
     </Wrapper>

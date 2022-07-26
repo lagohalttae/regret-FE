@@ -20,14 +20,9 @@ const SmilePepeImage = styled.img`
   width: 32vw;
   bottom: 0vh;
   @media (max-width: 1439px) {
-    width: 25vw;
   }
 
-  @media (max-width: 1240px) {
-    width: 20vw;
-  }
   @media (max-width: 1023px) {
-    display: none;
   }
   @media (max-width: 767px) {
   }
