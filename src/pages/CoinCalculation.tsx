@@ -17,14 +17,16 @@ const Wrapper = styled.div`
 const SmilePepeImage = styled.img`
   position: absolute;
   left: 0;
-  width: 32vw;
+  width: 40vw;
   bottom: 0vh;
   @media (max-width: 1439px) {
+    width: 25vw;
   }
-
+  @media (max-width: 1240px) {
+    width: 20vw;
+  }
   @media (max-width: 1023px) {
-  }
-  @media (max-width: 767px) {
+    display: none;
   }
   @media (max-width: 480px) {
     display: block;

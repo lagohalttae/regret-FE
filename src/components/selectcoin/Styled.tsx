@@ -112,7 +112,7 @@ const TransitionStyles: any = {
 // 하단 컴포넌트 -------------
 const NextPage = styled.div`
   position: absolute;
-  left: 50%;
+  left: 140%;
   width: fit-content;
   bottom: -23vh;
   color: black;
@@ -131,7 +131,7 @@ const NextPage = styled.div`
 `;
 
 const NextPageArrowImgBox = styled.div`
-  animation: slideArrow 1.7s linear infinite;
+  animation: slideArrow 1.5s linear infinite;
   margin-right: 30px;
   @keyframes slideArrow {
     from {

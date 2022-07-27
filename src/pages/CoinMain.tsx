@@ -1,5 +1,5 @@
 // import { Navigate } from 'react-router-dom';
-
+import { Slide } from 'react-awesome-reveal';
 import styled from 'styled-components';
 import MainTitle from '../components/mainTitle';
 import pepeImage from '../images/pepe.png';
@@ -25,22 +25,15 @@ const PepeImage = styled.img`
   @media (max-width: 1023px) {
     display: none;
   }
-
-  /* 모바일 미디어쿼리 */
-  /* @media (max-width: 767px) {
-  }*
-  @media (max-width: 480px) {
-    display: block;
-    height: 50vh;
-    opacity: 0.5;
-  } */
 `;
 
 function CoinMain(): any {
   return (
     <Wrapper>
       <MainTitle />
-      <PepeImage src={pepeImage} alt="pepe" />
+      <Slide triggerOnce direction="right" duration={1000}>
+        <PepeImage src={pepeImage} alt="pepe" />
+      </Slide>
     </Wrapper>
   );
 }

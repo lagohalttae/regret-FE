@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   background-color: #fff;
   font-family: Noto Sans KR;
 `;
+
 function CoinProduct(): any {
   return (
     <Wrapper>
