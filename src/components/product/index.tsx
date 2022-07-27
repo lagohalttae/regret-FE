@@ -28,6 +28,9 @@ const WhiteContainer = styled.div`
 
 const GunPepe = styled.div`
   height: 100vh;
+  .gunPepe {
+    height: 100vh;
+  }
 `;
 function Product(): any {
   // 임시 데이터
@@ -70,7 +73,7 @@ function Product(): any {
         <WhiteContainer />
       </div>
       <GunPepe>
-        <img src={gunPepeImg} alt="gunPepe" />
+        <img className="gunPepe" src={gunPepeImg} alt="gunPepe" />
       </GunPepe>
     </Wrapper>
   );
