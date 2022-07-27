@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Transition } from 'react-transition-group';
 import { useRecoilState } from 'recoil';
 import { getCoins } from '../../api';
-import { selectedCoinAtom } from '../../atoms';
+import { calculationPriceAtom, selectedCoinAtom } from '../../atoms';
 import downarrow from '../../images/downarrow.svg';
 import { ICoinInfo } from '../../interface/coin';
 import {
@@ -79,10 +79,12 @@ function SelectCoin(): any {
       </CoinCard>
     ) : undefined
   );
+  const [, setCalculationPrice] = useRecoilState(calculationPriceAtom); /// 여기여기
 
   useEffect(() => {
     // api 가져오기
     getCoins(setCoinList);
+    setCalculationPrice({ price: 0 });
   }, []);
 
   return (
