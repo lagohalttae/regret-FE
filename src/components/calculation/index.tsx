@@ -1,9 +1,9 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { coinPriceAtom } from '../../atoms';
+import { calculationPriceAtom, coinPriceAtom } from '../../atoms';
 
 const Container = styled.form`
   z-index: 1;
@@ -117,7 +117,7 @@ const CalculatedBox = styled.div`
 export function Calculation(): any {
   const [isClicked, setIsClicked] = useState<boolean>(false); // 행복회로 버튼 토글
   const [inputPrice, setInputPrice] = useState<string>('');
-  const [price, setPrice] = useState<number>(0);
+  const [calculationPrice, setCalculationPrice] = useRecoilState(calculationPriceAtom);
   const [showInputWarning, setShowInputWarning] = useState<boolean>(false);
   const coinPrice = useRecoilValue(coinPriceAtom);
 
@@ -162,7 +162,7 @@ export function Calculation(): any {
       (coinPrice.maxPrice.won / coinPrice.minPrice.won);
 
     // eslint-disable-next-line no-restricted-globals
-    setPrice(Number(result.toFixed()));
+    setCalculationPrice({ price: Number(result.toFixed()) });
     setIsClicked(true);
   };
 
@@ -222,7 +222,7 @@ export function Calculation(): any {
         </ButtonBox>
       ) : (
         <CalculatedBox>
-          <Calculated>{price.toLocaleString()}</Calculated>원을 벌었을텐데...
+          <Calculated>{calculationPrice.price.toLocaleString()}</Calculated>원을 벌었을텐데...
         </CalculatedBox>
       )}
     </Container>
