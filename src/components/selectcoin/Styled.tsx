@@ -112,9 +112,9 @@ const TransitionStyles: any = {
 // 하단 컴포넌트 -------------
 const NextPage = styled.div`
   position: absolute;
-  left: 140%;
+  left: 50%;
   width: fit-content;
-  bottom: -23vh;
+  bottom: -15vh;
   color: black;
   text-align: center;
   font-size: x-large;
