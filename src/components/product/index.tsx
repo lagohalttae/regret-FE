@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Slide } from 'react-awesome-reveal';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 import pepeImage from '../../images/pepe.png';
@@ -6,6 +7,7 @@ import { ProductContainer } from './productContainer';
 import ProductList from '../../productData/products.json';
 import { IProduct, IProductProps } from '../../interface/coin';
 import { calculationPriceAtom } from '../../atoms';
+import gunPepeImg from '../../images/gunPepe.png';
 
 const Wrapper = styled.div``;
 
@@ -23,6 +25,16 @@ const PepeImage = styled.img`
   height: 100vh;
 `;
 
+const WhiteContainer = styled.div`
+  height: 100vh;
+`;
+
+const GunPepe = styled.div`
+  height: 100vh;
+  .gunPepe {
+    height: 100vh;
+  }
+`;
 function Product(): any {
   const calculationPrice = useRecoilValue(calculationPriceAtom);
   const [productProps, setProductProps] = useState<IProductProps[]>([
@@ -40,7 +52,7 @@ function Product(): any {
     return returnObj;
   });
   while (randomProducts.length < 3) {
-    const n = Math.floor(Math.random() * ProductList.products.length) + 1;
+    const n = Math.floor(Math.random() * ProductList.products.length);
     if (!randomProducts.includes(ProductList.products[n])) {
       const list = randomProducts;
       list.push(ProductList.products[n]);
@@ -55,18 +67,28 @@ function Product(): any {
   }, [calculationPrice]);
   return (
     <Wrapper>
-      <PepeContainer>
-        <PepeImage src={pepeImage} alt="pepe" />
-      </PepeContainer>
-      {productProps?.map((item) => (
-        <ProductContainer
-          key={item.productName}
-          productName={item.productName}
-          unit={item.unit}
-          img={item.img}
-          num={item.num}
-        />
-      ))}
+      <div>
+        <PepeContainer>
+          <Slide direction="right">
+            <PepeImage src={pepeImage} alt="pepe" />
+          </Slide>
+        </PepeContainer>
+        <WhiteContainer />
+        {productProps?.map((item) => (
+          <ProductContainer
+            key={item.productName}
+            productName={item.productName}
+            unit={item.unit}
+            img={item.img}
+            num={item.num}
+          />
+        ))}
+        <WhiteContainer />
+      </div>
+      <GunPepe>
+        <img className="gunPepe" src={gunPepeImg} alt="gunPepe" />
+      </GunPepe>
+
     </Wrapper>
   );
 }

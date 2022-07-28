@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { Transition } from 'react-transition-group';
 import { useRecoilState } from 'recoil';
 import { getCoins } from '../../api';
@@ -88,14 +89,17 @@ function SelectCoin(): any {
   return (
     <Wrapper>
       {/* 현재 선택된 코인 */}
-      <CurrentCoin>
-        <div>
-          <CurrentCoinImg src={coinList[index]?.imageUrl} alt=" " />
-        </div>
-        <CurrentCoinLabel>&nbsp;{coinList[index]?.label}&nbsp;</CurrentCoinLabel>
-        <ArrowImg show={showCoinList} onClick={isShowCoinList} src={downarrow} alt="arrow" />
-        <p>&nbsp;살걸..</p>
-      </CurrentCoin>
+      <Fade delay={1500} direction="up" triggerOnce>
+        <CurrentCoin>
+          <div>
+            <CurrentCoinImg src={coinList[index]?.imageUrl} alt=" " />
+          </div>
+          <CurrentCoinLabel>&nbsp;{coinList[index]?.label}&nbsp;</CurrentCoinLabel>
+          <ArrowImg show={showCoinList} onClick={isShowCoinList} src={downarrow} alt="arrow" />
+          <p>&nbsp;살걸..</p>
+        </CurrentCoin>
+      </Fade>
+
       {/* /현재 선택된 코인 */}
 
       {/* 전체 코인 리스트 */}
@@ -114,14 +118,16 @@ function SelectCoin(): any {
       {/* /전체 코인 리스트 */}
 
       {/* 다음페이지 이동 */}
-      <NextPage>
-        <p>한달간 비트코인 가격을 알아보자</p>
-        <NextPageArrowImgBox onClick={handleNextPage}>
-          <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
-          <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
-        </NextPageArrowImgBox>
-      </NextPage>
-      {/* /다음페이지 이동 */}
+      <Fade delay={2000} triggerOnce>
+        <NextPage>
+          <p>한달간 비트코인 가격을 알아보자</p>
+          <NextPageArrowImgBox onClick={handleNextPage}>
+            <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
+            <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
+          </NextPageArrowImgBox>
+        </NextPage>
+        {/* /다음페이지 이동 */}
+      </Fade>
     </Wrapper>
   );
 }

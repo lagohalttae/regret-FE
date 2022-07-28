@@ -1,20 +1,21 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
+import { Fade } from 'react-awesome-reveal';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { calculationPriceAtom, coinPriceAtom } from '../../atoms';
 
 const Container = styled.form`
   z-index: 1;
-  font-size: 3vw;
-  font-weight: 700;
+  font-size: 3.5vw;
+  font-weight: 900;
   align-items: center;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 50vh;
-  margin-right: 13vw;
+  margin-right: 9vw;
   @media (max-width: 480px) {
     top: 10vh;
     font-size: 8vw;
@@ -51,7 +52,7 @@ const PriceInput = styled.input`
     border-color: #ed6a5e;
   }
   margin: 0;
-  font-size: inherit;
+  font-size: 2vw;
   width: 57%;
   margin-right: 10px;
   border-top: none;
@@ -187,18 +188,19 @@ export function Calculation(): any {
   return (
     <Container onSubmit={handleSubmit}>
       <InputContainer>
-        <InputBox>
-          <PriceInput
-            placeholder="가격을 입력해주세요."
-            min={0}
-            value={inputPrice}
-            type="text"
-            onChange={handleInputChange}
-            className={showInputWarning ? 'showWarning' : ''}
-          />
-          <div>원을</div>
-        </InputBox>
-
+        <Fade direction="up">
+          <InputBox>
+            <PriceInput
+              placeholder="가격을 입력해주세요."
+              min={0}
+              value={inputPrice}
+              type="text"
+              onChange={handleInputChange}
+              className={showInputWarning ? 'showWarning' : ''}
+            />
+            <div>원을</div>
+          </InputBox>
+        </Fade>
         {showInputWarning ? (
           <InputWarningBox>
             <InputWarning>숫자를 입력해주세요.</InputWarning>
@@ -207,18 +209,25 @@ export function Calculation(): any {
           ''
         )}
       </InputContainer>
-      <DateBox>
-        <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
-      </DateBox>
-      <DateBox>
-        <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
-        했다면..?
-      </DateBox>
+      <Fade direction="up" delay={500}>
+        <DateBox>
+          <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
+        </DateBox>
+      </Fade>
+      <Fade direction="up" delay={1000}>
+        <DateBox>
+          <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
+          했다면..?
+        </DateBox>
+      </Fade>
+
       {!isClicked ? (
         <ButtonBox>
-          <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
-            행복회로 ON
-          </HappyButton>
+          <Fade direction="up" delay={1500}>
+            <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
+              행복회로 ON
+            </HappyButton>
+          </Fade>
         </ButtonBox>
       ) : (
         <CalculatedBox>

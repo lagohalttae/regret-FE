@@ -1,4 +1,5 @@
 import React from 'react';
+import { Fade } from 'react-awesome-reveal';
 import styled from 'styled-components';
 import SelectCoin from '../selectcoin';
 
@@ -25,7 +26,9 @@ const Wrapper = styled.div`
 function MainTitle(): any {
   return (
     <Wrapper>
-      라고 할 때
+      <Fade delay={1000} direction="up" triggerOnce>
+        <p>라고 할 때</p>
+      </Fade>
       <SelectCoin />
     </Wrapper>
   );

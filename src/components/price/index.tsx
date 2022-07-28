@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import { Fade } from 'react-awesome-reveal';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
 import downarrow from '../../images/downarrow.svg';
 import {
@@ -75,12 +76,13 @@ const TermText = styled.p`
 const NextPage = styled.div`
   position: absolute;
   left: 50%;
-  bottom: 10%;
+  bottom: 15%;
   transform: translate(-50%, 0);
   width: fit-content;
   color: black;
   text-align: center;
   font-size: x-large;
+  font-weight: 700;
   display: flex;
   flex-direction: column;
   @media (hover: hover) {
@@ -163,47 +165,60 @@ function Price(): any {
   return (
     <Wrapper>
       <PriceBox>
-        <CurrentPrice>
-          <CurrentPriceInfo>
-            <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
-            <TermText>
-              {coinCurrentPrice ? new Date(coinCurrentPrice?.lastUpdated).toLocaleString() : ''}
-            </TermText>
-          </CurrentPriceInfo>
-          <CurrentPriceText>{coinCurrentPrice?.price?.won?.toLocaleString()}원</CurrentPriceText>
-        </CurrentPrice>
+        <Fade direction="up">
+          <CurrentPrice>
+            <CurrentPriceInfo>
+              <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
+              <TermText>
+                {coinCurrentPrice ? new Date(coinCurrentPrice?.lastUpdated).toLocaleString() : ''}
+              </TermText>
+            </CurrentPriceInfo>
+
+            <CurrentPriceText>{coinCurrentPrice?.price?.won?.toLocaleString()}원</CurrentPriceText>
+          </CurrentPrice>
+        </Fade>
         <PastPrice>
-          <Lowest>
-            <PastDateText>
-              {coinPrice ? dateToString(new Date(coinPrice?.minPrice?.atMillis)) : ''}에 살걸..
-            </PastDateText>
-            <PastPriceText color="#E92C2C">
-              {coinPrice?.minPrice.won?.toLocaleString()}원
-            </PastPriceText>
-            <TermText>
-              {monthAgo} ~ {today} 간 최저가
-            </TermText>
-          </Lowest>
-          <Highest>
-            <PastDateText>
-              {coinPrice ? dateToString(new Date(coinPrice?.maxPrice?.atMillis)) : ''}에 팔걸..
-            </PastDateText>
-            <PastPriceText color="#0085FF">
-              {coinPrice?.maxPrice?.won?.toLocaleString()}KRW
-            </PastPriceText>
-            <TermText>
-              {monthAgo} ~ {today} 간 최고가
-            </TermText>
-          </Highest>
+          <Fade delay={500} direction="up">
+            <Lowest>
+              <PastDateText>
+                {coinPrice ? dateToString(new Date(coinPrice?.minPrice?.atMillis)) : ''}에 살걸..
+              </PastDateText>
+
+              <PastPriceText color="#E92C2C">
+                {coinPrice?.minPrice.won?.toLocaleString()}원
+              </PastPriceText>
+
+              <TermText>
+                {monthAgo} ~ {today} 간 최저가
+              </TermText>
+            </Lowest>
+          </Fade>
+          <Fade delay={1000} direction="up">
+            <Highest>
+              <PastDateText>
+                {coinPrice ? dateToString(new Date(coinPrice?.maxPrice?.atMillis)) : ''}에 팔걸..
+              </PastDateText>
+
+              <PastPriceText color="#0085FF">
+                {coinPrice?.maxPrice?.won?.toLocaleString()}원
+              </PastPriceText>
+
+              <TermText>
+                {monthAgo} ~ {today} 간 최고가
+              </TermText>
+            </Highest>
+          </Fade>
         </PastPrice>
       </PriceBox>
-      <NextPage>
-        <p>행복회로 가동하기</p>
-        <NextPageArrowImgBox onClick={handleNextPage}>
-          <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
-          <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
-        </NextPageArrowImgBox>
-      </NextPage>
+      <Fade delay={1500}>
+        <NextPage>
+          <p>행복회로 가동하기</p>
+          <NextPageArrowImgBox onClick={handleNextPage}>
+            <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
+            <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
+          </NextPageArrowImgBox>
+        </NextPage>
+      </Fade>
     </Wrapper>
   );
 }
