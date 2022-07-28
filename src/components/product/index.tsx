@@ -90,7 +90,6 @@ function Product(): any {
       <GunPepe>
         <img className="gunPepe" src={gunPepeImg} alt="gunPepe" />
       </GunPepe>
-
     </Wrapper>
   );
 }
