@@ -28,6 +28,7 @@ const WhiteContainer = styled.div`
 
 const GunPepe = styled.div`
   height: 100vh;
+  text-align: center;
   .gunPepe {
     height: 100vh;
   }
@@ -72,6 +73,7 @@ function Product(): any {
         ))}
         <WhiteContainer />
       </div>
+      <WhiteContainer />
       <GunPepe>
         <img className="gunPepe" src={gunPepeImg} alt="gunPepe" />
       </GunPepe>
