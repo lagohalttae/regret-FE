@@ -53,3 +53,14 @@ export interface IProduct {
   imageWhite: string;
   unit: string;
 }
+
+export interface ICalculationPrice {
+  price: number;
+}
+
+export interface IProductProps {
+  productName: string;
+  unit: string;
+  img: string;
+  num: number;
+}

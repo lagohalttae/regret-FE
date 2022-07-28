@@ -4,7 +4,12 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { Fade } from 'react-awesome-reveal';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
 import downarrow from '../../images/downarrow.svg';
-import { coinCurrentPriceAtom, coinPriceAtom, selectedCoinAtom } from '../../atoms';
+import {
+  calculationPriceAtom,
+  coinCurrentPriceAtom,
+  coinPriceAtom,
+  selectedCoinAtom,
+} from '../../atoms';
 import { ISelectedCoin } from '../../interface/coin';
 
 const Wrapper = styled.div`
@@ -132,12 +137,14 @@ function Price(): any {
   const coinObject = useRecoilValue(selectedCoinAtom);
   const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
   const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
+  const [, setCalculationPrice] = useRecoilState(calculationPriceAtom);
 
   // 선택된 코인이 바뀔때마다 코인 정보 동기화
   // api 데이터 가져오기
   useEffect(() => {
     getCoinPrice(setCoinPrice, coinObject.coinId as unknown as ISelectedCoin);
     getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as unknown as ISelectedCoin);
+    setCalculationPrice({ price: 0 });
   }, [coinObject]);
 
   // Date 타입 인자를 'yyyy년 mm월 dd일' 형태의 문자열 타입으로 변환 후 반환하는 함수

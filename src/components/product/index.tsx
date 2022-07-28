@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { Slide } from 'react-awesome-reveal';
+import { useRecoilValue } from 'recoil';
+import { useEffect, useState } from 'react';
 import pepeImage from '../../images/pepe.png';
 import { ProductContainer } from './productContainer';
 import ProductList from '../../productData/products.json';
-import { IProduct } from '../../interface/coin';
+import { IProduct, IProductProps } from '../../interface/coin';
+import { calculationPriceAtom } from '../../atoms';
 import gunPepeImg from '../../images/gunPepe.png';
 
 const Wrapper = styled.div``;
@@ -34,26 +37,35 @@ const GunPepe = styled.div`
   }
 `;
 function Product(): any {
-  // 임시 데이터
-  const price = 10000000;
-  const randomProducts: IProduct[] = [];
+  const calculationPrice = useRecoilValue(calculationPriceAtom);
+  const [productProps, setProductProps] = useState<IProductProps[]>([
+    { productName: '', unit: '', img: '', num: 0 },
+  ]);
+  const [randomProducts, setRandomProducts] = useState<IProduct[]>([]);
+  // const randomProducts: IProduct[] = [];
 
+  const productPropsObject = randomProducts.map((item) => {
+    const returnObj = { productName: '', unit: '', img: '', num: 0 };
+    returnObj.productName = item?.productName;
+    returnObj.unit = item?.unit;
+    returnObj.img = item?.image;
+    returnObj.num = item ? Math.floor(calculationPrice.price / item.price) : 0;
+    return returnObj;
+  });
   while (randomProducts.length < 3) {
     const n = Math.floor(Math.random() * ProductList.products.length);
     if (!randomProducts.includes(ProductList.products[n])) {
-      randomProducts.push(ProductList.products[n]);
+      const list = randomProducts;
+      list.push(ProductList.products[n]);
+      setRandomProducts(list);
     }
   }
 
-  const productProps = randomProducts.map((item) => {
-    const returnObj = { productName: '', unit: '', img: '', num: 0 };
-    returnObj.productName = item.productName;
-    returnObj.unit = item.unit;
-    returnObj.img = item.image;
-    returnObj.num = Math.floor(price / item.price);
-    return returnObj;
-  });
-
+  useEffect(() => {
+    setProductProps(productPropsObject);
+    // setRandomProducts([]); // calculationPrice 바뀔때마다 상품 바뀌도록
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [calculationPrice]);
   return (
     <Wrapper>
       <div>
@@ -63,8 +75,9 @@ function Product(): any {
           </Slide>
         </PepeContainer>
         <WhiteContainer />
-        {productProps.map((item) => (
+        {productProps?.map((item) => (
           <ProductContainer
+            key={item.productName}
             productName={item.productName}
             unit={item.unit}
             img={item.img}
@@ -77,6 +90,7 @@ function Product(): any {
       <GunPepe>
         <img className="gunPepe" src={gunPepeImg} alt="gunPepe" />
       </GunPepe>
+
     </Wrapper>
   );
 }
