@@ -34,6 +34,15 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #FFFFFF;
+	/* 모바일 이미지 클릭 시 파란박스 제거 */
+	-webkit-tap-highlight-color : rgba(0,0,0,0);
+	-ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  overflow-x:hidden;
 }
 ol, ul {
 	list-style: none;

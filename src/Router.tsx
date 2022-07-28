@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CoinMain from './pages/CoinMain';
+import { Route, Routes } from 'react-router-dom';
+import Main from './pages/Main';
+import ProductPage from './pages/ProductPage';
 
 function Router(): any {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<CoinMain />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/product" element={<ProductPage />} />
+    </Routes>
   );
 }
 export default Router;
