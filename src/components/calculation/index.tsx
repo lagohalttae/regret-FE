@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { calculationPriceAtom, coinPriceAtom } from '../../atoms';
+import { calculateButtondAtom, calculationPriceAtom, coinPriceAtom } from '../../atoms';
 
 const Container = styled.form`
   z-index: 1;
@@ -116,7 +116,7 @@ const CalculatedBox = styled.div`
 // useLocation을 통해 state를 받아오기 위한 interface
 
 export function Calculation(): any {
-  const [isClicked, setIsClicked] = useState<boolean>(false); // 행복회로 버튼 토글
+  const [calculateButton, setCalculateButton] = useRecoilState(calculateButtondAtom); // 행복회로 버튼 토글
   const [inputPrice, setInputPrice] = useState<string>('');
   const [calculationPrice, setCalculationPrice] = useRecoilState(calculationPriceAtom);
   const [showInputWarning, setShowInputWarning] = useState<boolean>(false);
@@ -131,7 +131,7 @@ export function Calculation(): any {
     const removedCommaValue = Number(value.replaceAll(',', ''));
 
     // 값이 입력되면 행복회로 버튼 표시
-    setIsClicked(false);
+    setCalculateButton({ isClicked: false });
 
     // 처음에 0이 나올경우 처리
     if (removedCommaValue === 0) {
@@ -164,12 +164,12 @@ export function Calculation(): any {
 
     // eslint-disable-next-line no-restricted-globals
     setCalculationPrice({ price: Number(result.toFixed()) });
-    setIsClicked(true);
+    setCalculateButton({ isClicked: true });
   };
 
   // 선택된 코인의 price가 바뀌었을때 마다 실행(선택된 코인이 바뀌었을때)
   useEffect(() => {
-    setIsClicked(false);
+    setCalculateButton({ isClicked: false });
   }, [coinPrice]);
 
   const handleCalculateWithClick: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -177,7 +177,7 @@ export function Calculation(): any {
   };
 
   const handleCalculateWithEnter: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
-    if (event.key === 'Enter' && isClicked === false) handleCalculate();
+    if (event.key === 'Enter' && calculateButton.isClicked === false) handleCalculate();
   };
 
   // 엔터 눌렀을떄 submit이 실행돼 페이지 /? 로 이동 방지
@@ -221,7 +221,7 @@ export function Calculation(): any {
         </DateBox>
       </Fade>
 
-      {!isClicked ? (
+      {!calculateButton.isClicked ? (
         <ButtonBox>
           <Fade direction="up" delay={1500}>
             <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>

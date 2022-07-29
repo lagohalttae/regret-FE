@@ -1,5 +1,11 @@
 import { atom } from 'recoil';
-import { ICalculationPrice, ICoinCurrentPrice, ICoinPrice, ISelectedCoin } from './interface/coin';
+import {
+  ICalculateButtondAtom,
+  ICalculationPrice,
+  ICoinCurrentPrice,
+  ICoinPrice,
+  ISelectedCoin,
+} from './interface/coin';
 // atom 모아두는곳
 export const selectedCoinAtom = atom<ISelectedCoin>({
   key: 'selectedCoin',
@@ -37,5 +43,12 @@ export const calculationPriceAtom = atom<ICalculationPrice>({
   key: 'calculationPrice',
   default: {
     price: 0,
+  },
+});
+
+export const calculateButtondAtom = atom<ICalculateButtondAtom>({
+  key: 'isCalculateClicked',
+  default: {
+    isClicked: false,
   },
 });

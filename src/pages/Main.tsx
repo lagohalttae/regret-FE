@@ -1,5 +1,7 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import { calculateButtondAtom } from '../atoms';
 import Product from '../components/product';
 import CoinCalculation from './CoinCalculation';
 import CoinMain from './CoinMain';
@@ -9,6 +11,7 @@ const WhiteContainer = styled.div`
   height: 30vh;
 `;
 function Main(): any {
+  const calculateButton = useRecoilValue(calculateButtondAtom);
   return (
     <>
       <CoinMain />
@@ -16,8 +19,14 @@ function Main(): any {
       <CoinPrice />
       {/* <WhiteContainer /> */}
       <CoinCalculation />
-      <WhiteContainer />
-      <Product />
+      {calculateButton.isClicked ? (
+        <>
+          <WhiteContainer />
+          <Product />
+        </>
+      ) : (
+        ''
+      )}
     </>
   );
 }

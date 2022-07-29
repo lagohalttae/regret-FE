@@ -64,3 +64,7 @@ export interface IProductProps {
   img: string;
   num: number;
 }
+
+export interface ICalculateButtondAtom {
+  isClicked: boolean;
+}
