@@ -64,7 +64,6 @@ function Product(): any {
   useEffect(() => {
     setProductProps(productPropsObject);
     // setRandomProducts([]); // calculationPrice 바뀔때마다 상품 바뀌도록
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calculationPrice]);
   return (
     <Wrapper>

@@ -1,5 +1,3 @@
-/* eslint-disable no-empty-pattern */
-/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -140,7 +138,6 @@ export function Calculation(): any {
     }
 
     // 숫자가 아닐때 오류
-    // eslint-disable-next-line no-restricted-globals
     if (isNaN(removedCommaValue)) {
       setShowInputWarning(true);
     } else {
@@ -162,7 +159,6 @@ export function Calculation(): any {
       parseInt(inputPrice.replace(regex, ''), 10) *
       (coinPrice.maxPrice.won / coinPrice.minPrice.won);
 
-    // eslint-disable-next-line no-restricted-globals
     setCalculationPrice({ price: Number(result.toFixed()) });
     setCalculateButton({ isClicked: true });
   };
