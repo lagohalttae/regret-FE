@@ -3,14 +3,14 @@ import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Fade } from 'react-awesome-reveal';
 import { getCoinCurrentPrice, getCoinPrice } from '../../api';
-import downarrow from '../../images/downarrow.svg';
+import downarrow from '../../assets/images/downarrow.svg';
 import {
   calculationPriceAtom,
   coinCurrentPriceAtom,
   coinPriceAtom,
   selectedCoinAtom,
 } from '../../atoms';
-import { ISelectedCoin } from '../../interface/coin';
+import { ISelectedCoin } from '../../types/coin';
 
 const Wrapper = styled.div`
   height: 80vh;

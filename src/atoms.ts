@@ -5,7 +5,7 @@ import {
   ICoinCurrentPrice,
   ICoinPrice,
   ISelectedCoin,
-} from './interface/coin';
+} from './types/coin';
 // atom 모아두는곳
 export const selectedCoinAtom = atom<ISelectedCoin>({
   key: 'selectedCoin',

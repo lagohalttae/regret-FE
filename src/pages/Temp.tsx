@@ -1,42 +1,28 @@
-import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Typography from '../components/common/Typography';
+import { GreenColor } from '../constants';
 
-import { getCoins } from '../api';
-
-import Products from '../productData/products.json';
-
-interface ICoinInfo {
-  coinId: string;
-  label: string;
-  imageUrl: string;
-}
+const S = {
+  Container: styled.div`
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+  `,
+  TempBox: styled.div`
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  `,
+};
 
 function Temp(): any {
-  const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
-
-  useEffect(() => {
-    getCoins(setCoinList);
-  }, []);
-
   return (
-    <div>
-      <div>
-        {coinList.map((item) => {
-          return <div key={item.coinId}>{item.label}</div>;
-        })}
-      </div>
-
-      <div>
-        {Products.products.map((item) => {
-          return <img src={item.image} alt=" " height={300} />;
-        })}
-      </div>
-
-      <div>
-        {Products.products.map((item) => {
-          return <img src={item.imageWhite} alt=" " height={300} />;
-        })}
-      </div>
-    </div>
+    <S.Container>
+      <S.TempBox>styled component 사용법</S.TempBox>
+      <Typography size="32" weight="700" color={GreenColor}>
+        타이포그래피 사용법
+      </Typography>
+    </S.Container>
   );
 }
 

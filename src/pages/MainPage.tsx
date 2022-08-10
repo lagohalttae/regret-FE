@@ -2,23 +2,21 @@ import React from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { calculateButtondAtom } from '../atoms';
-import Product from '../components/product';
-import CoinCalculation from './CoinCalculation';
-import CoinMain from './CoinMain';
-import CoinPrice from './CoinPrice';
+import { Calculation } from '../components/Calculation';
+import MainTitle from '../components/MainTitle';
+import Price from '../components/Price';
+import Product from '../components/Product';
 
 const WhiteContainer = styled.div`
   height: 30vh;
 `;
-function Main(): any {
+function MainPage(): any {
   const calculateButton = useRecoilValue(calculateButtondAtom);
   return (
     <>
-      <CoinMain />
-      {/* <WhiteContainer /> */}
-      <CoinPrice />
-      {/* <WhiteContainer /> */}
-      <CoinCalculation />
+      <MainTitle />
+      <Price />
+      <Calculation />
       {calculateButton.isClicked ? (
         <>
           <WhiteContainer />
@@ -30,4 +28,4 @@ function Main(): any {
     </>
   );
 }
-export default Main;
+export default MainPage;

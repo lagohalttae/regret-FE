@@ -1,9 +1,23 @@
+/* eslint-disable no-empty-pattern */
+/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { calculateButtondAtom, calculationPriceAtom, coinPriceAtom } from '../../atoms';
+import { coinPriceAtom } from '../../atoms';
+import smilePepeImage from '../../assets/images/smilePepe.png';
 
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  color: #000;
+  overflow: hidden;
+  background-color: #fff;
+`;
 const Container = styled.form`
   z-index: 1;
   font-size: 3.5vw;
@@ -111,12 +125,27 @@ const CalculatedBox = styled.div`
   justify-content: center;
 `;
 
+const SmilePepeImage = styled.img`
+  position: absolute;
+  left: 0;
+  width: 30vw;
+  bottom: 0vh;
+
+  @media (max-width: 1023px) {
+    display: none;
+  }
+  @media (max-width: 480px) {
+    display: block;
+    height: 50vh;
+    opacity: 0.5;
+  }
+`;
 // useLocation을 통해 state를 받아오기 위한 interface
 
 export function Calculation(): any {
-  const [calculateButton, setCalculateButton] = useRecoilState(calculateButtondAtom); // 행복회로 버튼 토글
+  const [isClicked, setIsClicked] = useState<boolean>(false); // 행복회로 버튼 토글
   const [inputPrice, setInputPrice] = useState<string>('');
-  const [calculationPrice, setCalculationPrice] = useRecoilState(calculationPriceAtom);
+  const [price, setPrice] = useState<number>(0);
   const [showInputWarning, setShowInputWarning] = useState<boolean>(false);
   const coinPrice = useRecoilValue(coinPriceAtom);
 
@@ -129,7 +158,7 @@ export function Calculation(): any {
     const removedCommaValue = Number(value.replaceAll(',', ''));
 
     // 값이 입력되면 행복회로 버튼 표시
-    setCalculateButton({ isClicked: false });
+    setIsClicked(false);
 
     // 처음에 0이 나올경우 처리
     if (removedCommaValue === 0) {
@@ -138,6 +167,7 @@ export function Calculation(): any {
     }
 
     // 숫자가 아닐때 오류
+    // eslint-disable-next-line no-restricted-globals
     if (isNaN(removedCommaValue)) {
       setShowInputWarning(true);
     } else {
@@ -159,13 +189,14 @@ export function Calculation(): any {
       parseInt(inputPrice.replace(regex, ''), 10) *
       (coinPrice.maxPrice.won / coinPrice.minPrice.won);
 
-    setCalculationPrice({ price: Number(result.toFixed()) });
-    setCalculateButton({ isClicked: true });
+    // eslint-disable-next-line no-restricted-globals
+    setPrice(Number(result.toFixed()));
+    setIsClicked(true);
   };
 
   // 선택된 코인의 price가 바뀌었을때 마다 실행(선택된 코인이 바뀌었을때)
   useEffect(() => {
-    setCalculateButton({ isClicked: false });
+    setIsClicked(false);
   }, [coinPrice]);
 
   const handleCalculateWithClick: React.MouseEventHandler<HTMLButtonElement> = () => {
@@ -173,7 +204,7 @@ export function Calculation(): any {
   };
 
   const handleCalculateWithEnter: React.KeyboardEventHandler<HTMLButtonElement> = (event) => {
-    if (event.key === 'Enter' && calculateButton.isClicked === false) handleCalculate();
+    if (event.key === 'Enter' && isClicked === false) handleCalculate();
   };
 
   // 엔터 눌렀을떄 submit이 실행돼 페이지 /? 로 이동 방지
@@ -182,54 +213,56 @@ export function Calculation(): any {
   };
 
   return (
-    <Container onSubmit={handleSubmit}>
-      <InputContainer>
-        <Fade direction="up">
-          <InputBox>
-            <PriceInput
-              placeholder="가격을 입력해주세요."
-              min={0}
-              value={inputPrice}
-              type="text"
-              onChange={handleInputChange}
-              className={showInputWarning ? 'showWarning' : ''}
-            />
-            <div>원을</div>
-          </InputBox>
-        </Fade>
-        {showInputWarning ? (
-          <InputWarningBox>
-            <InputWarning>숫자를 입력해주세요.</InputWarning>
-          </InputWarningBox>
-        ) : (
-          ''
-        )}
-      </InputContainer>
-      <Fade direction="up" delay={500}>
-        <DateBox>
-          <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
-        </DateBox>
-      </Fade>
-      <Fade direction="up" delay={1000}>
-        <DateBox>
-          <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
-          했다면..?
-        </DateBox>
-      </Fade>
-
-      {!calculateButton.isClicked ? (
-        <ButtonBox>
-          <Fade direction="up" delay={1500}>
-            <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
-              행복회로 ON
-            </HappyButton>
+    <Wrapper>
+      <Container onSubmit={handleSubmit}>
+        <InputContainer>
+          <Fade direction="up">
+            <InputBox>
+              <PriceInput
+                placeholder="가격을 입력해주세요."
+                min={0}
+                value={inputPrice}
+                type="text"
+                onChange={handleInputChange}
+                className={showInputWarning ? 'showWarning' : ''}
+              />
+              <div>원을</div>
+            </InputBox>
           </Fade>
-        </ButtonBox>
-      ) : (
-        <CalculatedBox>
-          <Calculated>{calculationPrice.price.toLocaleString()}</Calculated>원을 벌었을텐데...
-        </CalculatedBox>
-      )}
-    </Container>
+          {showInputWarning ? (
+            <InputWarningBox>
+              <InputWarning>숫자를 입력해주세요.</InputWarning>
+            </InputWarningBox>
+          ) : (
+            ''
+          )}
+        </InputContainer>
+        <Fade direction="up" delay={500}>
+          <DateBox>
+            <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
+          </DateBox>
+        </Fade>
+        <Fade direction="up" delay={1000}>
+          <DateBox>
+            <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
+            했다면..?
+          </DateBox>
+        </Fade>
+        {!isClicked ? (
+          <ButtonBox>
+            <Fade direction="up" delay={1500}>
+              <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
+                행복회로 ON
+              </HappyButton>
+            </Fade>
+          </ButtonBox>
+        ) : (
+          <CalculatedBox>
+            <Calculated>{price.toLocaleString()}</Calculated>원을 벌었을텐데...
+          </CalculatedBox>
+        )}
+      </Container>
+      <SmilePepeImage src={smilePepeImage} alt="smilePepe" />
+    </Wrapper>
   );
 }

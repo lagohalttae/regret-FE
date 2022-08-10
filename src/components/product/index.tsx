@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { Slide } from 'react-awesome-reveal';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
-import pepeImage from '../../images/pepe.png';
+import pepeImage from '../../assets/images/pepe.png';
 import { ProductContainer } from './productContainer';
-import ProductList from '../../productData/products.json';
-import { IProduct, IProductProps } from '../../interface/coin';
+import ProductList from '../../assets/jsons/products.json';
+import { IProduct, IProductProps } from '../../types/coin';
 import { calculationPriceAtom } from '../../atoms';
-import gunPepeImg from '../../images/gunPepe.png';
+import gunPepeImg from '../../assets/images/gunPepe.png';
 
 const Wrapper = styled.div``;
 

@@ -5,8 +5,8 @@ import { Transition } from 'react-transition-group';
 import { useRecoilState } from 'recoil';
 import { getCoins } from '../../api';
 import { selectedCoinAtom } from '../../atoms';
-import downarrow from '../../images/downarrow.svg';
-import { ICoinInfo } from '../../interface/coin';
+import downarrow from '../../assets/images/downarrow.svg';
+import { ICoinInfo } from '../../types/coin';
 
 // 최상단 컴포넌트
 const Wrapper = styled.div`

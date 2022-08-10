@@ -1,7 +1,8 @@
 import React from 'react';
-import { Fade } from 'react-awesome-reveal';
+import { Fade, Slide } from 'react-awesome-reveal';
 import styled from 'styled-components';
 import SelectCoin from '../selectcoin';
+import pepeImage from '../../assets/images/pepe.png';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -23,14 +24,31 @@ const Wrapper = styled.div`
   // }
 `;
 
+const PepeImage = styled.img`
+  transform: scaleX(-1);
+  height: 100vh;
+  margin-left: 60vw;
+
+  @media (max-width: 1439px) {
+    right: -27%;
+  }
+  @media (max-width: 1023px) {
+    display: none;
+  }
+`;
 function MainTitle(): any {
   return (
-    <Wrapper>
-      <Fade delay={1000} direction="up" triggerOnce>
-        <p>라고 할 때</p>
-      </Fade>
-      <SelectCoin />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Fade delay={1000} direction="up" triggerOnce>
+          <p>라고 할 때</p>
+        </Fade>
+        <SelectCoin />
+      </Wrapper>
+      <Slide triggerOnce direction="right" duration={1000}>
+        <PepeImage src={pepeImage} alt="pepe" />
+      </Slide>
+    </>
   );
 }
 

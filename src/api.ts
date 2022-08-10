@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ISelectedCoin } from './interface/coin';
+import { ISelectedCoin } from './types/coin';
 
 export const getCoins = (setCoinList: any): void => {
   axios.get(`${process.env.REACT_APP_API_URL}/coins/titles`).then((response) => {

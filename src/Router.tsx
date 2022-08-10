@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import Main from './pages/Main';
-import ProductPage from './pages/ProductPage';
+import MainPage from './pages/MainPage';
+import Temp from './pages/Temp';
 
 function Router(): any {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/product" element={<ProductPage />} />
+      <Route path="/" element={<MainPage />} />
+      <Route path="temp" element={<Temp />} />
     </Routes>
   );
 }
