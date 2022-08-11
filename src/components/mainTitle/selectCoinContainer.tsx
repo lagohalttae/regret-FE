@@ -5,6 +5,7 @@ import { Fade } from 'react-awesome-reveal';
 import { Transition } from 'react-transition-group';
 import ViewportTypography from '../common/ViewportTypography';
 import { GreenColor, BlackColor } from '../../constants';
+import GoNextPage from './goNextPage';
 import { getCoins } from '../../api';
 import { selectedCoinAtom } from '../../atoms';
 import downarrow from '../../assets/images/downarrow.svg';
@@ -22,10 +23,8 @@ const S = {
     width: 4vw;
     border-style: none;
     background-color: transparent;
+    padding-bottom: 1.5vh;
   `,
-  // CurrentCoinLabel: styled.p`
-  //   color: black;
-  // `,
   ArrowImg: styled.img`
     width: 3vw;
     border-style: none;
@@ -45,13 +44,11 @@ const S = {
     height: 40%;
     background-color: #ffffff;
 
-    // 모서리
     box-shadow: 0px 0px 20px #aaaaaa;
     border-radius: 30px;
     padding-block: 20px;
     padding-inline: 30px;
 
-    // 수정x
     transition: opacity 0.3s ease;
     opacity: 0;
 
@@ -87,62 +84,6 @@ const S = {
     width: 5vh;
     padding-right: 1vw;
   `,
-  // CoinLabel: styled.p`
-  //   font-size: large;
-  //   color: black;
-  // `,
-
-  NextPage: styled.div`
-    display: flex;
-    position: absolute;
-    flex-direction: column;
-    width: fit-content;
-    left: 50%;
-    bottom: -15vh;
-    text-align: center;
-
-    @media (hover: hover) {
-      &:hover {
-        transform: translateY(10px);
-        transition-duration: 0.7s;
-        transition-delay: 0s;
-      }
-    }
-  `,
-
-  NextPageArrowImgBox: styled.div`
-    animation: slideArrow 1.5s linear infinite;
-    margin-right: 30px;
-    @keyframes slideArrow {
-      from {
-        opacity: 1;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(0);
-      }
-    }
-  `,
-
-  NextPageArrowImg: styled.img`
-    position: absolute;
-    border-style: none;
-    background-color: transparent;
-    width: 3.5vh;
-    cursor: pointer;
-    filter: opacity(0.25) drop-shadow(0 0 0 gray);
-
-    &.arrow1 {
-      margin-top: 15px;
-      opacity: 0.6;
-    }
-    &.arrow2 {
-      margin-top: 30px;
-      opacity: 0.8;
-    }
-    transition-duration: 0.7s;
-  `,
 };
 
 // transition 사용
@@ -171,11 +112,6 @@ function SelectCoinContainer(): any {
     setShowCoinList(!showCoinList);
   };
 
-  // 다음페이지로 스크롤
-  const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
-    window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
-  };
-
   // 전체 코인 두개의 그룹화
   // groupOne : 0~4 , groupTwo : 5~9
   const groupOne = [...coinList].map((data, i) =>
@@ -190,8 +126,7 @@ function SelectCoinContainer(): any {
         protect={showCoinList}
       >
         <S.CoinImg src={data.imageUrl} alt=" " />
-        {/* api 데이터 불러온거 확인후 font-size 재조정필요 */}
-        <ViewportTypography size="4" weight="700" color={BlackColor}>
+        <ViewportTypography size="1" weight="700" color={BlackColor}>
           {data.label}
         </ViewportTypography>
       </S.CoinCard>
@@ -210,8 +145,7 @@ function SelectCoinContainer(): any {
         protect={showCoinList}
       >
         <S.CoinImg src={data.imageUrl} alt=" " />
-        {/* api 데이터 불러온거 확인후 font-size 재조정필요 */}
-        <ViewportTypography size="4" weight="700" color={BlackColor}>
+        <ViewportTypography size="1" weight="700" color={BlackColor}>
           {data.label}
         </ViewportTypography>
       </S.CoinCard>
@@ -224,12 +158,9 @@ function SelectCoinContainer(): any {
 
   return (
     <S.Container>
-      {/* 현재 선택된 코인 */}
       <Fade delay={1500} direction="up" triggerOnce>
         <S.CurrentCoin>
-          <div>
-            <S.CurrentCoinImg src={coinList[index]?.imageUrl} alt=" " />
-          </div>
+          <S.CurrentCoinImg src={coinList[index]?.imageUrl} alt=" " />
           <ViewportTypography size="6" weight="700" color={BlackColor}>
             &nbsp;{coinList[index]?.label}&nbsp;
           </ViewportTypography>
@@ -240,9 +171,6 @@ function SelectCoinContainer(): any {
         </S.CurrentCoin>
       </Fade>
 
-      {/* /현재 선택된 코인 */}
-
-      {/* 전체 코인 리스트 */}
       <Transition timeout={30} in={showCoinList}>
         {(state) => (
           <S.AllCoin
@@ -255,19 +183,10 @@ function SelectCoinContainer(): any {
           </S.AllCoin>
         )}
       </Transition>
-      {/* /전체 코인 리스트 */}
 
-      {/* 다음페이지 이동 */}
       <Fade delay={2000} triggerOnce>
-        <S.NextPage>
-          <ViewportTypography weight="700">한달간 비트코인 가격을 알아보자</ViewportTypography>
-          <S.NextPageArrowImgBox onClick={handleNextPage}>
-            <S.NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
-            <S.NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
-          </S.NextPageArrowImgBox>
-        </S.NextPage>
+        <GoNextPage />
       </Fade>
-      {/* /다음페이지 이동 */}
     </S.Container>
   );
 }
