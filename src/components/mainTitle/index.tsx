@@ -3,7 +3,7 @@ import { Fade, Slide } from 'react-awesome-reveal';
 import styled from 'styled-components';
 import ViewportTypography from '../common/ViewportTypography';
 import { GreenColor } from '../../constants';
-import SelectCoinContainer from './selectCoinContainer';
+import SelectCoinContainer from './SelectCoinContainer';
 import pepeImage from '../../assets/images/pepe.png';
 
 const S = {
