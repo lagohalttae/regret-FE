@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Fade } from 'react-awesome-reveal';
 import { Transition } from 'react-transition-group';
 import { useRecoilState } from 'recoil';
-import { getCoins } from '../../api';
+import { axiosGet } from '../../api';
 import { selectedCoinAtom } from '../../atoms';
 import downarrow from '../../assets/images/downarrow.svg';
 import { ICoinInfo } from '../../types/coin';
@@ -231,9 +231,14 @@ function SelectCoin(): any {
     ) : undefined
   );
 
+  // api 가져오기
+  const axiosSetCoinList = async () => {
+    setCoinList(await axiosGet('coinList'));
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    // api 가져오기
-    getCoins(setCoinList);
+    axiosSetCoinList();
   }, []);
 
   return (

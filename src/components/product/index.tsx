@@ -3,11 +3,11 @@ import { Slide } from 'react-awesome-reveal';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 import pepeImage from '../../assets/images/pepe.png';
-import { ProductContainer } from './productContainer';
 import ProductList from '../../assets/jsons/products.json';
 import { IProduct, IProductProps } from '../../types/coin';
 import { calculationPriceAtom } from '../../atoms';
 import gunPepeImg from '../../assets/images/gunPepe.png';
+import { ProductContainer } from './ProductContainer';
 
 const Wrapper = styled.div``;
 

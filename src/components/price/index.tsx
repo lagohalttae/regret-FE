@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { Fade } from 'react-awesome-reveal';
-import { getCoinCurrentPrice, getCoinPrice } from '../../api';
 import downarrow from '../../assets/images/downarrow.svg';
 import {
   calculationPriceAtom,
@@ -11,6 +10,7 @@ import {
   selectedCoinAtom,
 } from '../../atoms';
 import { ISelectedCoin } from '../../types/coin';
+import { axiosGet } from '../../api';
 
 const Wrapper = styled.div`
   height: 80vh;
@@ -139,11 +139,18 @@ function Price(): any {
   const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
   const [, setCalculationPrice] = useRecoilState(calculationPriceAtom);
 
+  const axiosSetCoinPrice = async () => {
+    setCoinPrice(await axiosGet('coinPrice', coinObject.coinId));
+  };
+  const axiosSetCoinCurrentPrice = async () => {
+    setCoinCurrentPrice(await axiosGet('coinCurrentPrice', coinObject.coinId));
+  };
+
   // 선택된 코인이 바뀔때마다 코인 정보 동기화
   // api 데이터 가져오기
   useEffect(() => {
-    getCoinPrice(setCoinPrice, coinObject.coinId as unknown as ISelectedCoin);
-    getCoinCurrentPrice(setCoinCurrentPrice, coinObject.coinId as unknown as ISelectedCoin);
+    axiosSetCoinPrice();
+    axiosSetCoinCurrentPrice();
     setCalculationPrice({ price: 0 });
   }, [coinObject]);
 
