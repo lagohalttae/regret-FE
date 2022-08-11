@@ -5,7 +5,7 @@ import { Fade } from 'react-awesome-reveal';
 import { Transition } from 'react-transition-group';
 import ViewportTypography from '../common/ViewportTypography';
 import { GreenColor, BlackColor } from '../../constants';
-import GoNextPage from './goNextPage';
+import GoNextPageWrapper from './goNextPageWrapper';
 import { getCoins } from '../../api';
 import { selectedCoinAtom } from '../../atoms';
 import downarrow from '../../assets/images/downarrow.svg';
@@ -185,7 +185,7 @@ function SelectCoinContainer(): any {
       </Transition>
 
       <Fade delay={2000} triggerOnce>
-        <GoNextPage />
+        <GoNextPageWrapper />
       </Fade>
     </S.Container>
   );

@@ -55,7 +55,7 @@ const S = {
   `,
 };
 
-function GoNextPage(): any {
+function GoNextPageWrapper(): any {
   const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
     window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
   };
@@ -71,4 +71,4 @@ function GoNextPage(): any {
     </S.NextPage>
   );
 }
-export default GoNextPage;
+export default GoNextPageWrapper;
