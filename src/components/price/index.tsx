@@ -13,7 +13,8 @@ import { ISelectedCoin } from '../../types/coin';
 import { axiosGet } from '../../api';
 
 const Wrapper = styled.div`
-  height: 80vh;
+  position: relative;
+  height: 90vh;
   width: 80%;
   margin: 0 auto;
   padding-top: 13vh;
