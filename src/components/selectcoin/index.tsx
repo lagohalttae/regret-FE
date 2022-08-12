@@ -173,7 +173,7 @@ const NextPageArrowImg = styled.img`
 `;
 
 // state
-function SelectCoin(): any {
+function SelectCoin() {
   // 코인 api
   const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
 
@@ -204,7 +204,7 @@ function SelectCoin(): any {
         onClick={() => {
           setIndex(i);
           isShowCoinList();
-          setSelectedCoin({ coinId: data.coinId as any });
+          setSelectedCoin({ coinId: data.coinId });
         }}
         protect={showCoinList}
       >
@@ -221,7 +221,7 @@ function SelectCoin(): any {
         onClick={() => {
           setIndex(i);
           isShowCoinList();
-          setSelectedCoin({ coinId: data.coinId as any });
+          setSelectedCoin({ coinId: data.coinId });
         }}
         protect={showCoinList}
       >
@@ -232,7 +232,7 @@ function SelectCoin(): any {
   );
 
   // api 가져오기
-  const axiosSetCoinList = async () => {
+  const axiosSetCoinList = async (): Promise<void> => {
     setCoinList(await axiosGet('coinList'));
   };
 

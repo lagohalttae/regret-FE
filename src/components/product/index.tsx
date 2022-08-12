@@ -36,7 +36,7 @@ const GunPepe = styled.div`
     height: 100vh;
   }
 `;
-function Product(): any {
+function Product() {
   const calculationPrice = useRecoilValue(calculationPriceAtom);
   const [productProps, setProductProps] = useState<IProductProps[]>([
     { productName: '', unit: '', img: '', num: 0 },

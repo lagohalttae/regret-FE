@@ -142,7 +142,7 @@ const SmilePepeImage = styled.img`
 `;
 // useLocation을 통해 state를 받아오기 위한 interface
 
-export function Calculation(): any {
+export function Calculation() {
   const [calculateButton, setCalculateButton] = useRecoilState(calculateButtondAtom); // 행복회로 버튼 토글
   const [inputPrice, setInputPrice] = useState<string>('');
   const [calculationPrice, setCalculationPrice] = useRecoilState(calculationPriceAtom);
@@ -176,7 +176,7 @@ export function Calculation(): any {
     }
   };
 
-  const handleCalculate: any = () => {
+  const handleCalculate = (): void => {
     const regex = /[^0-9]/g; // 숫자앞에 -붙는거 처리 안돼서 regex로 한번 더 처리
 
     // 공백인 상태로 계산 눌렀을때 오류
@@ -194,7 +194,7 @@ export function Calculation(): any {
   };
 
   // 선택된 코인의 price가 바뀌었을때 마다 실행(선택된 코인이 바뀌었을때)
-  useEffect(() => {
+  useEffect((): void => {
     setCalculateButton({ isClicked: false });
   }, [coinPrice]);
 

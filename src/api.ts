@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
-import { ISelectedCoin } from './types/coin';
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:8080'; // 로컬환경 아닐때: process.env.REACT_APP_API_URL
 const subUrl = (url: string, id?: string) =>

@@ -132,17 +132,17 @@ const NextPageArrowImg = styled.img`
 const Lowest = styled.div``;
 const Highest = styled.div``;
 
-function Price(): any {
+function Price() {
   // 전역상태관리
   const coinObject = useRecoilValue(selectedCoinAtom);
   const [coinPrice, setCoinPrice] = useRecoilState(coinPriceAtom);
   const [coinCurrentPrice, setCoinCurrentPrice] = useRecoilState(coinCurrentPriceAtom);
   const [, setCalculationPrice] = useRecoilState(calculationPriceAtom);
 
-  const axiosSetCoinPrice = async () => {
+  const axiosSetCoinPrice = async (): Promise<void> => {
     setCoinPrice(await axiosGet('coinPrice', coinObject.coinId));
   };
-  const axiosSetCoinCurrentPrice = async () => {
+  const axiosSetCoinCurrentPrice = async (): Promise<void> => {
     setCoinCurrentPrice(await axiosGet('coinCurrentPrice', coinObject.coinId));
   };
 

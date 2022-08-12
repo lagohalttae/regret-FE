@@ -25,7 +25,8 @@ type ProductContainerProps = {
   num: number;
   img: string;
 };
-export function ProductContainer({ productName, unit, num, img }: ProductContainerProps): any {
+
+export function ProductContainer({ productName, unit, num, img }: ProductContainerProps) {
   return (
     <Wrapper>
       <ProductText>

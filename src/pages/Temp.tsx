@@ -15,7 +15,7 @@ const S = {
   `,
 };
 
-function Temp(): any {
+function Temp() {
   return (
     <S.Container>
       <S.TempBox>styled component 사용법</S.TempBox>

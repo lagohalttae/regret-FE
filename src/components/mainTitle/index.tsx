@@ -36,7 +36,7 @@ const PepeImage = styled.img`
     display: none;
   }
 `;
-function MainTitle(): any {
+function MainTitle() {
   return (
     <>
       <Wrapper>
