@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Typography from '../components/common/Typography';
+import StyledBtn from '../components/common/StyledBtn';
 import { GreenColor } from '../constants';
 
 const S = {
@@ -18,8 +19,9 @@ const S = {
 function Temp(): any {
   return (
     <S.Container>
+      <StyledBtn color={GreenColor}>Hello</StyledBtn>
       <S.TempBox>styled component 사용법</S.TempBox>
-      <Typography size="32" weight="700" color={GreenColor}>
+      <Typography weight="700" color={GreenColor}>
         타이포그래피 사용법
       </Typography>
     </S.Container>
