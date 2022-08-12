@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 
 type ViewportTypographyProps = {
-  size?: '1' | '2' | '4' | '6' | '10';
+  size?: '2' | '4' | '6' | '10';
   weight?: '400' | '500' | '600' | '700' | '900';
   color?: string;
   marginBottom?: number;
@@ -11,7 +11,7 @@ type ViewportTypographyProps = {
 };
 
 const ViewportTypography = styled.p<ViewportTypographyProps>`
-  font-size: ${(props) => `${props.size}vw` || '2vw'};
+  font-size: ${(props) => props.size || 1}vw;
   font-weight: ${(props) => props.weight || '500'};
   color: ${(props) => props.color || 'black'};
   margin-bottom: ${(props) => props.marginBottom || '0'}px;
