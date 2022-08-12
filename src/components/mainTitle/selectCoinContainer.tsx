@@ -126,7 +126,7 @@ function SelectCoinContainer(): any {
         protect={showCoinList}
       >
         <S.CoinImg src={data.imageUrl} alt=" " />
-        <ViewportTypography size="1" weight="700" color={BlackColor}>
+        <ViewportTypography weight="700" color={BlackColor}>
           {data.label}
         </ViewportTypography>
       </S.CoinCard>
@@ -145,7 +145,7 @@ function SelectCoinContainer(): any {
         protect={showCoinList}
       >
         <S.CoinImg src={data.imageUrl} alt=" " />
-        <ViewportTypography size="1" weight="700" color={BlackColor}>
+        <ViewportTypography weight="700" color={BlackColor}>
           {data.label}
         </ViewportTypography>
       </S.CoinCard>

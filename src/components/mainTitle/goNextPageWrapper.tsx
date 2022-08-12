@@ -61,9 +61,7 @@ function GoNextPageWrapper(): any {
   };
   return (
     <S.NextPage>
-      <ViewportTypography size="1" weight="700">
-        한달간 비트코인 가격을 알아보자
-      </ViewportTypography>
+      <ViewportTypography weight="700">한달간 비트코인 가격을 알아보자</ViewportTypography>
       <S.NextPageArrowImgBox onClick={handleNextPage}>
         <S.NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
         <S.NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
