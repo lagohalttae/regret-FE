@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8080'; // 로컬환경 아닐때: process.env.REACT_APP_API_URL
 const subUrl = (urlName: string, id?: string) =>
   ({
     coinList: '/coins/titles',
@@ -10,9 +9,12 @@ const subUrl = (urlName: string, id?: string) =>
 
 export const axiosGet = async (urlName: string, id?: string, sendData?: any) => {
   try {
-    const response = await axios.get(`${baseUrl}${subUrl(urlName, id)}`, {
-      params: sendData,
-    });
+    const response = await axios.get(
+      `${process.env.REACT_APP_API_LOCAL_URL}${subUrl(urlName, id)}`, // 로컬환경 아닐때: process.env.REACT_APP_API_URL
+      {
+        params: sendData,
+      }
+    );
     console.log(response.data);
     return response.data;
   } catch (err) {
@@ -23,7 +25,10 @@ export const axiosGet = async (urlName: string, id?: string, sendData?: any) => 
 
 export const axiosPost = async (urlName: string, id?: string, sendData?: any) => {
   try {
-    const response = await axios.post(`${baseUrl}${subUrl(urlName, id)}`, sendData);
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_LOCAL_URL}${subUrl(urlName, id)}`, // 로컬환경 아닐때: process.env.REACT_APP_API_URL
+      sendData
+    );
     console.log(response.data);
     return response.data;
   } catch (err) {
