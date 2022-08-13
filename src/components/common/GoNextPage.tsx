@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import ViewportTypography from '../common/ViewportTypography';
+import ViewportTypography from './ViewportTypography';
 import downarrow from '../../assets/images/downarrow.svg';
 
 const S = {
   NextPage: styled.div`
     display: flex;
-    position: absolute;
     flex-direction: column;
-    left: 55%;
-    bottom: -15vh;
     text-align: center;
 
     @media (hover: hover) {
@@ -55,13 +52,17 @@ const S = {
   `,
 };
 
-function GoNextPageWrapper(): any {
+type GoNextPageProps = {
+  msg?: string;
+};
+
+function GoNextPageWrapper({ msg }: GoNextPageProps): any {
   const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
     window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
   };
   return (
     <S.NextPage>
-      <ViewportTypography weight="700">한달간 비트코인 가격을 알아보자</ViewportTypography>
+      {msg && <ViewportTypography weight="700">{msg}</ViewportTypography>}
       <S.NextPageArrowImgBox onClick={handleNextPage}>
         <S.NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
         <S.NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
@@ -69,4 +70,8 @@ function GoNextPageWrapper(): any {
     </S.NextPage>
   );
 }
+
+GoNextPageWrapper.defaultProps = {
+  msg: '&nbsp',
+};
 export default GoNextPageWrapper;
