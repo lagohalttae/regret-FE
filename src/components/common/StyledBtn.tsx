@@ -66,5 +66,5 @@ export const StyledBtn = styled.button<ButtonProps>`
   ${(props) => props.disabled && DISABLED}
 `;
 
-//참고 사이트
+// 참고 사이트
 // https://github.com/huferr/Components-With-Typescript/tree/main/src/components/Button
