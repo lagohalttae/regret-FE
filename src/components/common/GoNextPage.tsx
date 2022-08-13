@@ -56,7 +56,7 @@ type GoNextPageProps = {
   msg?: string;
 };
 
-function GoNextPageWrapper({ msg }: GoNextPageProps): any {
+function GoNextPage({ msg }: GoNextPageProps): any {
   const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
     window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
   };
@@ -71,7 +71,7 @@ function GoNextPageWrapper({ msg }: GoNextPageProps): any {
   );
 }
 
-GoNextPageWrapper.defaultProps = {
+GoNextPage.defaultProps = {
   msg: '&nbsp',
 };
-export default GoNextPageWrapper;
+export default GoNextPage;
