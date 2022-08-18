@@ -3,11 +3,11 @@ import { Slide } from 'react-awesome-reveal';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
 import pepeImage from '../../assets/images/pepe.png';
-import { ProductContainer } from './productContainer';
 import ProductList from '../../assets/jsons/products.json';
 import { IProduct, IProductProps } from '../../types/coin';
 import { calculationPriceAtom } from '../../atoms';
 import gunPepeImg from '../../assets/images/gunPepe.png';
+import { ProductContainer } from './productContainer';
 
 const Wrapper = styled.div``;
 
@@ -36,7 +36,7 @@ const GunPepe = styled.div`
     height: 100vh;
   }
 `;
-function Product(): any {
+function Product() {
   const calculationPrice = useRecoilValue(calculationPriceAtom);
   const [productProps, setProductProps] = useState<IProductProps[]>([
     { productName: '', unit: '', img: '', num: 0 },

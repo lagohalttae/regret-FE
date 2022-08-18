@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import ViewportTypography from '../common/ViewportTypography';
 import { GreenColor, BlackColor } from '../../constants';
-import { getCoins } from '../../api';
+import { axiosGet } from '../../api';
 import { ICoinInfo } from '../../types/coin';
 import { selectedCoinAtom } from '../../atoms';
 import GoNextPage from '../common/GoNextPage';
@@ -118,7 +118,7 @@ const TransitionStyles: any = {
   exited: { opacity: 0 },
 };
 
-function SelectCoinContainer(): any {
+function SelectCoinContainer() {
   // 코인 api
   const [coinList, setCoinList] = useState<ICoinInfo[]>([]);
 
@@ -144,7 +144,7 @@ function SelectCoinContainer(): any {
         onClick={() => {
           setIndex(i);
           isShowCoinList();
-          setSelectedCoin({ coinId: data.coinId as any });
+          setSelectedCoin({ coinId: data.coinId });
         }}
         protect={showCoinList}
       >
@@ -163,7 +163,7 @@ function SelectCoinContainer(): any {
         onClick={() => {
           setIndex(i);
           isShowCoinList();
-          setSelectedCoin({ coinId: data.coinId as any });
+          setSelectedCoin({ coinId: data.coinId });
         }}
         protect={showCoinList}
       >
@@ -175,10 +175,15 @@ function SelectCoinContainer(): any {
     ) : undefined
   );
 
-  useEffect(() => {
-    getCoins(setCoinList);
-  }, []);
+  // api 가져오기
+  const axiosSetCoinList = async (): Promise<void> => {
+    setCoinList(await axiosGet('coinList'));
+  };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    axiosSetCoinList();
+  }, []);
   return (
     <S.SelectCoinContainer>
       <Fade delay={1500} direction="up" triggerOnce>

@@ -16,7 +16,7 @@ const S = {
   `,
 };
 
-function Temp(): any {
+function Temp() {
   return (
     <S.Container>
       <StyledBtn color="primary" size="sm">

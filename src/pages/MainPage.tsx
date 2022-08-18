@@ -10,7 +10,8 @@ import Product from '../components/product';
 const WhiteContainer = styled.div`
   height: 30vh;
 `;
-function MainPage(): any {
+
+function MainPage() {
   const calculateButton = useRecoilValue(calculateButtondAtom);
   return (
     <>
