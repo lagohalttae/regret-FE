@@ -7,7 +7,7 @@ import ProductList from '../../assets/jsons/products.json';
 import { IProduct, IProductProps } from '../../types/coin';
 import { calculationPriceAtom } from '../../atoms';
 import gunPepeImg from '../../assets/images/gunPepe.png';
-import { ProductContainer } from './ProductContainer';
+import { ProductContainer } from './productContainer';
 
 const Wrapper = styled.div``;
 

@@ -11,7 +11,7 @@ type TypographyProps = {
 };
 
 const Typography = styled.p<TypographyProps>`
-  font-size: ${(props) => `${props.size}px` || '12px'};
+  font-size: ${(props) => props.size || 12}px;
   font-weight: ${(props) => props.weight || '500'};
   color: ${(props) => props.color || 'black'};
   margin-bottom: ${(props) => props.marginBottom || '0'}px;
