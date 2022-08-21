@@ -5,7 +5,7 @@ import { Fade } from 'react-awesome-reveal';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { calculateButtondAtom, calculationPriceAtom, coinPriceAtom } from '../../atoms';
-import smilePepeImage from '../../assets/images/smilePepe.png';
+import smilePepeImage from '../../assets/images/smilePepe.svg';
 
 const Wrapper = styled.div`
   position: relative;
