@@ -14,6 +14,11 @@ import downarrow from '../../assets/images/downarrow.svg';
 
 const S = {
   Container: styled.div`
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  `,
+  ContentContainer: styled.div`
     position: absolute;
     top: 25vh;
     left: 5vw;
@@ -106,8 +111,9 @@ const S = {
 
   GoNext: styled.div`
     position: absolute;
-    left: 55%;
-    bottom: -15vh;
+    z-index: 1;
+    left: 40%;
+    bottom: 10%;
   `,
 };
 
@@ -211,31 +217,30 @@ function SelectCoinContainer() {
           </S.AllCoin>
         )}
       </Transition>
-
-      <Fade delay={2000} triggerOnce>
-        <S.GoNext>
-          <GoNextPage msg="한달간 비트코인 가격을 알아보자" />
-        </S.GoNext>
-      </Fade>
     </S.SelectCoinContainer>
   );
 }
 
-function MainTitle(): any {
+function MainTitle() {
   return (
-    <>
-      <S.Container>
+    <S.Container>
+      <S.ContentContainer>
         <Fade delay={1000} direction="up" triggerOnce>
           <ViewportTypography size="6" weight="700" color={GreenColor}>
             라고 할 때
           </ViewportTypography>
         </Fade>
         <SelectCoinContainer />
-      </S.Container>
+      </S.ContentContainer>
+      <S.GoNext>
+        <Fade delay={2000} triggerOnce>
+          <GoNextPage msg="한달간 비트코인 가격을 알아보자" />
+        </Fade>
+      </S.GoNext>
       <Slide triggerOnce direction="right" duration={1000}>
         <S.PepeImage src={pepeImage} alt="pepe" />
       </Slide>
-    </>
+    </S.Container>
   );
 }
 
