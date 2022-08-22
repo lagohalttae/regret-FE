@@ -13,7 +13,7 @@ import pepeImage from '../../assets/images/pepe.png';
 import downarrow from '../../assets/images/downarrow.svg';
 
 const S = {
-  Container: styled.div`
+  MainTitleContainer: styled.div`
     position: relative;
     height: 100vh;
     width: 100vw;
@@ -223,7 +223,7 @@ function SelectCoinContainer() {
 
 function MainTitle() {
   return (
-    <S.Container>
+    <S.MainTitleContainer>
       <S.ContentContainer>
         <Fade delay={1000} direction="up" triggerOnce>
           <ViewportTypography size="6" weight="700" color={GreenColor}>
@@ -240,7 +240,7 @@ function MainTitle() {
       <Slide triggerOnce direction="right" duration={1000}>
         <S.PepeImage src={pepeImage} alt="pepe" />
       </Slide>
-    </S.Container>
+    </S.MainTitleContainer>
   );
 }
 
