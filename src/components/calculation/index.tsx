@@ -7,139 +7,142 @@ import styled from 'styled-components';
 import { calculateButtondAtom, calculationPriceAtom, coinPriceAtom } from '../../atoms';
 import smilePepeImage from '../../assets/images/smilePepe.png';
 
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  color: #000;
-  overflow: hidden;
-  background-color: #fff;
-`;
-const Container = styled.form`
-  z-index: 1;
-  font-size: 3.5vw;
-  font-weight: 900;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 50vh;
-  margin-right: 9vw;
-  @media (max-width: 480px) {
-    top: 10vh;
-    font-size: 8vw;
-  }
-
-  // 모바일
-  // @media (max-width: 767px) {
-  // }
-`;
-
-const InputContainer = styled.div`
-  width: 100%;
-`;
-
-const InputBox = styled.div`
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  input[type='number'] {
-    -moz-appearance: textfield;
-  }
-
-  display: flex;
-`;
-const PriceInput = styled.input`
-  &:focus {
-    outline: none;
-  }
-  &.showWarning {
-    border-color: #ed6a5e;
-  }
-  margin: 0;
-  font-size: 2vw;
-  width: 57%;
-  margin-right: 10px;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-width: 3px;
-  border-color: #757575;
-`;
-const InputWarningBox = styled.div`
-  position: absolute;
-  margin-top: 5px;
-  display: flex;
-`;
-
-const InputWarning = styled.text`
-  color: #ed6a5e;
-  font-size: 20px;
-  font-weight: 500;
-  margin-left: 5px;
-`;
-
-const LowDate = styled.span`
-  color: #e92c2c;
-`;
-const HighDate = styled.span`
-  color: #0085ff;
-`;
-const DateBox = styled.div`
-  margin-top: 8vh;
-`;
-const ButtonBox = styled.div`
-  margin-top: 6vh;
-  width: 85%;
-  display: flex;
-  justify-content: center;
-`;
-const HappyButton = styled.button`
-  align-items: center;
-  padding: 10px;
-  max-height: 120px;
-  border-radius: 50px;
-  font-size: 2.5vw;
-  background-color: white;
-  border-color: #090909;
-  border-width: 2px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const Calculated = styled.div`
-  color: #43841f;
-`;
-
-const CalculatedBox = styled.div`
-  margin-top: 8vh;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const SmilePepeImage = styled.img`
-  position: absolute;
-  left: 0;
-  width: 30vw;
-  bottom: 0vh;
-
-  @media (max-width: 1023px) {
-    display: none;
-  }
-  @media (max-width: 480px) {
-    display: block;
+const S = {
+  CalculationContainer: styled.div`
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    color: #000;
+    overflow: hidden;
+    background-color: #fff;
+  `,
+  ContentContainer: styled.form`
+    z-index: 1;
+    font-size: 3.5vw;
+    font-weight: 900;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     height: 50vh;
-    opacity: 0.5;
-  }
-`;
+    margin-right: 9vw;
+    @media (max-width: 480px) {
+      top: 10vh;
+      font-size: 8vw;
+    }
+
+    // 모바일
+    // @media (max-width: 767px) {
+    // }
+  `,
+
+  InputContainer: styled.div`
+    width: 100%;
+  `,
+
+  InputBox: styled.div`
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+
+    display: flex;
+  `,
+  PriceInput: styled.input`
+    &:focus {
+      outline: none;
+    }
+    &.showWarning {
+      border-color: #ed6a5e;
+    }
+    margin: 0;
+    font-size: 2vw;
+    width: 57%;
+    margin-right: 10px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-width: 3px;
+    border-color: #757575;
+  `,
+  InputWarningBox: styled.div`
+    position: absolute;
+    margin-top: 5px;
+    display: flex;
+  `,
+
+  InputWarning: styled.text`
+    color: #ed6a5e;
+    font-size: 20px;1
+    font-weight: 500;
+    margin-left: 5px;
+  `,
+
+  LowDate: styled.span`
+    color: #e92c2c;
+  `,
+  HighDate: styled.span`
+    color: #0085ff;
+  `,
+  DateBox: styled.div`
+    margin-top: 8vh;
+  `,
+  ButtonBox: styled.div`
+    margin-top: 6vh;
+    width: 85%;
+    display: flex;
+    justify-content: center;
+  `,
+  HappyButton: styled.button`
+    align-items: center;
+    padding: 10px;
+    max-height: 120px;
+    border-radius: 50px;
+    font-size: 2.5vw;
+    background-color: white;
+    border-color: #090909;
+    border-width: 2px;
+    &:hover {
+      cursor: pointer;
+    }
+  `,
+  Calculated: styled.div`
+    color: #43841f;
+  `,
+
+  CalculatedBox: styled.div`
+    margin-top: 8vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  `,
+
+  SmilePepeImage: styled.img`
+    position: absolute;
+    left: 0;
+    width: 30vw;
+    bottom: 0vh;
+
+    @media (max-width: 1023px) {
+      display: none;
+    }
+    @media (max-width: 480px) {
+      display: block;
+      height: 50vh;
+      opacity: 0.5;
+    }
+  `,
+};
+
 // useLocation을 통해 state를 받아오기 위한 interface
 
 export function Calculation() {
@@ -212,12 +215,12 @@ export function Calculation() {
   };
 
   return (
-    <Wrapper>
-      <Container onSubmit={handleSubmit}>
-        <InputContainer>
+    <S.CalculationContainer>
+      <S.ContentContainer onSubmit={handleSubmit}>
+        <S.InputContainer>
           <Fade direction="up">
-            <InputBox>
-              <PriceInput
+            <S.InputBox>
+              <S.PriceInput
                 placeholder="가격을 입력해주세요."
                 min={0}
                 value={inputPrice}
@@ -226,42 +229,43 @@ export function Calculation() {
                 className={showInputWarning ? 'showWarning' : ''}
               />
               <div>원을</div>
-            </InputBox>
+            </S.InputBox>
           </Fade>
           {showInputWarning ? (
-            <InputWarningBox>
-              <InputWarning>숫자를 입력해주세요.</InputWarning>
-            </InputWarningBox>
+            <S.InputWarningBox>
+              <S.InputWarning>숫자를 입력해주세요.</S.InputWarning>
+            </S.InputWarningBox>
           ) : (
             ''
           )}
-        </InputContainer>
+        </S.InputContainer>
         <Fade direction="up" delay={500}>
-          <DateBox>
-            <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
-          </DateBox>
+          <S.DateBox>
+            <S.LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</S.LowDate>에
+            풀매수해서
+          </S.DateBox>
         </Fade>
         <Fade direction="up" delay={1000}>
-          <DateBox>
-            <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
-            했다면..?
-          </DateBox>
+          <S.DateBox>
+            <S.HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</S.HighDate>에
+            풀매도 했다면..?
+          </S.DateBox>
         </Fade>
         {!calculateButton.isClicked ? (
-          <ButtonBox>
+          <S.ButtonBox>
             <Fade direction="up" delay={1500}>
-              <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
+              <S.HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
                 행복회로 ON
-              </HappyButton>
+              </S.HappyButton>
             </Fade>
-          </ButtonBox>
+          </S.ButtonBox>
         ) : (
-          <CalculatedBox>
-            <Calculated>{calculationPrice.price.toLocaleString()}</Calculated>원을 벌었을텐데...
-          </CalculatedBox>
+          <S.CalculatedBox>
+            <S.Calculated>{calculationPrice.price.toLocaleString()}</S.Calculated>원을 벌었을텐데...
+          </S.CalculatedBox>
         )}
-      </Container>
-      <SmilePepeImage src={smilePepeImage} alt="smilePepe" />
-    </Wrapper>
+      </S.ContentContainer>
+      <S.SmilePepeImage src={smilePepeImage} alt="smilePepe" />
+    </S.CalculationContainer>
   );
 }
