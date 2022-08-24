@@ -9,7 +9,7 @@ import { axiosGet } from '../../api';
 import { ICoinInfo } from '../../types/coin';
 import { selectedCoinAtom } from '../../atoms';
 import GoNextPage from '../common/GoNextPage';
-import pepeImage from '../../assets/images/pepe.png';
+import pepeImage from '../../assets/images/pepe.svg';
 import downarrow from '../../assets/images/downarrow.svg';
 
 const S = {

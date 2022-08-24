@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { Slide } from 'react-awesome-reveal';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
-import pepeImage from '../../assets/images/pepe.png';
+import pepeImage from '../../assets/images/pepe.svg';
 import ProductList from '../../assets/jsons/products.json';
 import { IProduct, IProductProps } from '../../types/coin';
 import { calculationPriceAtom } from '../../atoms';
-import gunPepeImg from '../../assets/images/gunPepe.png';
+import gunPepeImg from '../../assets/images/gunPepe.svg';
 import { ProductContainer } from './productContainer';
 
 const Wrapper = styled.div``;
