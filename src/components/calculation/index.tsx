@@ -131,9 +131,9 @@ const SmilePepeImage = styled.img`
   width: 30vw;
   bottom: 0vh;
 
-  @media (max-width: 1023px) {
+  /* @media (max-width: 1023px) {
     display: none;
-  }
+  } */
   @media (max-width: 480px) {
     display: block;
     height: 50vh;
@@ -215,7 +215,7 @@ export function Calculation() {
     <Wrapper>
       <Container onSubmit={handleSubmit}>
         <InputContainer>
-          <Fade direction="up">
+          <Fade direction="up" triggerOnce>
             <InputBox>
               <PriceInput
                 placeholder="가격을 입력해주세요."
@@ -236,12 +236,12 @@ export function Calculation() {
             ''
           )}
         </InputContainer>
-        <Fade direction="up" delay={500}>
+        <Fade direction="up" delay={500} triggerOnce>
           <DateBox>
             <LowDate>{dateToString(new Date(coinPrice?.minPrice?.atMillis))}</LowDate>에 풀매수해서
           </DateBox>
         </Fade>
-        <Fade direction="up" delay={1000}>
+        <Fade direction="up" delay={1000} triggerOnce>
           <DateBox>
             <HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</HighDate>에 풀매도
             했다면..?
@@ -249,7 +249,7 @@ export function Calculation() {
         </Fade>
         {!calculateButton.isClicked ? (
           <ButtonBox>
-            <Fade direction="up" delay={1500}>
+            <Fade direction="up" delay={1500} triggerOnce>
               <HappyButton onClick={handleCalculateWithClick} onKeyUp={handleCalculateWithEnter}>
                 행복회로 ON
               </HappyButton>

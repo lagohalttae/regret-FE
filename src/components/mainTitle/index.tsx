@@ -14,6 +14,9 @@ import downarrow from '../../assets/images/downarrow.svg';
 
 const S = {
   Container: styled.div`
+    height: 100vh;
+  `,
+  TextContainer: styled.div`
     position: absolute;
     top: 25vh;
     left: 5vw;
@@ -27,9 +30,9 @@ const S = {
     @media (max-width: 1439px) {
       right: -27%;
     }
-    @media (max-width: 1023px) {
+    /* @media (max-width: 1023px) {
       display: none;
-    }
+    } */
   `,
   SelectCoinContainer: styled.div`
     margin-top: 3vh;
@@ -223,19 +226,19 @@ function SelectCoinContainer() {
 
 function MainTitle(): any {
   return (
-    <>
-      <S.Container>
+    <S.Container>
+      <S.TextContainer>
         <Fade delay={1000} direction="up" triggerOnce>
           <ViewportTypography size="6" weight="700" color={GreenColor}>
             라고 할 때
           </ViewportTypography>
         </Fade>
         <SelectCoinContainer />
-      </S.Container>
+      </S.TextContainer>
       <Slide triggerOnce direction="right" duration={1000}>
         <S.PepeImage src={pepeImage} alt="pepe" />
       </Slide>
-    </>
+    </S.Container>
   );
 }
 
