@@ -11,6 +11,7 @@ import {
 } from '../../atoms';
 import { ISelectedCoin } from '../../types/coin';
 import { axiosGet } from '../../api';
+import { BlueColor, RedColor } from '../../constants';
 
 const Wrapper = styled.div`
   position: relative;
@@ -192,7 +193,7 @@ function Price() {
                 {coinPrice ? dateToString(new Date(coinPrice?.minPrice?.atMillis)) : ''}에 살걸..
               </PastDateText>
 
-              <PastPriceText color="#E92C2C">
+              <PastPriceText color={BlueColor}>
                 {coinPrice?.minPrice.won?.toLocaleString()}원
               </PastPriceText>
 
@@ -207,7 +208,7 @@ function Price() {
                 {coinPrice ? dateToString(new Date(coinPrice?.maxPrice?.atMillis)) : ''}에 팔걸..
               </PastDateText>
 
-              <PastPriceText color="#0085FF">
+              <PastPriceText color={RedColor}>
                 {coinPrice?.maxPrice?.won?.toLocaleString()}원
               </PastPriceText>
 
