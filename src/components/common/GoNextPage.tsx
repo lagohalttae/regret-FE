@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import ViewportTypography from './ViewportTypography';
 import downarrow from '../../assets/images/downarrow.svg';
 
 const S = {
@@ -50,19 +49,24 @@ const S = {
     }
     transition-duration: 0.7s;
   `,
+  MsgFont: styled.p`
+    font-size: 1.25vw;
+    font-weight: 700;
+  `,
 };
 
 type GoNextPageProps = {
   msg?: string;
+  page: number;
 };
 
-function GoNextPage({ msg }: GoNextPageProps): any {
+function GoNextPage({ msg, page }: GoNextPageProps): any {
   const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
-    window.scroll({ top: window.innerHeight, left: 0, behavior: 'smooth' });
+    window.scroll({ top: window.innerHeight * page, left: 0, behavior: 'smooth' });
   };
   return (
     <S.NextPage>
-      {msg && <ViewportTypography weight="700">{msg}</ViewportTypography>}
+      {msg && <S.MsgFont>{msg}</S.MsgFont>}
       <S.NextPageArrowImgBox onClick={handleNextPage}>
         <S.NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
         <S.NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
