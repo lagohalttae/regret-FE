@@ -11,6 +11,7 @@ import {
 } from '../../atoms';
 import { ISelectedCoin } from '../../types/coin';
 import { axiosGet } from '../../api';
+import GoNextPage from '../common/GoNextPage';
 
 const Wrapper = styled.div`
   position: relative;
@@ -130,6 +131,13 @@ const NextPageArrowImg = styled.img`
   transition-duration: 0.7s;
 `;
 
+const GoNext = styled.div`
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  bottom: 15%;
+`;
+
 const Lowest = styled.div``;
 const Highest = styled.div``;
 
@@ -165,10 +173,6 @@ function Price() {
   const today = dateToString(now);
   // 한달 전 시간 문자열
   const monthAgo = dateToString(new Date(now.setMonth(now.getMonth() - 1)));
-
-  const handleNextPage: React.MouseEventHandler<HTMLImageElement> = () => {
-    window.scroll({ top: window.innerHeight * 2 + 10, left: 0, behavior: 'smooth' });
-  };
 
   return (
     <Wrapper>
@@ -218,15 +222,11 @@ function Price() {
           </Fade>
         </PastPrice>
       </PriceBox>
-      <Fade delay={1500}>
-        <NextPage>
-          <p>행복회로 가동하기</p>
-          <NextPageArrowImgBox onClick={handleNextPage}>
-            <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
-            <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
-          </NextPageArrowImgBox>
-        </NextPage>
-      </Fade>
+      <GoNext>
+        <Fade delay={1500} triggerOnce>
+          <GoNextPage msg="행복회로 가동하기" page={2} />
+        </Fade>
+      </GoNext>
     </Wrapper>
   );
 }

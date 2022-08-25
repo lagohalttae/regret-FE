@@ -111,8 +111,8 @@ const S = {
 
   GoNext: styled.div`
     position: absolute;
+    width: 100%;
     z-index: 1;
-    left: 40%;
     bottom: 10%;
   `,
 };
@@ -226,7 +226,7 @@ function MainTitle() {
     <S.MainTitleContainer>
       <S.ContentContainer>
         <Fade delay={1000} direction="up" triggerOnce>
-          <ViewportTypography size="6" weight="700" color={GreenColor}>
+          <ViewportTypography size="2" weight="700" color={GreenColor}>
             라고 할 때
           </ViewportTypography>
         </Fade>
@@ -234,7 +234,7 @@ function MainTitle() {
       </S.ContentContainer>
       <S.GoNext>
         <Fade delay={2000} triggerOnce>
-          <GoNextPage msg="한달간 비트코인 가격을 알아보자" />
+          <GoNextPage msg="한달간 비트코인 가격을 알아보자" page={1} />
         </Fade>
       </S.GoNext>
       <Slide triggerOnce direction="right" duration={1000}>
