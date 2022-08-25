@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 
 type ViewportTypographyProps = {
-  size?: '2' | '4' | '6' | '10';
+  size?: '2' | '3' | '5' | '4' | '6' | '10';
   weight?: '400' | '500' | '600' | '700' | '900';
   color?: string;
   marginBottom?: number;

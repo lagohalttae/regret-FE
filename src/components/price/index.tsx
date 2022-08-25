@@ -174,7 +174,7 @@ function Price() {
   return (
     <Wrapper>
       <PriceBox>
-        <Fade direction="up">
+        <Fade direction="up" triggerOnce>
           <CurrentPrice>
             <CurrentPriceInfo>
               <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
@@ -187,7 +187,7 @@ function Price() {
           </CurrentPrice>
         </Fade>
         <PastPrice>
-          <Fade delay={500} direction="up">
+          <Fade delay={500} direction="up" triggerOnce>
             <Lowest>
               <PastDateText>
                 {coinPrice ? dateToString(new Date(coinPrice?.minPrice?.atMillis)) : ''}에 살걸..
@@ -202,7 +202,7 @@ function Price() {
               </TermText>
             </Lowest>
           </Fade>
-          <Fade delay={1000} direction="up">
+          <Fade delay={1000} direction="up" triggerOnce>
             <Highest>
               <PastDateText>
                 {coinPrice ? dateToString(new Date(coinPrice?.maxPrice?.atMillis)) : ''}에 팔걸..
@@ -219,7 +219,7 @@ function Price() {
           </Fade>
         </PastPrice>
       </PriceBox>
-      <Fade delay={1500}>
+      <Fade delay={1500} triggerOnce>
         <NextPage>
           <p>행복회로 가동하기</p>
           <NextPageArrowImgBox onClick={handleNextPage}>
