@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { calculateButtondAtom, calculationPriceAtom, coinPriceAtom } from '../../atoms';
 import smilePepeImage from '../../assets/images/smilePepe.svg';
+import PepeImage from '../common/PepeImage';
 
 const S = {
   CalculationContainer: styled.div`
@@ -124,22 +125,6 @@ const S = {
     height: 100%;
     display: flex;
     justify-content: center;
-  `,
-
-  SmilePepeImage: styled.img`
-    position: absolute;
-    left: 0;
-    width: 30vw;
-    bottom: 0vh;
-
-    @media (max-width: 1023px) {
-      display: none;
-    }
-    @media (max-width: 480px) {
-      display: block;
-      height: 50vh;
-      opacity: 0.5;
-    }
   `,
 };
 
@@ -265,7 +250,7 @@ export function Calculation() {
           </S.CalculatedBox>
         )}
       </S.ContentContainer>
-      <S.SmilePepeImage src={smilePepeImage} alt="smilePepe" />
+      <PepeImage src={smilePepeImage} width="30vw" left="0" bottom="0" alt="smilePepe" />
     </S.CalculationContainer>
   );
 }
