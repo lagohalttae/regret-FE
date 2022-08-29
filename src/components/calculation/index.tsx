@@ -82,7 +82,7 @@ const S = {
 
   InputWarning: styled.text`
     color: #ed6a5e;
-    font-size: 20px;1
+    font-size: 20px;
     font-weight: 500;
     margin-left: 5px;
   `,
