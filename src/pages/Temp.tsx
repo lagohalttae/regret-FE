@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Typography from '../components/common/Typography';
 import { StyledBtn } from '../components/common/StyledBtn';
 import { GreenColor } from '../constants';
+import PepeImage from '../components/common/PepeImage';
+import Pepe from '../assets/images/pepe.svg';
 
 const S = {
   Container: styled.div`
@@ -34,6 +36,7 @@ function Temp() {
       <Typography weight="700" color={GreenColor}>
         타이포그래피 사용법
       </Typography>
+      <PepeImage src={Pepe} height="80vh" top="10vh" right="-200px" reverse />
     </S.Container>
   );
 }

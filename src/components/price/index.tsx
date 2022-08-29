@@ -9,129 +9,131 @@ import {
   coinPriceAtom,
   selectedCoinAtom,
 } from '../../atoms';
-import { ISelectedCoin } from '../../types/coin';
 import { axiosGet } from '../../api';
+import { BlueColor, RedColor } from '../../constants';
 
-const Wrapper = styled.div`
-  position: relative;
-  height: 90vh;
-  width: 80%;
-  margin: 0 auto;
-  padding-top: 13vh;
-`;
+const S = {
+  Container: styled.div`
+    position: relative;
+    height: 90vh;
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 13vh;
+  `,
 
-const PriceBox = styled.div`
-  height: 60vh;
-`;
+  PriceBox: styled.div`
+    height: 60vh;
+  `,
 
-// 현재 가격
-const CurrentPrice = styled.div`
-  text-align: center;
-  margin-bottom: 14vh;
-`;
+  // 현재 가격
+  CurrentPrice: styled.div`
+    text-align: center;
+    margin-bottom: 14vh;
+  `,
 
-const CurrentPriceInfo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2vh;
-  padding: 0 1.5vw;
-`;
+  CurrentPriceInfo: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+    padding: 0 1.5vw;
+  `,
 
-const CurrentPriceTitle = styled.div`
-  font-size: 2vw;
-  font-weight: 700;
-`;
+  CurrentPriceTitle: styled.div`
+    font-size: 2vw;
+    font-weight: 700;
+  `,
 
-const CurrentPriceText = styled.div`
-  font-size: 10.5vw;
-  font-weight: 700;
-  color: #43841f;
-`;
+  CurrentPriceText: styled.div`
+    font-size: 10.5vw;
+    font-weight: 700;
+    color: #43841f;
+  `,
 
-// 최대가, 최저가
-const PastPrice = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+  // 최대가, 최저가
+  PastPrice: styled.div`
+    display: flex;
+    justify-content: space-between;
+  `,
 
-const PastDateText = styled.p`
-  font-size: 3.2vw;
-  font-weight: 700;
-`;
+  PastDateText: styled.p`
+    font-size: 3.2vw;
+    font-weight: 700;
+  `,
 
-const PastPriceText = styled.p`
-  font-size: 3.7vw;
-  font-weight: 700;
-  margin: 2vh 0 2vh 0;
-  color: ${(props) => props.color};
-`;
+  PastPriceText: styled.p`
+    font-size: 3.7vw;
+    font-weight: 700;
+    margin: 2vh 0 2vh 0;
+    color: ${(props) => props.color};
+  `,
 
-const TermText = styled.p`
-  font-size: 1.6vw;
-  color: lightgray;
-`;
+  TermText: styled.p`
+    font-size: 1.6vw;
+    color: lightgray;
+  `,
 
-// 하단 컴포넌트 -------------
+  // 하단 컴포넌트 -------------
 
-const NextPage = styled.div`
-  position: absolute;
-  left: 50%;
-  bottom: 15%;
-  transform: translate(-50%, 0);
-  width: fit-content;
-  color: black;
-  text-align: center;
-  font-size: x-large;
-  font-weight: 700;
-  display: flex;
-  flex-direction: column;
-  @media (hover: hover) {
-    &:hover {
-      transform: translate(-50%, 10px);
-      transition-duration: 0.7s;
-      transition-delay: 0s;
+  NextPage: styled.div`
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    transform: translate(-50%, 0);
+    width: fit-content;
+    color: black;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    @media (hover: hover) {
+      &:hover {
+        transform: translate(-50%, 10px);
+        transition-duration: 0.7s;
+        transition-delay: 0s;
+      }
     }
-  }
-`;
+  `,
 
-const NextPageArrowImgBox = styled.div`
-  margin-right: 15px;
-  animation: slideArrow 1.7s linear infinite;
-  padding-right: 20px;
-  @keyframes slideArrow {
-    from {
-      opacity: 1;
-      transform: translateY(-20px);
+  NextPageArrowImgBox: styled.div`
+    margin-right: 15px;
+    animation: slideArrow 1.7s linear infinite;
+    padding-right: 20px;
+    @keyframes slideArrow {
+      from {
+        opacity: 1;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(0);
+      }
     }
-    to {
-      opacity: 0;
-      transform: translateY(0);
+  `,
+
+  NextPageArrowImg: styled.img`
+    border-style: none;
+    background-color: transparent;
+    position: absolute;
+    width: 3.5vh;
+    cursor: pointer;
+    filter: opacity(0.25) drop-shadow(0 0 0 gray);
+
+    &.arrow1 {
+      margin-top: 15px;
+      opacity: 0.6;
     }
-  }
-`;
+    &.arrow2 {
+      margin-top: 30px;
+      opacity: 0.8;
+    }
+    transition-duration: 0.7s;
+  `,
 
-const NextPageArrowImg = styled.img`
-  border-style: none;
-  background-color: transparent;
-  position: absolute;
-  width: 3.5vh;
-  cursor: pointer;
-  filter: opacity(0.25) drop-shadow(0 0 0 gray);
-
-  &.arrow1 {
-    margin-top: 15px;
-    opacity: 0.6;
-  }
-  &.arrow2 {
-    margin-top: 30px;
-    opacity: 0.8;
-  }
-  transition-duration: 0.7s;
-`;
-
-const Lowest = styled.div``;
-const Highest = styled.div``;
+  Lowest: styled.div``,
+  Highest: styled.div``,
+};
 
 function Price() {
   // 전역상태관리
@@ -171,63 +173,65 @@ function Price() {
   };
 
   return (
-    <Wrapper>
-      <PriceBox>
-        <Fade direction="up">
-          <CurrentPrice>
-            <CurrentPriceInfo>
-              <CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</CurrentPriceTitle>
-              <TermText>
+    <S.Container>
+      <S.PriceBox>
+        <Fade direction="up" triggerOnce>
+          <S.CurrentPrice>
+            <S.CurrentPriceInfo>
+              <S.CurrentPriceTitle>{coinCurrentPrice?.label} 현재 가격</S.CurrentPriceTitle>
+              <S.TermText>
                 {coinCurrentPrice ? new Date(coinCurrentPrice?.lastUpdated).toLocaleString() : ''}
-              </TermText>
-            </CurrentPriceInfo>
+              </S.TermText>
+            </S.CurrentPriceInfo>
 
-            <CurrentPriceText>{coinCurrentPrice?.price?.won?.toLocaleString()}원</CurrentPriceText>
-          </CurrentPrice>
+            <S.CurrentPriceText>
+              {coinCurrentPrice?.price?.won?.toLocaleString()}원
+            </S.CurrentPriceText>
+          </S.CurrentPrice>
         </Fade>
-        <PastPrice>
-          <Fade delay={500} direction="up">
-            <Lowest>
-              <PastDateText>
+        <S.PastPrice>
+          <Fade delay={500} direction="up" triggerOnce>
+            <S.Lowest>
+              <S.PastDateText>
                 {coinPrice ? dateToString(new Date(coinPrice?.minPrice?.atMillis)) : ''}에 살걸..
-              </PastDateText>
+              </S.PastDateText>
 
-              <PastPriceText color="#E92C2C">
+              <S.PastPriceText color={BlueColor}>
                 {coinPrice?.minPrice.won?.toLocaleString()}원
-              </PastPriceText>
+              </S.PastPriceText>
 
-              <TermText>
+              <S.TermText>
                 {monthAgo} ~ {today} 간 최저가
-              </TermText>
-            </Lowest>
+              </S.TermText>
+            </S.Lowest>
           </Fade>
-          <Fade delay={1000} direction="up">
-            <Highest>
-              <PastDateText>
+          <Fade delay={1000} direction="up" triggerOnce>
+            <S.Highest>
+              <S.PastDateText>
                 {coinPrice ? dateToString(new Date(coinPrice?.maxPrice?.atMillis)) : ''}에 팔걸..
-              </PastDateText>
+              </S.PastDateText>
 
-              <PastPriceText color="#0085FF">
+              <S.PastPriceText color={RedColor}>
                 {coinPrice?.maxPrice?.won?.toLocaleString()}원
-              </PastPriceText>
+              </S.PastPriceText>
 
-              <TermText>
+              <S.TermText>
                 {monthAgo} ~ {today} 간 최고가
-              </TermText>
-            </Highest>
+              </S.TermText>
+            </S.Highest>
           </Fade>
-        </PastPrice>
-      </PriceBox>
-      <Fade delay={1500}>
-        <NextPage>
+        </S.PastPrice>
+      </S.PriceBox>
+      <Fade delay={1500} triggerOnce>
+        <S.NextPage>
           <p>행복회로 가동하기</p>
-          <NextPageArrowImgBox onClick={handleNextPage}>
-            <NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
-            <NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
-          </NextPageArrowImgBox>
-        </NextPage>
+          <S.NextPageArrowImgBox onClick={handleNextPage}>
+            <S.NextPageArrowImg className="arrow1" src={downarrow} alt=" " />
+            <S.NextPageArrowImg className="arrow2" src={downarrow} alt=" " />
+          </S.NextPageArrowImgBox>
+        </S.NextPage>
       </Fade>
-    </Wrapper>
+    </S.Container>
   );
 }
 

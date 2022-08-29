@@ -2,40 +2,44 @@ import styled from 'styled-components';
 import { Slide } from 'react-awesome-reveal';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
-import pepeImage from '../../assets/images/pepe.png';
+import pepeImage from '../../assets/images/pepe.svg';
 import ProductList from '../../assets/jsons/products.json';
 import { IProduct, IProductProps } from '../../types/coin';
 import { calculationPriceAtom } from '../../atoms';
-import gunPepeImg from '../../assets/images/gunPepe.png';
+import gunPepeImg from '../../assets/images/gunPepe.svg';
 import { ProductContainer } from './productContainer';
+import PepeImage from '../common/PepeImage';
 
-const Wrapper = styled.div``;
+const S = {
+  Container: styled.div``,
 
-const PepeContainer = styled.div`
-  display: block;
-  float: right;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  width: 40%;
-  overflow: hidden;
-`;
-const PepeImage = styled.img`
-  transform: scaleX(-1);
-  height: 100vh;
-`;
-
-const WhiteContainer = styled.div`
-  height: 100vh;
-`;
-
-const GunPepe = styled.div`
-  height: 100vh;
-  text-align: center;
-  .gunPepe {
+  PepeContainer: styled.div`
+    display: block;
+    float: right;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 40%;
+    overflow: hidden;
+  `,
+  PepeImage: styled.img`
+    transform: scaleX(-1);
     height: 100vh;
-  }
-`;
+  `,
+
+  WhiteContainer: styled.div`
+    height: 100vh;
+  `,
+
+  GunPepe: styled.div`
+    height: 100vh;
+    text-align: center;
+    .gunPepe {
+      height: 100vh;
+    }
+  `,
+};
+
 function Product() {
   const calculationPrice = useRecoilValue(calculationPriceAtom);
   const [productProps, setProductProps] = useState<IProductProps[]>([
@@ -66,14 +70,14 @@ function Product() {
     // setRandomProducts([]); // calculationPrice 바뀔때마다 상품 바뀌도록
   }, [calculationPrice]);
   return (
-    <Wrapper>
+    <S.Container>
       <div>
-        <PepeContainer>
+        <S.PepeContainer>
           <Slide direction="right">
-            <PepeImage src={pepeImage} alt="pepe" />
+            <S.PepeImage src={pepeImage} alt="pepe" />
           </Slide>
-        </PepeContainer>
-        <WhiteContainer />
+        </S.PepeContainer>
+        <S.WhiteContainer />
         {productProps?.map((item) => (
           <ProductContainer
             key={item.productName}
@@ -83,13 +87,14 @@ function Product() {
             num={item.num}
           />
         ))}
-        <WhiteContainer />
+        <S.WhiteContainer />
       </div>
-      <WhiteContainer />
-      <GunPepe>
+      <S.WhiteContainer />
+      <PepeImage src={gunPepeImg} left="20vw" />
+      {/* <S.GunPepe>
         <img className="gunPepe" src={gunPepeImg} alt="gunPepe" />
-      </GunPepe>
-    </Wrapper>
+      </S.GunPepe> */}
+    </S.Container>
   );
 }
 

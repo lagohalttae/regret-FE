@@ -5,7 +5,7 @@ import { Fade } from 'react-awesome-reveal';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { calculateButtondAtom, calculationPriceAtom, coinPriceAtom } from '../../atoms';
-import smilePepeImage from '../../assets/images/smilePepe.png';
+import smilePepeImage from '../../assets/images/smilePepe.svg';
 
 const S = {
   CalculationContainer: styled.div`
@@ -245,7 +245,7 @@ export function Calculation() {
             풀매수해서
           </S.DateBox>
         </Fade>
-        <Fade direction="up" delay={1000}>
+        <Fade direction="up" delay={1000} triggerOnce>
           <S.DateBox>
             <S.HighDate>{dateToString(new Date(coinPrice?.maxPrice?.atMillis))}</S.HighDate>에
             풀매도 했다면..?
